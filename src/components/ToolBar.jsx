@@ -25,7 +25,7 @@ const tools = [
 
 function ToolBar({ selectedTool, onToolSelect }) {
   return (
-    <div className="bg-white border-b border-gray-200 p-2 flex gap-2">
+    <div className="bg-white border-b border-gray-200 p-2 flex gap-2 ">
       {tools.map((tool) => {
         const Icon = tool.icon;
         return (

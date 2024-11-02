@@ -39,7 +39,7 @@ function App() {
         <SideBar />
         <main className="flex-1 flex flex-col ">
           <OpenFilesTabs fileTabs={fileTabs} setFileTabs={setFileTabs} />
-          <ToolBar selectedTool={selectedTool} onToolSelect={handleToolSelect} />
+          {/* <ToolBar selectedTool={selectedTool} onToolSelect={handleToolSelect} /> */}
 
           <Canvas
             selectedTool={selectedTool}
