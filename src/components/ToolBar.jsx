@@ -1,14 +1,14 @@
-import { 
-  FaMousePointer, 
-  FaPencilAlt, 
-  FaRegCircle, 
+import {
+  FaMousePointer,
+  FaPencilAlt,
+  FaRegCircle,
   FaRegSquare,
   FaArrowsAlt,
   FaCrop,
   FaMagic,
   FaRulerHorizontal,
   FaShapes,
-  FaInfo
+  FaInfo,
 } from 'react-icons/fa';
 
 const tools = [
@@ -20,7 +20,7 @@ const tools = [
   { id: 'disconnect', icon: FaCrop, label: 'Disconnect' },
   { id: 'extract', icon: FaRegSquare, label: 'Extract Pattern' },
   { id: 'seam', icon: FaRulerHorizontal, label: 'Add Seam' },
-  { id: 'info', icon: FaInfo, label: 'Info' }
+  { id: 'info', icon: FaInfo, label: 'Info' },
 ];
 
 function ToolBar({ selectedTool, onToolSelect }) {

@@ -1,13 +1,13 @@
-import { 
-  FaSave, 
-  FaCopy, 
-  FaTrash, 
-  FaEye, 
-  FaSearchPlus, 
-  FaExchangeAlt, 
-  FaFont, 
-  FaClone, 
-  FaRuler 
+import {
+  FaSave,
+  FaCopy,
+  FaTrash,
+  FaEye,
+  FaSearchPlus,
+  FaExchangeAlt,
+  FaFont,
+  FaClone,
+  FaRuler,
 } from 'react-icons/fa';
 
 function TopBar({ onSave }) {
@@ -20,7 +20,7 @@ function TopBar({ onSave }) {
     { id: 'type', icon: FaFont, label: 'Type' },
     { id: 'copy', icon: FaCopy, label: 'Copy' },
     { id: 'paste', icon: FaClone, label: 'Paste' },
-    { id: 'fabric-width', icon: FaRuler, label: 'Fabric Width' }
+    { id: 'fabric-width', icon: FaRuler, label: 'Fabric Width' },
   ];
 
   return (
@@ -45,12 +45,8 @@ function TopBar({ onSave }) {
         })}
       </div>
       <div className="flex gap-4">
-        <button className="hover:bg-indigo-800 px-3 py-1 rounded">
-          Tutorial
-        </button>
-        <button className="hover:bg-indigo-800 px-3 py-1 rounded">
-          Chat
-        </button>
+        <button className="hover:bg-indigo-800 px-3 py-1 rounded">Tutorial</button>
+        <button className="hover:bg-indigo-800 px-3 py-1 rounded">Chat</button>
       </div>
     </div>
   );

@@ -1,5 +1,5 @@
-import { useRef, useEffect, useState } from 'react';
-import { Stage, Layer, Line, Path } from 'react-konva';
+import { useRef, useEffect, useState } from "react";
+import { Stage, Layer, Line, Path } from "react-konva";
 
 function Canvas({ selectedTool, patterns, setPatterns, selectedPattern }) {
   const stageRef = useRef(null);
@@ -19,12 +19,12 @@ function Canvas({ selectedTool, patterns, setPatterns, selectedPattern }) {
           {
             id: 1,
             path: "M10 10 L90 90 L90 10 Z",
-            style: { fill: 'none', stroke: '#000', strokeWidth: 2 },
+            style: { fill: "none", stroke: "#000", strokeWidth: 2 },
           },
         ];
         setSvgPatterns(mockPatterns);
       } catch (error) {
-        console.error('Error loading patterns:', error);
+        console.error("Error loading patterns:", error);
       }
     };
 
@@ -38,15 +38,15 @@ function Canvas({ selectedTool, patterns, setPatterns, selectedPattern }) {
         height: window.innerHeight - 112,
       });
     };
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   const handleMouseDown = (e) => {
     isDrawing.current = true;
     const pos = e.target.getStage().getPointerPosition();
 
-    if (selectedTool === 'draw') {
+    if (selectedTool === "draw") {
       setCurrentLine([pos.x, pos.y]);
     }
   };
@@ -57,7 +57,7 @@ function Canvas({ selectedTool, patterns, setPatterns, selectedPattern }) {
     const stage = e.target.getStage();
     const point = stage.getPointerPosition();
 
-    if (selectedTool === 'draw') {
+    if (selectedTool === "draw") {
       setCurrentLine((prevLine) => [...prevLine, point.x, point.y]);
     }
   };
@@ -65,11 +65,11 @@ function Canvas({ selectedTool, patterns, setPatterns, selectedPattern }) {
   const handleMouseUp = () => {
     isDrawing.current = false;
 
-    if (selectedTool === 'draw' && currentLine.length) {
+    if (selectedTool === "draw" && currentLine.length) {
       setPatterns((prevPatterns) => [
         ...prevPatterns,
         {
-          tool: 'line',
+          tool: "line",
           points: currentLine,
         },
       ]);
@@ -121,7 +121,7 @@ function Canvas({ selectedTool, patterns, setPatterns, selectedPattern }) {
 
           {/* User drawn patterns */}
           {patterns.map((pattern, i) => {
-            if (pattern.tool === 'line') {
+            if (pattern.tool === "line") {
               return (
                 <Line
                   key={i}

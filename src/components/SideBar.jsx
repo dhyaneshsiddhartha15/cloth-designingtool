@@ -18,7 +18,11 @@ function SideBar() {
           key={tab.id}
           onClick={() => setActiveTab(tab.id)}
           className={`w-12 h-12 rounded-lg flex flex-col items-center justify-center text-xs
-            ${activeTab === tab.id ? 'bg-indigo-900 text-white' : 'text-indigo-900 hover:bg-indigo-200'}`}
+            ${
+              activeTab === tab.id
+                ? 'bg-indigo-900 text-white'
+                : 'text-indigo-900 hover:bg-indigo-200'
+            }`}
         >
           {tab.id === 'create' && <span className="text-lg">乡</span>}
           {tab.id === 'confirm' && <FaCheck className="w-4 h-4 mb-1" />}
