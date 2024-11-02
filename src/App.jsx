@@ -1,11 +1,11 @@
-import { useState } from "react";
-import ToolBar from "./components/ToolBar";
-import Canvas from "./components/Canvas";
-import TopBar from "./components/TopBar";
-import SideBar from "./components/SideBar";
+import { useState } from 'react';
+import ToolBar from './components/ToolBar';
+import Canvas from './components/Canvas';
+import TopBar from './components/TopBar';
+import SideBar from './components/SideBar';
 
 function App() {
-  const [selectedTool, setSelectedTool] = useState("select");
+  const [selectedTool, setSelectedTool] = useState('select');
   const [patterns, setPatterns] = useState([]);
   const [selectedPattern, setSelectedPattern] = useState(null);
 
@@ -19,7 +19,7 @@ function App() {
 
   const handleSavePattern = () => {
     // Mock save to backend
-    console.log("Saving pattern:", patterns);
+    console.log('Saving pattern:', patterns);
   };
 
   return (
