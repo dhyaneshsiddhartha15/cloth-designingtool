@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { FaCheck, FaRedo } from 'react-icons/fa';
-
+import { AiOutlineSetting } from 'react-icons/ai';
+import { PiScribbleBold } from 'react-icons/pi';
 function SideBar() {
   const [activeTab, setActiveTab] = useState('create');
 
@@ -12,25 +13,37 @@ function SideBar() {
   ];
 
   return (
-    <div className="w-16 bg-indigo-100 flex flex-col items-center py-4 space-y-6">
-      {tabs.map((tab) => (
-        <button
-          key={tab.id}
-          onClick={() => setActiveTab(tab.id)}
-          className={`w-12 h-12 rounded-lg flex flex-col items-center justify-center text-xs
-            ${
-              activeTab === tab.id
-                ? 'bg-indigo-900 text-white'
-                : 'text-indigo-900 hover:bg-indigo-200'
-            }`}
+    <div className="bg-indigo-100 py-5 text-indigo-900">
+      <ul className="space-y-3">
+        <li
+          id=""
+          className="flex justif-center items-center flex-col text-xs font-semibold px-5 py-2 hover:bg-indigo-200"
         >
-          {tab.id === 'create' && <span className="text-lg">乡</span>}
-          {tab.id === 'confirm' && <FaCheck className="w-4 h-4 mb-1" />}
-          {tab.id === 'produce' && <span className="text-lg">口</span>}
-          {tab.id === 'settings' && <span className="text-lg">⚙</span>}
-          <span>{tab.label}</span>
-        </button>
-      ))}
+          <PiScribbleBold className="h-6 w-6" />
+          Create
+        </li>
+        <li
+          id=""
+          className="flex justif-center items-center flex-col text-xs font-semibold px-5 py-2 hover:bg-indigo-200"
+        >
+          <FaCheck className="h-6 w-6" />
+          Confirm
+        </li>
+        <li
+          id=""
+          className="flex justif-center items-center flex-col text-xs font-semibold px-5 py-2 hover:bg-indigo-200"
+        >
+          <AiOutlineSetting className="h-6 w-6" />
+          Produce
+        </li>
+        <li
+          id=""
+          className="flex justif-center items-center flex-col text-xs font-semibold px-5 py-2 hover:bg-indigo-200"
+        >
+          <AiOutlineSetting className="h-6 w-6" />
+          Settings
+        </li>
+      </ul>
     </div>
   );
 }
