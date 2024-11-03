@@ -6,20 +6,22 @@ import { FaRegEye } from 'react-icons/fa6';
 import { IoSearchSharp } from 'react-icons/io5';
 import { FaSearchMinus } from 'react-icons/fa'; //search minus
 import { IoMdCopy } from 'react-icons/io';
-
+import { TiTick } from 'react-icons/ti';
 import { LuType } from 'react-icons/lu';
 import { FiClipboard } from 'react-icons/fi';
 function TopBar({ onSave }) {
   const tools = [
     { id: 'duplicate', icon: MdOutlineContentCopy, label: 'Duplicate' },
-    { id: 'delete', icon: FiTrash, label: 'Delete' },
-    { id: 'view', icon: FaRegEye, label: 'View' },
     { id: 'zoom', icon: IoSearchSharp, label: 'Zoom' },
-    { id: 'mirror', icon: FaExchangeAlt, label: 'Mirror' },
-    { id: 'type', icon: LuType, label: 'Type' },
+    { id: 'view', icon: FaRegEye, label: 'View' },
     { id: 'copy', icon: IoMdCopy, label: 'Copy' },
     { id: 'paste', icon: FiClipboard, label: 'Paste' },
-    { id: 'fabric-width', icon: FaRuler, label: 'Fabric Width' },
+    { id: 'Save', icon: TiTick, label: 'Save' },
+    { id: 'delete', icon: FiTrash, label: 'Delete' },
+
+    // { id: 'type', icon: LuType, label: 'Type' },
+
+    // { id: 'fabric-width', icon: FaRuler, label: 'Fabric Width' },
   ];
 
   return (

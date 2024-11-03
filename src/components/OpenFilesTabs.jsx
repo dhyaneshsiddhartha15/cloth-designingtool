@@ -1,12 +1,14 @@
 import React from 'react';
 import { CgClose } from 'react-icons/cg';
 
-const OpenFilesTabs = ({ fileTabs, setFileTabs }) => {
+const OpenFilesTabs = ({ fileTabs, setFileTabs, setOpenedFile }) => {
   const handleFileChange = (fileId) => {
     setFileTabs((prev) => {
       const tempFiles = prev.map((file) => {
-        if (file._id == fileId) file.isOpen = true;
-        else file.isOpen = false;
+        if (file._id == fileId) {
+          file.isOpen = true;
+          setOpenedFile(file.file);
+        } else file.isOpen = false;
         return file;
       });
 
@@ -20,7 +22,7 @@ const OpenFilesTabs = ({ fileTabs, setFileTabs }) => {
 
   return (
     <ul
-      className="flex text-xs bg-indigo-200 w-fit border h-[20px]"
+      className="flex text-xs bg-indigo-200 w-fit border max-h-[20px]"
       style={{
         clipPath: 'polygon(0 0, calc(100% - 10px) 0, 100% 100%, calc(100% ) 100%, 0 100%)',
       }}

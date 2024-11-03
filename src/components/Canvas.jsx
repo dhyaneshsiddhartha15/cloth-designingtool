@@ -78,7 +78,7 @@ function Canvas({ selectedTool, patterns, setPatterns, selectedPattern }) {
   };
 
   return (
-    <div className="flex-1 bg-gray-500">
+    <div className="flex-1 bg-gray-50">
       <Stage
         width={stageSize.width}
         height={stageSize.height}
