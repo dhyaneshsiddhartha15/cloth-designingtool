@@ -20,7 +20,7 @@ const OpenFilesTabs = ({ fileTabs, setFileTabs }) => {
 
   return (
     <ul
-      className="flex text-xs bg-indigo-200 w-fit border"
+      className="flex text-xs bg-indigo-200 w-fit border h-[20px]"
       style={{
         clipPath: 'polygon(0 0, calc(100% - 10px) 0, 100% 100%, calc(100% ) 100%, 0 100%)',
       }}

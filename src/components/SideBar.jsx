@@ -100,29 +100,25 @@ function SideBar() {
               <>
                 {horizontle ? (
                   <div
-                    className={`absolute top-0 bottom-0 left-[60px] z-10 shadow-lg rounded-lg w-[${
-                      tab.subTabs.length * 100
-                    }%]`}
+                    className={`absolute top-0 bottom-0 left-[69px] z-10 shadow-lg rounded-lg  bg-indigo-200 pr-5`}
                   >
-                    <div className="relative">
-                      {console.log(tab.subTabs.length)}
+                    <div className="relative ">
                       <button
-                        className="absolute right-1 top-1 hover:text-red-500"
+                        className="absolute -right-4 top-1 hover:text-red-500"
                         onClick={handleCloseMenu}
                       >
                         <CgClose />
                       </button>
                     </div>
                     <div className="relative">
-                      {console.log(tab.subTabs.length)}
                       <button
-                        className="absolute right-1 top-4 hover:text-red-500"
+                        className="absolute -right-4 top-4 hover:text-indigo-400 mt-1"
                         onClick={handleHorizontle}
                       >
-                        <FaBarsProgress />
+                        <FaBarsProgress className="rotate-90" />
                       </button>
                     </div>
-                    <ul className="bg-indigo-200 w-full shadow-lg rounded-xl flex flex-row space-x-1 h-full">
+                    <ul className="bg-ind igo-200 w-full shadow-lg rounded-xl flex flex-row space-x-1 h-full ">
                       {tab.subTabs.map((subTab) => (
                         <li
                           key={subTab.id}
@@ -154,7 +150,7 @@ function SideBar() {
                     <div className="relative">
                       {console.log(tab.subTabs.length)}
                       <button
-                        className="absolute right-5 top-1 hover:text-red-500"
+                        className="absolute right-5 top-1 hover:text-indigo-400 "
                         onClick={handleHorizontle}
                       >
                         <FaBarsProgress />
