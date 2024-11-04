@@ -184,52 +184,56 @@ function SideBar() {
       id: 'G001',
       name: 'Grading',
       Icon: TbLetterG,
-    },
-    {
-      id: 'GOO2',
-      name: 'Size Dupe',
-      Icon: TbLetterD,
-    },
-    {
-      id: 'GOO3',
-      name: '3D Grade',
-      Icon: TbBadge3DFilled,
-    },
-    {
-      id: 'GOO4',
-      name: 'Auto Seams',
-      Icon: MdOutlineTabUnselected,
-    },
-    {
-      id: 'G0041',
-      name: '5MM Seam',
-      Icon: TbHexagonLetterMFilled,
-    },
-    {
-      id: 'G0042',
-      name: '10MM Seam',
-      Icon: TbHexagonLetterMFilled,
-    },
+      subTabs: [
+        {
+          id: 'GOO2',
+          name: 'Size Dupe',
+          Icon: TbLetterD,
+        },
+        {
+          id: 'GOO3',
+          name: '3D Grade',
+          Icon: TbBadge3DFilled,
+        },
+        {
+          id: 'GOO4',
+          name: 'Auto Seams',
+          Icon: MdOutlineTabUnselected,
+          subTabs: [
+            {
+              id: 'G0041',
+              name: '5MM Seam',
+              Icon: TbHexagonLetterMFilled,
+            },
+            {
+              id: 'G0042',
+              name: '10MM Seam',
+              Icon: TbHexagonLetterMFilled,
+            },
 
-    {
-      id: 'G0043',
-      name: '15MM Seam',
-      Icon: TbHexagonLetterMFilled,
-    },
-    {
-      id: 'GOO44',
-      name: '20MM Seam',
-      Icon: TbHexagonLetterMFilled,
-    },
-    {
-      id: 'G0045',
-      name: '40MM Seam',
-      Icon: TbHexagonLetterMFilled,
-    },
-    {
-      id: 'G005',
-      name: 'Multi Lay',
-      Icon: IoGrid,
+            {
+              id: 'G0043',
+              name: '15MM Seam',
+              Icon: TbHexagonLetterMFilled,
+            },
+            {
+              id: 'GOO44',
+              name: '20MM Seam',
+              Icon: TbHexagonLetterMFilled,
+            },
+            {
+              id: 'G0045',
+              name: '40MM Seam',
+              Icon: TbHexagonLetterMFilled,
+            },
+          ],
+        },
+        {
+          id: 'G005',
+          name: 'Multi Lay',
+          Icon: IoGrid,
+        },
+      ],
     },
   ]);
 
@@ -259,7 +263,7 @@ function SideBar() {
   };
 
   return (
-    <div className="bg-indigo-100 py-5 text-indigo-900 w-[70px]  ">
+    <div className="bg-indigo-100 py-5 text-indigo-900 w-[70px] h-full">
       <ul className="space-y-">
         {tabs.map((tab) => (
           <li
@@ -323,7 +327,7 @@ function SideBar() {
                             ></span>
                           )}
                           {/* ******************************************************************************** */}
-                          <ul className="absolute   top-[55px] right-0 left-0 bg-indigo-200 hidden  group-hover:inline">
+                          <ul className="absolute   bottom-[55px] right-0 left-0 bg-indigo-200 hidden  group-hover:inline">
                             {subTab?.subTabs?.map((subTab) => (
                               <li
                                 key={subTab.id}

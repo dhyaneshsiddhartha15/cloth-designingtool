@@ -1,35 +1,83 @@
-import { useRef, useEffect, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import { Stage, Layer, Line, Path } from 'react-konva';
 
-function Canvas({ selectedTool, patterns, setPatterns, selectedPattern }) {
+function Canvas({ selectedTool, patterns, setPatterns, selectedPattern, selectedFile }) {
   const stageRef = useRef(null);
   const isDrawing = useRef(false);
   const [currentLine, setCurrentLine] = useState([]);
-  const [svgPatterns, setSvgPatterns] = useState([]);
+  const [svgElements, setSvgElements] = useState([]);
   const [stageSize, setStageSize] = useState({
     width: window.innerWidth - 80,
     height: window.innerHeight - 112,
   });
-
   useEffect(() => {
-    // Mock backend call to load SVG patterns
-    const loadPatterns = async () => {
+    if (selectedFile) {
       try {
-        const mockPatterns = [
-          {
-            id: 1,
-            path: 'M10 10 L90 90 L90 10 Z',
-            style: { fill: 'none', stroke: '#000', strokeWidth: 2 },
-          },
-        ];
-        setSvgPatterns(mockPatterns);
-      } catch (error) {
-        console.error('Error loading patterns:', error);
-      }
-    };
+        // Remove leading and trailing whitespace
+        const trimmedSvg = selectedFile.trim();
 
-    loadPatterns();
-  }, []);
+        const parser = new DOMParser();
+        const svgDoc = parser.parseFromString(trimmedSvg, 'image/svg+xml');
+
+        // Check if parsing resulted in an error
+        const errorNode = svgDoc.querySelector('parsererror');
+        if (errorNode) {
+          console.error('Error parsing SVG:', errorNode.textContent);
+          return;
+        }
+
+        const svgPaths = svgDoc.querySelectorAll('path');
+        const svgLines = svgDoc.querySelectorAll('line');
+        const svgTexts = svgDoc.querySelectorAll('text');
+
+        console.log(
+          'Paths:',
+          svgPaths.length,
+          'Lines:',
+          svgLines.length,
+          'Texts:',
+          svgTexts.length
+        );
+
+        const pathElements = Array.from(svgPaths).map((path, index) => ({
+          id: `path-${index}`,
+          type: 'path',
+          data: path.getAttribute('d'),
+          fill: path.getAttribute('fill') || 'none',
+          stroke: path.getAttribute('stroke') || '#000',
+          strokeWidth: path.getAttribute('stroke-width') || 2,
+        }));
+
+        const lineElements = Array.from(svgLines).map((line, index) => ({
+          id: `line-${index}`,
+          type: 'line',
+          x1: line.getAttribute('x1'),
+          y1: line.getAttribute('y1'),
+          x2: line.getAttribute('x2'),
+          y2: line.getAttribute('y2'),
+          stroke: line.getAttribute('stroke') || '#000',
+          strokeWidth: line.getAttribute('stroke-width') || 2,
+        }));
+
+        const textElements = Array.from(svgTexts).map((text, index) => ({
+          id: `text-${index}`,
+          type: 'text',
+          x: text.getAttribute('x') || 0,
+          y: text.getAttribute('y') || 0,
+          fill: text.getAttribute('fill') || '#000',
+          fontSize: text.getAttribute('font-size') || '16',
+          fontFamily: text.getAttribute('font-family') || 'sans-serif',
+          content: text.textContent || '',
+        }));
+
+        // Combine all elements
+        const elements = [...pathElements, ...lineElements, ...textElements];
+        setSvgElements(elements);
+      } catch (error) {
+        console.error('Error parsing the SVG:', error);
+      }
+    }
+  }, [selectedFile]);
 
   useEffect(() => {
     const handleResize = () => {
@@ -78,81 +126,76 @@ function Canvas({ selectedTool, patterns, setPatterns, selectedPattern }) {
   };
 
   return (
-    <div className="flex-1 bg-gray-50">
-      <Stage
-        width={stageSize.width}
-        height={stageSize.height}
-        onMouseDown={handleMouseDown}
-        onMouseMove={handleMouseMove}
-        onMouseUp={handleMouseUp}
-        ref={stageRef}
-        className="bg-white shadow-inner"
-      >
-        <Layer>
-          {/* Grid background */}
-          {Array.from({ length: 50 }).map((_, i) => (
-            <Line
-              key={`grid-h-${i}`}
-              points={[0, i * 20, stageSize.width, i * 20]}
-              stroke="#eee"
-              strokeWidth={1}
-            />
-          ))}
-          {Array.from({ length: 50 }).map((_, i) => (
-            <Line
-              key={`grid-v-${i}`}
-              points={[i * 20, 0, i * 20, stageSize.height]}
-              stroke="#eee"
-              strokeWidth={1}
-            />
-          ))}
+    <svg viewBox="0 0 800 1200" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
+      {/* Define the grid pattern */}
+      <defs>
+        <pattern
+          id="grid"
+          width="37.795" /* 10mm in pixels (assuming 1mm = 3.7795px) */
+          height="37.795"
+          patternUnits="userSpaceOnUse"
+        >
+          <path d="M 37.795 0 L 0 0 0 37.795" fill="none" stroke="lightgray" strokeWidth="0.5" />
+        </pattern>
+      </defs>
 
-          {/* SVG Patterns */}
-          {svgPatterns.map((pattern, i) => (
-            <Path
-              key={`pattern-${i}`}
-              data={pattern.path}
-              fill={pattern.style.fill}
-              stroke={pattern.style.stroke}
-              strokeWidth={pattern.style.strokeWidth}
-              draggable
-            />
-          ))}
+      {/* Apply the grid pattern as the background */}
+      <rect width="100%" height="100%" fill="url(#grid)" />
 
-          {/* User drawn patterns */}
-          {patterns.map((pattern, i) => {
-            if (pattern.tool === 'line') {
-              return (
-                <Line
-                  key={i}
-                  points={pattern.points}
-                  stroke="#000"
-                  strokeWidth={2}
-                  tension={0.5}
-                  lineCap="round"
-                  lineJoin="round"
-                  draggable
-                />
-              );
-            }
-            return null;
-          })}
-
-          {/* Current drawing line */}
-          {currentLine.length > 0 && (
-            <Line
-              points={currentLine}
-              stroke="#000"
-              strokeWidth={2}
-              tension={0.5}
-              lineCap="round"
-              lineJoin="round"
+      {/* Your SVG elements */}
+      {svgElements.map((element) => {
+        if (element.type === 'path') {
+          return (
+            <path
+              key={element.id}
+              d={element.data}
+              fill={element.fill}
+              stroke={element.stroke}
+              strokeWidth={element.strokeWidth}
             />
-          )}
-        </Layer>
-      </Stage>
-    </div>
+          );
+        } else if (element.type === 'line') {
+          return (
+            <line
+              key={element.id}
+              x1={element.x1}
+              y1={element.y1}
+              x2={element.x2}
+              y2={element.y2}
+              stroke={element.stroke}
+              strokeWidth={element.strokeWidth}
+            />
+          );
+        } else if (element.type === 'text') {
+          return (
+            <text
+              key={element.id}
+              x={element.x}
+              y={element.y}
+              fontFamily={element.fontFamily}
+              fontSize={element.fontSize}
+              fill={element.fill}
+            >
+              {element.content}
+            </text>
+          );
+        } else if (element.type === 'ellipse') {
+          return (
+            <ellipse
+              key={element.id}
+              cx={element.cx}
+              cy={element.cy}
+              rx={element.rx}
+              ry={element.ry}
+              stroke={element.stroke}
+              strokeWidth={element.strokeWidth}
+              fill={element.fill}
+            />
+          );
+        }
+        return null;
+      })}
+    </svg>
   );
 }
-
 export default Canvas;
