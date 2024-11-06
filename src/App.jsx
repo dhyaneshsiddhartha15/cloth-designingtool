@@ -4,6 +4,7 @@ import Canvas from './components/Canvas';
 import TopBar from './components/TopBar';
 import SideBar from './components/SideBar';
 import OpenFilesTabs from './components/OpenFilesTabs';
+import ShapeWithAnchors from './components/Test';
 
 function App() {
   const [selectedTool, setSelectedTool] = useState('draw');
@@ -71,7 +72,7 @@ function App() {
               <img src={selectedFile} />
             </div>
           </boxy-svg> */}
-
+          {/* <ShapeWithAnchors /> */}
           <Canvas
             selectedTool={selectedTool}
             patterns={patterns}

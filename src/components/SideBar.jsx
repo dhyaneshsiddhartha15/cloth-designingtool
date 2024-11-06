@@ -239,9 +239,8 @@ function SideBar({ setSelectedTool }) {
 
   const handleTabToggle = (tabId, hasSubtab, name) => {
     if (activeTab === tabId) {
-      setActiveSubTab(null);
+      // setActiveSubTab(null);
       setOpen((prevOpen) => !prevOpen);
-      setSelectedTool(name?.toLowerCase());
     } else {
       setActiveTab(tabId);
       setActiveSubTab(null);
