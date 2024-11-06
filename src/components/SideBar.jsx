@@ -30,7 +30,7 @@ import { TfiArrowsHorizontal } from 'react-icons/tfi';
 import { LiaCompressArrowsAltSolid } from 'react-icons/lia';
 import { GiHole, GiShirtButton } from 'react-icons/gi';
 import { IoGrid } from 'react-icons/io5';
-function SideBar() {
+function SideBar({ setSelectedTool }) {
   const [activeTab, setActiveTab] = useState('');
   const [activeSubTab, setActiveSubTab] = useState(null);
   const [open, setOpen] = useState(false);
@@ -237,18 +237,22 @@ function SideBar() {
     },
   ]);
 
-  const handleTabToggle = (tabId) => {
+  const handleTabToggle = (tabId, hasSubtab, name) => {
     if (activeTab === tabId) {
+      setActiveSubTab(null);
       setOpen((prevOpen) => !prevOpen);
+      setSelectedTool(name?.toLowerCase());
     } else {
       setActiveTab(tabId);
       setActiveSubTab(null);
+      setSelectedTool(name?.toLowerCase());
       setOpen(true);
     }
   };
 
-  const handleSubTabClick = (subTabId) => {
+  const handleSubTabClick = (subTabId, hasSubtab, name) => {
     setActiveSubTab(subTabId);
+    setSelectedTool(name?.toLowerCase());
     setOpen(true);
   };
 
@@ -271,7 +275,7 @@ function SideBar() {
             className={`cursor-pointer flex justify-center items-center flex-col text-xs font-semibold px-2   py-2 text-center ${
               activeTab === tab.id ? 'bg-indigo-200' : 'hover:bg-indigo-200'
             } relative`}
-            onClick={() => handleTabToggle(tab.id)}
+            onClick={() => handleTabToggle(tab.id, tab?.subTabs?.length > 0, tab.name)}
           >
             <tab.Icon className="h-6 w-6" />
             {tab.name}
@@ -311,7 +315,7 @@ function SideBar() {
                           key={subTab.id}
                           onClick={(e) => {
                             e.stopPropagation();
-                            handleSubTabClick(subTab.id);
+                            handleSubTabClick(subTab.id, subTab?.subTabs?.length > 0, subTab.name);
                           }}
                           className={`cursor-pointer group bg-indigo-200 flex justify-center items-center flex-col text-xs font-semibold px-4 py-2 rounded-lg relative ${
                             activeSubTab === subTab.id ? 'bg-indigo-300' : 'hover:bg-indigo-100'
@@ -333,7 +337,11 @@ function SideBar() {
                                 key={subTab.id}
                                 onClick={(e) => {
                                   e.stopPropagation();
-                                  handleSubTabClick(subTab.id);
+                                  handleSubTabClick(
+                                    subTab.id,
+                                    subTab?.subTabs?.length > 0,
+                                    subTab.name
+                                  );
                                 }}
                                 className={`cursor-pointer bg-indigo-200 flex justify-center items-center flex-col text-xs font-semibold px-4 py-4 rounded-lg ${
                                   activeSubTab === subTab.id
@@ -376,7 +384,7 @@ function SideBar() {
                           key={subTab.id}
                           onClick={(e) => {
                             e.stopPropagation();
-                            handleSubTabClick(subTab.id);
+                            handleSubTabClick(subTab.id, subTab?.subTabs?.length > 0, subTab.name);
                           }}
                           className={`cursor-pointer relative group bg-indigo-200 flex justify-center items-center flex-col text-xs font-semibold px-2 py-4 rounded-lg ${
                             activeSubTab === subTab.id ? 'bg-indigo-300' : 'hover:bg-indigo-100'
@@ -398,7 +406,11 @@ function SideBar() {
                                 key={subTab.id}
                                 onClick={(e) => {
                                   e.stopPropagation();
-                                  handleSubTabClick(subTab.id);
+                                  handleSubTabClick(
+                                    subTab.id,
+                                    subTab?.subTabs?.length > 0,
+                                    subTab.name
+                                  );
                                 }}
                                 className={`cursor-pointer bg-indigo-200 flex justify-center px-5 items-center text-xs font-semibold px-4 py-4 rounded-lg ${
                                   activeSubTab === subTab.id
