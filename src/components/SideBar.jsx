@@ -244,6 +244,7 @@ function SideBar({ setSelectedTool }) {
     } else {
       setActiveTab(tabId);
       setActiveSubTab(null);
+
       setSelectedTool(name?.toLowerCase());
       setOpen(true);
     }
@@ -266,7 +267,7 @@ function SideBar({ setSelectedTool }) {
   };
 
   return (
-    <div className="bg-indigo-100 py-5 text-indigo-900 w-[70px] h-full">
+    <div className="bg-indigo-100 py-5 text-indigo-900 w-[70px] min-h-screen">
       <ul className="space-y-">
         {tabs.map((tab) => (
           <li

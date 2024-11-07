@@ -1,156 +1,185 @@
-import { useRef, useState, useEffect } from 'react';
-import { Stage, Layer, Image, Line, Rect } from 'react-konva';
-import useImage from 'use-image';
+import React, { useEffect, useState } from 'react';
+import { fabric } from 'fabric';
+import { FabricJSCanvas, useFabricJSEditor } from 'fabricjs-react';
 
 function Canvas({ selectedFile, selectedTool }) {
-  const [lines, setLines] = useState([]);
-  const [shapes, setShapes] = useState([]);
+  const { editor, onReady } = useFabricJSEditor();
   const [isDrawing, setIsDrawing] = useState(false);
-  const [svgPosition, setSvgPosition] = useState({ x: 0, y: 0 });
-  const [svgScale, setSvgScale] = useState(1);
-  const stageRef = useRef(null);
-  const [image] = useImage(selectedFile);
-
-  // Reset drawings when selectedFile changes
-  useEffect(() => {
-    setLines([]);
-    setShapes([]);
-  }, [selectedFile]);
-
-  const handleMouseDown = (e) => {
-    setIsDrawing(true);
-    const stage = e.target.getStage();
-    const pos = stage.getPointerPosition();
-    const adjustedPos = {
-      x: (pos.x - svgPosition.x) / svgScale,
-      y: (pos.y - svgPosition.y) / svgScale,
-    };
-
-    if (selectedTool === 'line') {
-      setLines([...lines, { points: [adjustedPos.x, adjustedPos.y] }]);
-    } else if (selectedTool === 'rectangle') {
-      setShapes([
-        ...shapes,
-        { type: 'rectangle', x: adjustedPos.x, y: adjustedPos.y, width: 0, height: 0 },
-      ]);
-    }
-  };
-
-  const handleMouseMove = (e) => {
-    if (!isDrawing) return;
-    const stage = e.target.getStage();
-    const point = stage.getPointerPosition();
-    const adjustedPoint = {
-      x: (point.x - svgPosition.x) / svgScale,
-      y: (point.y - svgPosition.y) / svgScale,
-    };
-
-    if (selectedTool === 'line') {
-      const lastLine = lines[lines.length - 1];
-      lastLine.points = lastLine.points.concat([adjustedPoint.x, adjustedPoint.y]);
-      setLines([...lines.slice(0, -1), lastLine]);
-    } else if (selectedTool === 'rectangle') {
-      const lastShape = shapes[shapes.length - 1];
-      lastShape.width = adjustedPoint.x - lastShape.x;
-      lastShape.height = adjustedPoint.y - lastShape.y;
-      setShapes([...shapes.slice(0, -1), lastShape]);
-    }
-  };
-
-  const handleMouseUp = () => {
-    setIsDrawing(false);
-  };
-
-  const handleDragMove = (e) => {
-    const newPos = e.target.position();
-    setSvgPosition(newPos);
-  };
-
-  const handleZoom = (e) => {
-    e.evt.preventDefault();
-    const scaleBy = 1.1;
-    const stage = stageRef.current;
-    const oldScale = svgScale;
-    const pointer = stage.getPointerPosition();
-    const mousePointTo = {
-      x: (pointer.x - svgPosition.x) / oldScale,
-      y: (pointer.y - svgPosition.y) / oldScale,
-    };
-    const newScale = e.evt.deltaY < 0 ? oldScale * scaleBy : oldScale / scaleBy;
-    setSvgScale(newScale);
-
-    const newPos = {
-      x: pointer.x - mousePointTo.x * newScale,
-      y: pointer.y - mousePointTo.y * newScale,
-    };
-    setSvgPosition(newPos);
-  };
+  const [line, setLine] = useState(null);
+  const [curve, setCurve] = useState(null);
+  const [startPoint, setStartPoint] = useState(null);
+  const [rect, setRect] = useState(null);
+  const [controlPoint, setControlPoint] = useState(null);
 
   useEffect(() => {
-    const stage = stageRef.current;
-    if (stage) {
-      stage.on('wheel', handleZoom);
+    if (!editor || !fabric) return;
+
+    const canvas = editor.canvas;
+
+    const updateObjectSelectability = () => {
+      canvas.getObjects().forEach((obj) => {
+        obj.selectable = selectedTool === 'select';
+        obj.hasControls = selectedTool === 'select';
+      });
+      canvas.renderAll();
+    };
+
+    updateObjectSelectability();
+    canvas.off('mouse:down');
+    canvas.off('mouse:move');
+    canvas.off('mouse:up');
+    canvas.off('mouse:wheel');
+
+    if (selectedTool === 'rectangle') {
+      canvas.on('mouse:down', function (o) {
+        if (!isDrawing) {
+          const pointer = canvas.getPointer(o.e);
+          const startX = pointer.x;
+          const startY = pointer.y;
+          setStartPoint({ x: startX, y: startY });
+
+          const newRect = new fabric.Rect({
+            left: startX,
+            top: startY,
+            fill: 'transparent',
+            stroke: 'black',
+            strokeWidth: 1,
+            selectable: selectedTool === 'select',
+            hasControls: selectedTool === 'select',
+          });
+
+          canvas.add(newRect);
+          setRect(newRect);
+          setIsDrawing(true);
+        }
+      });
+
+      canvas.on('mouse:move', function (o) {
+        if (isDrawing && rect && startPoint) {
+          const pointer = canvas.getPointer(o.e);
+          const width = Math.abs(pointer.x - startPoint.x);
+          const height = Math.abs(pointer.y - startPoint.y);
+
+          rect.set({
+            width,
+            height,
+            left: Math.min(pointer.x, startPoint.x),
+            top: Math.min(pointer.y, startPoint.y),
+          });
+
+          canvas.renderAll();
+        }
+      });
+
+      canvas.on('mouse:up', function () {
+        setIsDrawing(false);
+        setRect(null);
+        setStartPoint(null);
+      });
     }
+
+    if (selectedTool === 'zoom') {
+      canvas.on('mouse:wheel', function (opt) {
+        const delta = opt.e.deltaY;
+        let zoom = canvas.getZoom();
+        zoom *= 0.999 ** delta;
+        if (zoom > 20) zoom = 20;
+        if (zoom < 0.01) zoom = 0.01;
+        canvas.zoomToPoint({ x: opt.e.offsetX, y: opt.e.offsetY }, zoom);
+        opt.e.preventDefault();
+        opt.e.stopPropagation();
+      });
+
+      canvas.on('mouse:down', function (opt) {
+        const evt = opt.e;
+        if (evt.ctrlKey === true) {
+          this.isDragging = true;
+          this.selection = false;
+          this.lastPosX = evt.clientX;
+          this.lastPosY = evt.clientY;
+        }
+      });
+
+      canvas.on('mouse:move', function (opt) {
+        if (this.isDragging) {
+          const e = opt.e;
+          const vpt = this.viewportTransform;
+          vpt[4] += e.clientX - this.lastPosX;
+          vpt[5] += e.clientY - this.lastPosY;
+          this.requestRenderAll();
+          this.lastPosX = e.clientX;
+          this.lastPosY = e.clientY;
+        }
+      });
+
+      canvas.on('mouse:up', function () {
+        this.setViewportTransform(this.viewportTransform);
+        this.isDragging = false;
+        this.selection = true;
+      });
+    }
+
+    if (selectedTool === 'line') {
+      canvas.on('mouse:down', function (o) {
+        setIsDrawing(true);
+        const pointer = canvas.getPointer(o.e);
+        const points = [pointer.x, pointer.y, pointer.x, pointer.y];
+
+        const lineType = document.getElementById('linetype')?.value || 'solid';
+        const newLine = new fabric.Line(points, {
+          strokeWidth: lineType === 'dashed' ? 5 : 0.5,
+          strokeDashArray: lineType === 'dashed' ? [15, 5] : null,
+          fill: lineType === 'dashed' ? 'gray' : 'black',
+          stroke: lineType === 'dashed' ? 'gray' : 'black',
+          originX: 'center',
+          originY: 'center',
+        });
+
+        canvas.add(newLine);
+        setLine(newLine);
+      });
+
+      canvas.on('mouse:move', function (o) {
+        if (!isDrawing || !line) return;
+        const pointer = canvas.getPointer(o.e);
+        line.set({ x2: pointer.x, y2: pointer.y });
+        canvas.renderAll();
+      });
+
+      canvas.on('mouse:up', function () {
+        setIsDrawing(false);
+        setLine(null);
+      });
+    }
+
+    canvas.renderAll();
+
     return () => {
-      if (stage) {
-        stage.off('wheel', handleZoom);
-      }
+      canvas.off('mouse:down');
+      canvas.off('mouse:move');
+      canvas.off('mouse:up');
+      canvas.off('mouse:wheel');
     };
-  }, [svgScale, svgPosition]);
+  }, [editor, selectedTool, line, rect, startPoint]);
+
+  useEffect(() => {
+    if (editor && selectedFile) {
+      fabric.loadSVGFromString(selectedFile, (objects, options) => {
+        editor.canvas._objects.splice(0, editor.canvas._objects.length);
+        editor.canvas.backgroundImage = objects[0];
+        const newObj = objects.filter((_, index) => index !== 0);
+        newObj.forEach((object) => {
+          editor.canvas.add(object);
+        });
+
+        editor.canvas.renderAll();
+      });
+    }
+  }, [selectedFile, editor]);
 
   return (
-    <div className="grid-background">
-      <Stage
-        ref={stageRef}
-        width={window.innerWidth}
-        height={window.innerHeight}
-        onMouseDown={handleMouseDown}
-        onMouseMove={handleMouseMove}
-        onMouseUp={handleMouseUp}
-        className="w-full h-full"
-      >
-        <Layer>
-          {image && (
-            <Image
-              image={image}
-              x={svgPosition.x}
-              y={svgPosition.y}
-              scaleX={svgScale}
-              scaleY={svgScale}
-              draggable={selectedTool == 'select'}
-              onDragMove={handleDragMove}
-            />
-          )}
-          {lines.map((line, i) => (
-            <Line
-              key={i}
-              points={line.points.map((p, index) =>
-                index % 2 === 0 ? p * svgScale + svgPosition.x : p * svgScale + svgPosition.y
-              )}
-              stroke="#000000"
-              strokeWidth={5}
-              tension={0.5}
-              lineCap="round"
-            />
-          ))}
-          {shapes.map((shape, i) => {
-            if (shape.type === 'rectangle') {
-              return (
-                <Rect
-                  key={i}
-                  x={shape.x * svgScale + svgPosition.x}
-                  y={shape.y * svgScale + svgPosition.y}
-                  width={shape.width * svgScale}
-                  height={shape.height * svgScale}
-                  stroke="#000000"
-                  strokeWidth={2}
-                />
-              );
-            }
-            return null;
-          })}
-        </Layer>
-      </Stage>
+    <div className="grid-background w-full h-full">
+      <FabricJSCanvas className="w-full h-full" onReady={onReady} />
     </div>
   );
 }

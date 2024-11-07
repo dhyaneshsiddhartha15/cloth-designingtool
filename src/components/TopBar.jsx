@@ -9,7 +9,7 @@ import { IoMdCopy } from 'react-icons/io';
 import { TiTick } from 'react-icons/ti';
 import { LuType } from 'react-icons/lu';
 import { FiClipboard } from 'react-icons/fi';
-function TopBar({ onSave }) {
+function TopBar({ setSelectedTool, selectedTool }) {
   const tools = [
     { id: 'duplicate', icon: MdOutlineContentCopy, label: 'Duplicate' },
     { id: 'zoom', icon: IoSearchSharp, label: 'Zoom' },
@@ -24,6 +24,11 @@ function TopBar({ onSave }) {
     // { id: 'fabric-width', icon: FaRuler, label: 'Fabric Width' },
   ];
 
+  const handleSelectTool = (label) => {
+    console.log(label.toLowerCase());
+    setSelectedTool(label.toLowerCase());
+  };
+
   return (
     <div className="bg-indigo-900 text-white  flex items-center px-4 justify-start gap-10">
       <div className="flex items-center gap-1">
@@ -36,8 +41,13 @@ function TopBar({ onSave }) {
           return (
             <button
               key={tool.id}
-              className="flex flex-col items-center justify-center my-2 py-2 hover:bg-indigo-200 rounded w-[60px] hover:text-indigo-800 group hover:font-semibold"
+              className={`flex flex-col items-center justify-center my-2 py-2  rounded w-[60px] group hover:font-semibold ${
+                selectedTool == tool.label.toLocaleLowerCase()
+                  ? 'bg-indigo-200 text-indigo-800'
+                  : 'hover:bg-indigo-200  hover:text-indigo-800'
+              }`}
               title={tool.label}
+              onClick={() => handleSelectTool(tool?.label)}
             >
               <Icon className="w-4 h-4  " />
               <span className="text-xs text-center word-break">{tool.label}</span>
