@@ -11,7 +11,9 @@ function Canvas({ selectedFile, selectedTool }) {
   const [startPoint, setStartPoint] = useState(null);
   const [rect, setRect] = useState(null);
   const [controlPoint, setControlPoint] = useState(null);
+  const [cropRect, setCropRect] = useState(null);
 
+  console.log('Selected Tool', selectedTool);
   useEffect(() => {
     if (!editor || !fabric) return;
 
@@ -84,6 +86,234 @@ function Canvas({ selectedFile, selectedTool }) {
         isPanning = false;
         canvas.setCursor('default');
       });
+    }
+    if (selectedTool === 'rubber') {
+      canvas.isDrawingMode = false;
+      canvas.selection = false;
+
+      // Enhanced eraser configuration
+      const ERASER_SIZE = 20;
+      let eraserBrush = null;
+      let eraserCircle = null;
+
+      canvas.on('mouse:down', function (options) {
+        setIsDrawing(true);
+        const pointer = canvas.getPointer(options.e);
+
+        // Create visual feedback for eraser
+        eraserCircle = new fabric.Circle({
+          left: pointer.x - ERASER_SIZE / 2,
+          top: pointer.y - ERASER_SIZE / 2,
+          radius: ERASER_SIZE / 2,
+          fill: 'rgba(255,255,255,0.3)',
+          stroke: '#666',
+          strokeWidth: 1,
+          selectable: false,
+          evented: false,
+          originX: 'center',
+          originY: 'center',
+        });
+
+        canvas.add(eraserCircle);
+
+        // Check for objects under the eraser
+        const objects = canvas.getObjects();
+        objects.forEach((obj) => {
+          if (obj !== eraserCircle) {
+            const objBounds = obj.getBoundingRect();
+            if (obj.containsPoint(pointer)) {
+              // For SVG paths and complex objects
+              if (obj instanceof fabric.Path || obj instanceof fabric.Group) {
+                // If it's part of the background image, skip it
+                if (obj !== canvas.backgroundImage) {
+                  canvas.remove(obj);
+                }
+              } else {
+                canvas.remove(obj);
+              }
+            }
+          }
+        });
+
+        canvas.renderAll();
+      });
+
+      canvas.on('mouse:move', function (options) {
+        if (!isDrawing) {
+          // Update eraser circle position even when not erasing
+          const pointer = canvas.getPointer(options.e);
+          if (eraserCircle) {
+            eraserCircle.set({
+              left: pointer.x,
+              top: pointer.y,
+            });
+            canvas.renderAll();
+          }
+          return;
+        }
+
+        const pointer = canvas.getPointer(options.e);
+
+        // Update eraser circle position
+        if (eraserCircle) {
+          eraserCircle.set({
+            left: pointer.x,
+            top: pointer.y,
+          });
+        }
+
+        // Erase objects under the current position
+        const objects = canvas.getObjects();
+        objects.forEach((obj) => {
+          if (obj !== eraserCircle) {
+            if (obj.containsPoint(pointer)) {
+              // Don't erase the background image
+              if (obj !== canvas.backgroundImage) {
+                canvas.remove(obj);
+              }
+            }
+          }
+        });
+
+        canvas.renderAll();
+      });
+
+      canvas.on('mouse:up', function () {
+        setIsDrawing(false);
+
+        // Keep the eraser circle visible but update its style
+        if (eraserCircle) {
+          eraserCircle.set({
+            fill: 'rgba(255,255,255,0.2)',
+            stroke: '#999',
+          });
+          canvas.renderAll();
+        }
+      });
+
+      // Remove eraser circle when switching tools
+      return () => {
+        if (eraserCircle) {
+          canvas.remove(eraserCircle);
+          canvas.renderAll();
+        }
+      };
+    }
+
+    if (selectedTool === 'extract') {
+      canvas.getObjects().forEach((obj) => {
+        obj.selectable = true;
+        obj.hasControls = true;
+      });
+
+      canvas.on('mouse:down', function (o) {
+        if (!isDrawing) {
+          const pointer = canvas.getPointer(o.e);
+          setStartPoint({ x: pointer.x, y: pointer.y });
+
+          const newCropRect = new fabric.Rect({
+            left: pointer.x,
+            top: pointer.y,
+            width: 0,
+            height: 0,
+            fill: 'rgba(0,0,0,0.3)',
+            stroke: '#2196F3',
+            strokeWidth: 2,
+            strokeDashArray: [5, 5],
+            selectable: true,
+            hasControls: true,
+            transparentCorners: false,
+            cornerColor: '#2196F3',
+            cornerStrokeColor: '#2196F3',
+            borderColor: '#2196F3',
+            cornerSize: 10,
+            padding: 0,
+            cornerStyle: 'circle',
+          });
+
+          canvas.add(newCropRect);
+          setCropRect(newCropRect);
+          setIsDrawing(true);
+        }
+      });
+
+      canvas.on('mouse:move', function (o) {
+        if (isDrawing && cropRect && startPoint) {
+          const pointer = canvas.getPointer(o.e);
+          const width = Math.abs(pointer.x - startPoint.x);
+          const height = Math.abs(pointer.y - startPoint.y);
+
+          cropRect.set({
+            width: width,
+            height: height,
+            left: Math.min(pointer.x, startPoint.x),
+            top: Math.min(pointer.y, startPoint.y),
+          });
+
+          canvas.renderAll();
+        }
+      });
+
+      canvas.on('mouse:up', function () {
+        if (cropRect) {
+          cropRect.setControlsVisibility({
+            mt: true,
+            mb: true,
+            ml: true,
+            mr: true,
+            mtr: true,
+          });
+
+          cropRect.on('modified', function () {
+            performCrop();
+          });
+        }
+        setIsDrawing(false);
+      });
+
+      const performCrop = () => {
+        if (!cropRect) return;
+
+        const objects = canvas.getObjects();
+        const cropBounds = {
+          left: cropRect.left,
+          top: cropRect.top,
+          right: cropRect.left + cropRect.width * cropRect.scaleX,
+          bottom: cropRect.top + cropRect.height * cropRect.scaleY,
+        };
+
+        objects.forEach((obj) => {
+          if (obj !== cropRect && obj.intersectsWithRect(cropBounds)) {
+            const clonedObj = fabric.util.object.clone(obj);
+
+            const objBounds = obj.getBoundingRect();
+            const intersection = {
+              left: Math.max(cropBounds.left, objBounds.left),
+              top: Math.max(cropBounds.top, objBounds.top),
+              right: Math.min(cropBounds.right, objBounds.left + objBounds.width),
+              bottom: Math.min(cropBounds.bottom, objBounds.top + objBounds.height),
+            };
+
+            clonedObj.set({
+              left: intersection.left,
+              top: intersection.top,
+              width: intersection.right - intersection.left,
+              height: intersection.bottom - intersection.top,
+              clipPath: new fabric.Rect({
+                left: -intersection.left + cropBounds.left,
+                top: -intersection.top + cropBounds.top,
+                width: cropRect.width * cropRect.scaleX,
+                height: cropRect.height * cropRect.scaleY,
+                absolutePositioned: true,
+              }),
+            });
+
+            canvas.add(clonedObj);
+          }
+        });
+
+        canvas.renderAll();
+      };
     }
 
     if (selectedTool === 'rectangle') {
@@ -289,6 +519,57 @@ function Canvas({ selectedFile, selectedTool }) {
       }
     }
 
+    if (selectedTool === 'curve') {
+      canvas.on('mouse:down', function (o) {
+        setIsDrawing(true);
+        const pointer = canvas.getPointer(o.e);
+
+        // Initial curve path with control point offset
+        const pathData = `M ${pointer.x} ${pointer.y} Q ${pointer.x + 50} ${pointer.y - 50} ${
+          pointer.x + 100
+        } ${pointer.y}`;
+        const curvePath = new fabric.Path(pathData, {
+          stroke: 'black',
+          strokeWidth: 2,
+          fill: '',
+          objectCaching: false,
+          selectable: false,
+        });
+
+        canvas.add(curvePath);
+        setCurve(curvePath);
+
+        // Create an adjustable control point
+        const control = new fabric.Circle({
+          left: pointer.x + 50,
+          top: pointer.y - 50,
+          radius: 5,
+          fill: 'red',
+          hasControls: false,
+          hasBorders: false,
+          selectable: true,
+        });
+
+        canvas.add(control);
+        setControlPoint(control);
+
+        // Update the curve path as the control point is moved
+        control.on('moving', (e) => {
+          const { left, top } = e.target;
+          const pathData = `M ${pointer.x} ${pointer.y} Q ${left} ${top} ${pointer.x + 100} ${
+            pointer.y
+          }`;
+          curvePath.set({ path: new fabric.Path(pathData).path });
+          canvas.renderAll();
+        });
+      });
+
+      // Finish drawing on mouse up
+      canvas.on('mouse:up', function () {
+        setIsDrawing(false);
+      });
+    }
+
     canvas.renderAll();
 
     return () => {
@@ -297,7 +578,7 @@ function Canvas({ selectedFile, selectedTool }) {
       canvas.off('mouse:up');
       canvas.off('mouse:wheel');
     };
-  }, [editor, selectedTool, line, rect, startPoint]);
+  }, [editor, selectedTool, line, rect, startPoint, cropRect]);
 
   useEffect(() => {
     if (editor && selectedFile) {
