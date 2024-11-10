@@ -3,6 +3,7 @@ import { fabric } from 'fabric';
 import { FabricJSCanvas, useFabricJSEditor } from 'fabricjs-react';
 
 function Canvas({ selectedFile, selectedTool }) {
+  console.log(selectedTool);
   const { editor, onReady } = useFabricJSEditor();
   const [isDrawing, setIsDrawing] = useState(false);
   const [line, setLine] = useState(null);
@@ -29,6 +30,61 @@ function Canvas({ selectedFile, selectedTool }) {
     canvas.off('mouse:move');
     canvas.off('mouse:up');
     canvas.off('mouse:wheel');
+
+    if (selectedTool == 'duplicate') {
+      const activeObjects = editor.canvas.getActiveObjects();
+
+      if (activeObjects.length === 0) {
+        return; // No object selected
+      }
+
+      activeObjects.forEach((obj) => {
+        obj.clone((clonedObj) => {
+          clonedObj.set({
+            left: obj.left + 20, // Offset to differentiate the clone
+            top: obj.top + 20,
+          });
+          editor.canvas.add(clonedObj);
+          clonedObj.setCoords();
+        });
+      });
+
+      editor.canvas.renderAll();
+    }
+
+    if (selectedTool === 'view') {
+      let isPanning = false;
+      let lastPosX = 0;
+      let lastPosY = 0;
+
+      canvas.on('mouse:down', function (event) {
+        isPanning = true;
+        const e = event.e;
+        lastPosX = e.clientX;
+        lastPosY = e.clientY;
+        canvas.setCursor('move');
+      });
+
+      canvas.on('mouse:move', function (event) {
+        if (isPanning) {
+          const e = event.e;
+          const deltaX = e.clientX - lastPosX;
+          const deltaY = e.clientY - lastPosY;
+          lastPosX = e.clientX;
+          lastPosY = e.clientY;
+
+          const vpt = canvas.viewportTransform;
+          vpt[4] += deltaX;
+          vpt[5] += deltaY;
+          canvas.requestRenderAll();
+        }
+      });
+
+      canvas.on('mouse:up', function () {
+        isPanning = false;
+        canvas.setCursor('default');
+      });
+    }
 
     if (selectedTool === 'rectangle') {
       canvas.on('mouse:down', function (o) {
@@ -65,6 +121,59 @@ function Canvas({ selectedFile, selectedTool }) {
             height,
             left: Math.min(pointer.x, startPoint.x),
             top: Math.min(pointer.y, startPoint.y),
+          });
+
+          canvas.renderAll();
+        }
+      });
+
+      canvas.on('mouse:up', function () {
+        setIsDrawing(false);
+        setRect(null);
+        setStartPoint(null);
+      });
+    }
+
+    if (selectedTool === 'godet') {
+      canvas.on('mouse:down', function (o) {
+        if (!isDrawing) {
+          const pointer = canvas.getPointer(o.e);
+          const startX = pointer.x;
+          const startY = pointer.y;
+          setStartPoint({ x: startX, y: startY });
+
+          const newTriangle = new fabric.Polygon(
+            [
+              { x: startX, y: startY },
+              { x: startX, y: startY },
+              { x: startX, y: startY },
+            ],
+            {
+              fill: 'transparent',
+              stroke: 'black',
+              strokeWidth: 1,
+              selectable: selectedTool === 'select',
+              hasControls: selectedTool === 'select',
+            }
+          );
+
+          canvas.add(newTriangle);
+          setRect(newTriangle);
+          setIsDrawing(true);
+        }
+      });
+
+      canvas.on('mouse:move', function (o) {
+        if (isDrawing && rect && startPoint) {
+          const pointer = canvas.getPointer(o.e);
+
+          // Define the three points of the triangle explicitly to form the bottom line correctly
+          rect.set({
+            points: [
+              { x: startPoint.x, y: startPoint.y }, // top vertex
+              { x: pointer.x, y: pointer.y }, // right bottom vertex
+              { x: 2 * startPoint.x - pointer.x, y: pointer.y }, // left bottom vertex
+            ],
           });
 
           canvas.renderAll();
@@ -151,6 +260,34 @@ function Canvas({ selectedFile, selectedTool }) {
         setLine(null);
       });
     }
+    if (selectedTool === 'group') {
+      const activeObjects = editor.canvas.getActiveObjects();
+
+      if (activeObjects.length > 1) {
+        const group = new fabric.Group(activeObjects);
+
+        activeObjects.forEach((obj) => editor.canvas.remove(obj));
+        editor.canvas.add(group);
+
+        editor.canvas.renderAll();
+      }
+    }
+
+    if (selectedTool === 'disconnect') {
+      const activeObject = editor.canvas.getActiveObject();
+
+      if (activeObject && activeObject.type === 'group') {
+        activeObject._objects.forEach((obj) => {
+          obj.clone((clonedObj) => {
+            editor.canvas.add(clonedObj);
+          });
+        });
+
+        editor.canvas.remove(activeObject);
+
+        editor.canvas.renderAll();
+      }
+    }
 
     canvas.renderAll();
 
@@ -178,8 +315,8 @@ function Canvas({ selectedFile, selectedTool }) {
   }, [selectedFile, editor]);
 
   return (
-    <div className="grid-background w-full h-full">
-      <FabricJSCanvas className="w-full h-full" onReady={onReady} />
+    <div className="grid-background w-full h-full  ">
+      <FabricJSCanvas className="w-full h-full " onReady={onReady} />
     </div>
   );
 }
