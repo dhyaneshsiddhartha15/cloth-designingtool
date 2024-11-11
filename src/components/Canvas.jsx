@@ -12,7 +12,7 @@ function Canvas({ selectedFile, selectedTool }) {
   const [rect, setRect] = useState(null);
   const [controlPoint, setControlPoint] = useState(null);
   const [cropRect, setCropRect] = useState(null);
-
+  const [triangle, setTriangle] = useState(null);
   console.log('Selected Tool', selectedTool);
   useEffect(() => {
     if (!editor || !fabric) return;
@@ -20,6 +20,7 @@ function Canvas({ selectedFile, selectedTool }) {
     const canvas = editor.canvas;
 
     const updateObjectSelectability = () => {
+      console.log('update object select');
       canvas.getObjects().forEach((obj) => {
         obj.selectable = selectedTool === 'select';
         obj.hasControls = selectedTool === 'select';
@@ -365,6 +366,7 @@ function Canvas({ selectedFile, selectedTool }) {
     }
 
     if (selectedTool === 'godet') {
+      let newTriangle;
       canvas.on('mouse:down', function (o) {
         if (!isDrawing) {
           const pointer = canvas.getPointer(o.e);
@@ -372,49 +374,98 @@ function Canvas({ selectedFile, selectedTool }) {
           const startY = pointer.y;
           setStartPoint({ x: startX, y: startY });
 
-          const newTriangle = new fabric.Polygon(
-            [
-              { x: startX, y: startY },
-              { x: startX, y: startY },
-              { x: startX, y: startY },
-            ],
-            {
-              fill: 'transparent',
-              stroke: 'black',
-              strokeWidth: 1,
-              selectable: selectedTool === 'select',
-              hasControls: selectedTool === 'select',
-            }
-          );
+          // Initialize the triangle with minimal width and height at the starting position
+          newTriangle = new fabric.Triangle({
+            left: startX,
+            top: startY,
+            width: 1, // Set initial width
+            height: 1, // Set initial height
+            fill: '',
+            stroke: 'black',
+            strokeWidth: 0.001,
+            cornerColor: 'black',
+            selectable: true,
+            hasControls: true,
+            originX: 'center',
+            originY: 'center',
+          });
 
           canvas.add(newTriangle);
-          setRect(newTriangle);
+          setTriangle(newTriangle);
           setIsDrawing(true);
         }
       });
 
       canvas.on('mouse:move', function (o) {
-        if (isDrawing && rect && startPoint) {
+        if (isDrawing && triangle && startPoint) {
           const pointer = canvas.getPointer(o.e);
 
-          // Define the three points of the triangle explicitly to form the bottom line correctly
-          rect.set({
-            points: [
-              { x: startPoint.x, y: startPoint.y }, // top vertex
-              { x: pointer.x, y: pointer.y }, // right bottom vertex
-              { x: 2 * startPoint.x - pointer.x, y: pointer.y }, // left bottom vertex
-            ],
-          });
+          // Calculate the width and height dynamically
+          const width = Math.abs(pointer.x - startPoint.x) * 2; // double the distance from the center
+          const height = Math.abs(pointer.y - startPoint.y) * 2;
 
+          // Set the scale of the triangle instead of changing width/height directly
+          triangle.set({
+            scaleX: width / triangle.width,
+            scaleY: height / triangle.height,
+          });
           canvas.renderAll();
         }
       });
 
       canvas.on('mouse:up', function () {
         setIsDrawing(false);
-        setRect(null);
+        setTriangle(null);
         setStartPoint(null);
       });
+
+      // canvas.on('mouse:down', (o) => {
+      //   if (!isDrawing) {
+      //     const pointer = canvas.getPointer(o.e);
+      //     const startX = pointer.x;
+      //     const startY = pointer.y;
+      //     setStartPoint({ x: startX, y: startY });
+      //     // Create a triangle with all points at the start position
+      //     const newTriangle = new fabric.Polygon(
+      //       [
+      //         { x: startX, y: startY },
+      //         { x: startX, y: startY },
+      //         { x: startX, y: startY },
+      //       ],
+      //       {
+      //         fill: 'transparent',
+      //         stroke: 'black',
+      //         strokeWidth: 1,
+      //         selectable: false,
+      //         hasControls: false,
+      //       }
+      //     );
+      //     canvas.add(newTriangle);
+      //     setTriangle(newTriangle);
+      //     setIsDrawing(true);
+      //   }
+      // });
+      // // Mouse move: update triangle shape based on pointer position
+      // canvas.on('mouse:move', (o) => {
+      //   if (isDrawing && triangle && startPoint) {
+      //     const pointer = canvas.getPointer(o.e);
+      //     // Set triangle points to form an isosceles shape
+      //     triangle.set({
+      //       points: [
+      //         { x: startPoint.x, y: startPoint.y }, // top vertex
+      //         { x: pointer.x, y: pointer.y }, // right bottom vertex
+      //         { x: 2 * startPoint.x - pointer.x, y: pointer.y }, // left bottom vertex
+      //       ],
+      //     });
+      //     canvas.renderAll();
+      //   }
+      // });
+      // // Mouse up: finish drawing
+      // canvas.on('mouse:up', () => {
+      //   setIsDrawing(false);
+      //   setTriangle(null);
+      //   setStartPoint(null);
+      // });
     }
 
     if (selectedTool === 'zoom') {
@@ -523,51 +574,67 @@ function Canvas({ selectedFile, selectedTool }) {
       canvas.on('mouse:down', function (o) {
         setIsDrawing(true);
         const pointer = canvas.getPointer(o.e);
+        const points = [pointer.x, pointer.y, pointer.x, pointer.y];
 
-        // Initial curve path with control point offset
-        const pathData = `M ${pointer.x} ${pointer.y} Q ${pointer.x + 50} ${pointer.y - 50} ${
-          pointer.x + 100
-        } ${pointer.y}`;
-        const curvePath = new fabric.Path(pathData, {
-          stroke: 'black',
-          strokeWidth: 2,
-          fill: '',
-          objectCaching: false,
-          selectable: false,
+        const lineType = document.getElementById('linetype')?.value || 'solid';
+        const newLine = new fabric.Line(points, {
+          strokeWidth: lineType === 'dashed' ? 5 : 0.5,
+          strokeDashArray: lineType === 'dashed' ? [15, 5] : null,
+          fill: lineType === 'dashed' ? 'gray' : 'black',
+          stroke: lineType === 'dashed' ? 'gray' : 'black',
+          originX: 'center',
+          originY: 'center',
         });
 
-        canvas.add(curvePath);
-        setCurve(curvePath);
-
-        // Create an adjustable control point
-        const control = new fabric.Circle({
-          left: pointer.x + 50,
-          top: pointer.y - 50,
-          radius: 5,
-          fill: 'red',
-          hasControls: false,
-          hasBorders: false,
-          selectable: true,
-        });
-
-        canvas.add(control);
-        setControlPoint(control);
-
-        // Update the curve path as the control point is moved
-        control.on('moving', (e) => {
-          const { left, top } = e.target;
-          const pathData = `M ${pointer.x} ${pointer.y} Q ${left} ${top} ${pointer.x + 100} ${
-            pointer.y
-          }`;
-          curvePath.set({ path: new fabric.Path(pathData).path });
-          canvas.renderAll();
-        });
+        canvas.add(newLine);
+        setLine(newLine);
       });
 
-      // Finish drawing on mouse up
+      canvas.on('mouse:move', function (o) {
+        if (!isDrawing || !line) return;
+        const pointer = canvas.getPointer(o.e);
+        line.set({ x2: pointer.x, y2: pointer.y });
+        canvas.renderAll();
+      });
+
       canvas.on('mouse:up', function () {
         setIsDrawing(false);
+        setLine(null);
       });
+    }
+
+    if (selectedTool === 'save') {
+      const downloadSVG = () => {
+        const svgData = canvas.toSVG();
+        const blob = new Blob([svgData], { type: 'image/svg+xml;charset=utf-8' });
+        const url = URL.createObjectURL(blob);
+
+        const link = document.createElement('a');
+        link.href = url;
+        link.download = 'canvas.svg';
+        link.click();
+
+        URL.revokeObjectURL(url);
+      };
+
+      downloadSVG();
+    }
+
+    if (selectedTool === 'rotate') {
+      const activeObjects = editor.canvas.getActiveObjects();
+
+      const group = new fabric.Group(activeObjects);
+
+      activeObjects.forEach((obj) => editor.canvas.remove(obj));
+      editor.canvas.add(group);
+
+      group
+        .set({
+          angle: (group.angle + 90) % 360,
+        })
+        .setCoords();
+
+      editor.canvas.renderAll();
     }
 
     canvas.renderAll();
@@ -578,7 +645,7 @@ function Canvas({ selectedFile, selectedTool }) {
       canvas.off('mouse:up');
       canvas.off('mouse:wheel');
     };
-  }, [editor, selectedTool, line, rect, startPoint, cropRect]);
+  }, [editor, selectedTool, line, rect, startPoint, cropRect, triangle]);
 
   useEffect(() => {
     if (editor && selectedFile) {
