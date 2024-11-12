@@ -7,6 +7,8 @@ import OpenFilesTabs from './components/OpenFilesTabs';
 
 function App() {
   const [selectedTool, setSelectedTool] = useState('draw');
+  const [activeTab, setActiveTab] = useState('');
+  const [activeSubTab, setActiveSubTab] = useState(null);
   const [patterns, setPatterns] = useState([]);
   const [selectedPattern, setSelectedPattern] = useState(null);
   const [fileTabs, setFileTabs] = useState([
@@ -526,11 +528,19 @@ function App() {
           onSave={handleSavePattern}
           setSelectedTool={setSelectedTool}
           selectedTool={selectedTool}
+          setActiveTab={setActiveTab}
+          setActiveSubTab={setActiveSubTab}
         />
       </div>
       <div className="flex flex-1   ">
         <div className="h-screen   ">
-          <SideBar setSelectedTool={setSelectedTool} />
+          <SideBar
+            setSelectedTool={setSelectedTool}
+            activeTab={activeTab}
+            setActiveTab={setActiveTab}
+            activeSubTab={activeSubTab}
+            setActiveSubTab={setActiveSubTab}
+          />
         </div>
         <main className="   w-screen h-screen overflow-hidden ">
           <OpenFilesTabs

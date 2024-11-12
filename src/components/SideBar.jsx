@@ -30,9 +30,7 @@ import { TfiArrowsHorizontal } from 'react-icons/tfi';
 import { LiaCompressArrowsAltSolid } from 'react-icons/lia';
 import { GiHole, GiShirtButton } from 'react-icons/gi';
 import { IoGrid } from 'react-icons/io5';
-function SideBar({ setSelectedTool }) {
-  const [activeTab, setActiveTab] = useState('');
-  const [activeSubTab, setActiveSubTab] = useState(null);
+function SideBar({ setSelectedTool, activeTab, setActiveTab, activeSubTab, setActiveSubTab }) {
   const [open, setOpen] = useState(false);
   const [horizontle, setHorizontle] = useState(true);
 

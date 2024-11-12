@@ -13,14 +13,13 @@ function Canvas({ selectedFile, selectedTool }) {
   const [controlPoint, setControlPoint] = useState(null);
   const [cropRect, setCropRect] = useState(null);
   const [triangle, setTriangle] = useState(null);
-  console.log('Selected Tool', selectedTool);
+
   useEffect(() => {
     if (!editor || !fabric) return;
 
     const canvas = editor.canvas;
 
     const updateObjectSelectability = () => {
-      console.log('update object select');
       canvas.getObjects().forEach((obj) => {
         obj.selectable = selectedTool === 'select';
         obj.hasControls = selectedTool === 'select';

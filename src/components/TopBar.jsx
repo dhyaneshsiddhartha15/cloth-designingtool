@@ -9,7 +9,7 @@ import { IoMdCopy } from 'react-icons/io';
 import { TiTick } from 'react-icons/ti';
 import { LuType } from 'react-icons/lu';
 import { FiClipboard } from 'react-icons/fi';
-function TopBar({ setSelectedTool, selectedTool }) {
+function TopBar({ setSelectedTool, selectedTool, setActiveTab, setActiveSubTab }) {
   const tools = [
     { id: 'duplicate', icon: MdOutlineContentCopy, label: 'Duplicate' },
     { id: 'zoom', icon: IoSearchSharp, label: 'Zoom' },
@@ -27,6 +27,8 @@ function TopBar({ setSelectedTool, selectedTool }) {
   const handleSelectTool = (label) => {
     console.log(label.toLowerCase());
     setSelectedTool(label.toLowerCase());
+    setActiveTab(null);
+    setActiveSubTab(null);
   };
 
   return (
