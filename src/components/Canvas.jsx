@@ -3,7 +3,6 @@ import { fabric } from 'fabric';
 import { FabricJSCanvas, useFabricJSEditor } from 'fabricjs-react';
 
 function Canvas({ selectedFile, selectedTool }) {
-  console.log(selectedTool);
   const { editor, onReady } = useFabricJSEditor();
   const [isDrawing, setIsDrawing] = useState(false);
   const [line, setLine] = useState(null);
@@ -13,6 +12,7 @@ function Canvas({ selectedFile, selectedTool }) {
   const [controlPoint, setControlPoint] = useState(null);
   const [cropRect, setCropRect] = useState(null);
   const [triangle, setTriangle] = useState(null);
+  const [mirrorDirection, setMirrorDirection] = useState('horizontal');
 
   useEffect(() => {
     if (!editor || !fabric) return;
@@ -33,17 +33,17 @@ function Canvas({ selectedFile, selectedTool }) {
     canvas.off('mouse:up');
     canvas.off('mouse:wheel');
 
-    if (selectedTool == 'duplicate') {
+    if (selectedTool === 'duplicate') {
       const activeObjects = editor.canvas.getActiveObjects();
 
       if (activeObjects.length === 0) {
-        return; // No object selected
+        return;
       }
 
       activeObjects.forEach((obj) => {
         obj.clone((clonedObj) => {
           clonedObj.set({
-            left: obj.left + 20, // Offset to differentiate the clone
+            left: obj.left + 20,
             top: obj.top + 20,
           });
           editor.canvas.add(clonedObj);
@@ -52,6 +52,101 @@ function Canvas({ selectedFile, selectedTool }) {
       });
 
       editor.canvas.renderAll();
+    }
+
+    if (selectedTool === 'fabric width') {
+      const fabricWidth = parseInt(prompt("Enter desired width for the canvas:"), 10);
+    
+      if (fabricWidth && !isNaN(fabricWidth)) {
+        canvas.setWidth(fabricWidth);
+        canvas.setHeight(fabricWidth * 1.4);
+        const objects = canvas.getObjects();
+        const bgImage = canvas.backgroundImage;
+    
+        if (bgImage || objects.length > 0) {
+          if (bgImage) {
+            const scale = fabricWidth / bgImage.width;
+            bgImage.scale(scale);
+            bgImage.center();
+          }
+          objects.forEach((obj) => {
+            const objBounds = obj.getBoundingRect();
+            if (objBounds.width > fabricWidth) {
+              const scale = fabricWidth / objBounds.width;
+              obj.scale(scale);
+            }
+            obj.center();
+            obj.setCoords();
+          });
+          canvas.renderAll();
+        }
+      } else {
+        alert("Please enter a valid width.");
+      }
+    }
+
+    if (selectedTool === 'mirror') {
+      // Create mirror controls if they don't exist
+      if (!document.getElementById('mirrorControls')) {
+        const controls = document.createElement('div');
+        controls.id = 'mirrorControls';
+        controls.className = 'absolute top-4 left-4 bg-white p-2 rounded shadow-md z-10';
+        controls.innerHTML = `
+          <select id="mirrorSelect" class="px-2 py-1 border rounded">
+            <option value="horizontal">Horizontal</option>
+            <option value="vertical">Vertical</option>
+          </select>
+        `;
+        canvas.wrapperEl.parentNode.appendChild(controls);
+
+        document.getElementById('mirrorSelect').addEventListener('change', (e) => {
+          setMirrorDirection(e.target.value);
+        });
+      }
+
+      canvas.on('mouse:down', function(opt) {
+        const target = opt.target;
+        if (target) {
+          if (mirrorDirection === 'horizontal') {
+            target.set('flipX', !target.flipX);
+          } else {
+            target.set('flipY', !target.flipY);
+          }
+          
+          if (target.type === 'group') {
+            target.getObjects().forEach((obj) => {
+              if (mirrorDirection === 'horizontal') {
+                obj.set('flipX', !obj.flipX);
+              } else {
+                obj.set('flipY', !obj.flipY);
+              }
+            });
+          }
+          
+          target.setCoords();
+          canvas.renderAll();
+        } else {
+          // If no object is clicked, mirror all objects
+          const objects = canvas.getObjects();
+          objects.forEach((obj) => {
+            if (mirrorDirection === 'horizontal') {
+              obj.set('flipX', !obj.flipX);
+            } else {
+              obj.set('flipY', !obj.flipY);
+            }
+            obj.setCoords();
+          });
+          canvas.renderAll();
+        }
+      });
+
+      return () => {
+        const controls = document.getElementById('mirrorControls');
+        if (controls) {
+          controls.remove();
+        }
+        canvas.off('mouse:down');
+      };
     }
 
     if (selectedTool === 'view') {
@@ -87,20 +182,18 @@ function Canvas({ selectedFile, selectedTool }) {
         canvas.setCursor('default');
       });
     }
+
     if (selectedTool === 'rubber') {
       canvas.isDrawingMode = false;
       canvas.selection = false;
 
-      // Enhanced eraser configuration
       const ERASER_SIZE = 20;
-      let eraserBrush = null;
       let eraserCircle = null;
 
       canvas.on('mouse:down', function (options) {
         setIsDrawing(true);
         const pointer = canvas.getPointer(options.e);
 
-        // Create visual feedback for eraser
         eraserCircle = new fabric.Circle({
           left: pointer.x - ERASER_SIZE / 2,
           top: pointer.y - ERASER_SIZE / 2,
@@ -116,15 +209,11 @@ function Canvas({ selectedFile, selectedTool }) {
 
         canvas.add(eraserCircle);
 
-        // Check for objects under the eraser
         const objects = canvas.getObjects();
         objects.forEach((obj) => {
           if (obj !== eraserCircle) {
-            const objBounds = obj.getBoundingRect();
             if (obj.containsPoint(pointer)) {
-              // For SVG paths and complex objects
               if (obj instanceof fabric.Path || obj instanceof fabric.Group) {
-                // If it's part of the background image, skip it
                 if (obj !== canvas.backgroundImage) {
                   canvas.remove(obj);
                 }
@@ -140,7 +229,6 @@ function Canvas({ selectedFile, selectedTool }) {
 
       canvas.on('mouse:move', function (options) {
         if (!isDrawing) {
-          // Update eraser circle position even when not erasing
           const pointer = canvas.getPointer(options.e);
           if (eraserCircle) {
             eraserCircle.set({
@@ -154,7 +242,6 @@ function Canvas({ selectedFile, selectedTool }) {
 
         const pointer = canvas.getPointer(options.e);
 
-        // Update eraser circle position
         if (eraserCircle) {
           eraserCircle.set({
             left: pointer.x,
@@ -162,12 +249,10 @@ function Canvas({ selectedFile, selectedTool }) {
           });
         }
 
-        // Erase objects under the current position
         const objects = canvas.getObjects();
         objects.forEach((obj) => {
           if (obj !== eraserCircle) {
             if (obj.containsPoint(pointer)) {
-              // Don't erase the background image
               if (obj !== canvas.backgroundImage) {
                 canvas.remove(obj);
               }
@@ -181,7 +266,6 @@ function Canvas({ selectedFile, selectedTool }) {
       canvas.on('mouse:up', function () {
         setIsDrawing(false);
 
-        // Keep the eraser circle visible but update its style
         if (eraserCircle) {
           eraserCircle.set({
             fill: 'rgba(255,255,255,0.2)',
@@ -191,7 +275,6 @@ function Canvas({ selectedFile, selectedTool }) {
         }
       });
 
-      // Remove eraser circle when switching tools
       return () => {
         if (eraserCircle) {
           canvas.remove(eraserCircle);
@@ -373,12 +456,11 @@ function Canvas({ selectedFile, selectedTool }) {
           const startY = pointer.y;
           setStartPoint({ x: startX, y: startY });
 
-          // Initialize the triangle with minimal width and height at the starting position
           newTriangle = new fabric.Triangle({
             left: startX,
             top: startY,
-            width: 1, // Set initial width
-            height: 1, // Set initial height
+            width: 1,
+            height: 1,
             fill: '',
             stroke: 'black',
             strokeWidth: 0.001,
@@ -399,11 +481,9 @@ function Canvas({ selectedFile, selectedTool }) {
         if (isDrawing && triangle && startPoint) {
           const pointer = canvas.getPointer(o.e);
 
-          // Calculate the width and height dynamically
-          const width = Math.abs(pointer.x - startPoint.x) * 2; // double the distance from the center
+          const width = Math.abs(pointer.x - startPoint.x) * 2;
           const height = Math.abs(pointer.y - startPoint.y) * 2;
 
-          // Set the scale of the triangle instead of changing width/height directly
           triangle.set({
             scaleX: width / triangle.width,
             scaleY: height / triangle.height,
@@ -417,54 +497,6 @@ function Canvas({ selectedFile, selectedTool }) {
         setTriangle(null);
         setStartPoint(null);
       });
-
-      // canvas.on('mouse:down', (o) => {
-      //   if (!isDrawing) {
-      //     const pointer = canvas.getPointer(o.e);
-      //     const startX = pointer.x;
-      //     const startY = pointer.y;
-      //     setStartPoint({ x: startX, y: startY });
-      //     // Create a triangle with all points at the start position
-      //     const newTriangle = new fabric.Polygon(
-      //       [
-      //         { x: startX, y: startY },
-      //         { x: startX, y: startY },
-      //         { x: startX, y: startY },
-      //       ],
-      //       {
-      //         fill: 'transparent',
-      //         stroke: 'black',
-      //         strokeWidth: 1,
-      //         selectable: false,
-      //         hasControls: false,
-      //       }
-      //     );
-      //     canvas.add(newTriangle);
-      //     setTriangle(newTriangle);
-      //     setIsDrawing(true);
-      //   }
-      // });
-      // // Mouse move: update triangle shape based on pointer position
-      // canvas.on('mouse:move', (o) => {
-      //   if (isDrawing && triangle && startPoint) {
-      //     const pointer = canvas.getPointer(o.e);
-      //     // Set triangle points to form an isosceles shape
-      //     triangle.set({
-      //       points: [
-      //         { x: startPoint.x, y: startPoint.y }, // top vertex
-      //         { x: pointer.x, y: pointer.y }, // right bottom vertex
-      //         { x: 2 * startPoint.x - pointer.x, y: pointer.y }, // left bottom vertex
-      //       ],
-      //     });
-      //     canvas.renderAll();
-      //   }
-      // });
-      // // Mouse up: finish drawing
-      // canvas.on('mouse:up', () => {
-      //   setIsDrawing(false);
-      //   setTriangle(null);
-      //   setStartPoint(null);
-      // });
     }
 
     if (selectedTool === 'zoom') {
@@ -540,15 +572,14 @@ function Canvas({ selectedFile, selectedTool }) {
         setLine(null);
       });
     }
+
     if (selectedTool === 'group') {
       const activeObjects = editor.canvas.getActiveObjects();
 
       if (activeObjects.length > 1) {
         const group = new fabric.Group(activeObjects);
-
         activeObjects.forEach((obj) => editor.canvas.remove(obj));
         editor.canvas.add(group);
-
         editor.canvas.renderAll();
       }
     }
@@ -564,7 +595,6 @@ function Canvas({ selectedFile, selectedTool }) {
         });
 
         editor.canvas.remove(activeObject);
-
         editor.canvas.renderAll();
       }
     }
@@ -623,7 +653,6 @@ function Canvas({ selectedFile, selectedTool }) {
       const activeObjects = editor.canvas.getActiveObjects();
 
       const group = new fabric.Group(activeObjects);
-
       activeObjects.forEach((obj) => editor.canvas.remove(obj));
       editor.canvas.add(group);
 
@@ -644,7 +673,7 @@ function Canvas({ selectedFile, selectedTool }) {
       canvas.off('mouse:up');
       canvas.off('mouse:wheel');
     };
-  }, [editor, selectedTool, line, rect, startPoint, cropRect, triangle]);
+  }, [editor, selectedTool, line, rect, startPoint, cropRect, triangle, mirrorDirection]);
 
   useEffect(() => {
     if (editor && selectedFile) {
@@ -662,8 +691,8 @@ function Canvas({ selectedFile, selectedTool }) {
   }, [selectedFile, editor]);
 
   return (
-    <div className="grid-background w-full h-full  ">
-      <FabricJSCanvas className="w-full h-full " onReady={onReady} />
+    <div className="grid-background w-full h-full relative">
+      <FabricJSCanvas className="w-full h-full" onReady={onReady} />
     </div>
   );
 }
