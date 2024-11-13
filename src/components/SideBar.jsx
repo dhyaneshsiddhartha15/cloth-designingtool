@@ -248,7 +248,7 @@ function SideBar({ setSelectedTool, activeTab, setActiveTab, activeSubTab, setAc
     }
   };
 
-  const handleSubTabClick = (subTabId, hasSubtab, name) => {
+  const handleSubTabClick = (subTabId, hasSubtab, name, parentTabName) => {
     setActiveSubTab(subTabId);
     setSelectedTool(name?.toLowerCase());
     setOpen(true);
@@ -270,7 +270,7 @@ function SideBar({ setSelectedTool, activeTab, setActiveTab, activeSubTab, setAc
         {tabs.map((tab) => (
           <li
             key={tab.id}
-            className={`cursor-pointer flex justify-center items-center flex-col text-xs font-semibold px-2   py-2 text-center ${
+            className={`cursor-pointer flex justify-center items-center flex-col text-xs font-semibold px-2 group  py-2 text-center ${
               activeTab === tab.id ? 'bg-indigo-200' : 'hover:bg-indigo-200'
             } relative`}
             onClick={() => handleTabToggle(tab.id, tab?.subTabs?.length > 0, tab.name)}
@@ -285,11 +285,11 @@ function SideBar({ setSelectedTool, activeTab, setActiveTab, activeSubTab, setAc
                 }}
               ></span>
             )}
-            {tab.subTabs && activeTab === tab.id && open && (
+            {tab.subTabs && (
               <>
                 {horizontle ? (
                   <div
-                    className={`absolute top-0 bottom-0 left-[69px] z-10 shadow-lg rounded-lg  bg-indigo-200 pr-5`}
+                    className={`absolute top-0 bottom-0 left-[69px] z-10 shadow-lg rounded-lg  bg-indigo-200 pr-5  hidden group-hover:inline`}
                   >
                     <div className="relative ">
                       <button
@@ -307,7 +307,7 @@ function SideBar({ setSelectedTool, activeTab, setActiveTab, activeSubTab, setAc
                         <FaBarsProgress className="rotate-90" />
                       </button>
                     </div>
-                    <ul className="bg-indigo-200 w-full shadow-lg rounded-xl flex flex-row space-x-1 h-full  ">
+                    <ul className="bg-indigo-200 w-full shadow-lg rounded-xl flex flex-row space-x-1 h-full   ">
                       {tab.subTabs.map((subTab) => (
                         <li
                           key={subTab.id}
@@ -315,7 +315,7 @@ function SideBar({ setSelectedTool, activeTab, setActiveTab, activeSubTab, setAc
                             e.stopPropagation();
                             handleSubTabClick(subTab.id, subTab?.subTabs?.length > 0, subTab.name);
                           }}
-                          className={`cursor-pointer group bg-indigo-200 flex justify-center items-center flex-col text-xs font-semibold px-4 py-2 rounded-lg relative ${
+                          className={`cursor-pointer group/edit bg-indigo-200 flex justify-center items-center flex-col text-xs font-semibold px-4 py-2 rounded-lg relative ${
                             activeSubTab === subTab.id ? 'bg-indigo-300' : 'hover:bg-indigo-100'
                           }`}
                         >
@@ -329,7 +329,7 @@ function SideBar({ setSelectedTool, activeTab, setActiveTab, activeSubTab, setAc
                             ></span>
                           )}
                           {/* ******************************************************************************** */}
-                          <ul className="absolute   bottom-[55px] right-0 left-0 bg-indigo-200 hidden  group-hover:inline">
+                          <ul className="absolute   bottom-[55px] right-0 left-0 bg-indigo-200 hidden  group-hover/edit:inline">
                             {subTab?.subTabs?.map((subTab) => (
                               <li
                                 key={subTab.id}
@@ -358,7 +358,7 @@ function SideBar({ setSelectedTool, activeTab, setActiveTab, activeSubTab, setAc
                   </div>
                 ) : (
                   <div
-                    className={`absolute top-0 bottom-0 w-full left-[60px] z-10 bg-indigo-200 shadow-lg rounded-lg `}
+                    className={`absolute top-0 bottom-0 w-full left-[60px] z-10 bg-indigo-200 shadow-lg rounded-lg  hidden group-hover:inline`}
                   >
                     <div className="relative">
                       <button
@@ -384,7 +384,7 @@ function SideBar({ setSelectedTool, activeTab, setActiveTab, activeSubTab, setAc
                             e.stopPropagation();
                             handleSubTabClick(subTab.id, subTab?.subTabs?.length > 0, subTab.name);
                           }}
-                          className={`cursor-pointer relative group bg-indigo-200 flex justify-center items-center flex-col text-xs font-semibold px-2 py-4 rounded-lg ${
+                          className={`cursor-pointer relative group/edit bg-indigo-200 flex justify-center items-center flex-col text-xs font-semibold px-2 py-4 rounded-lg ${
                             activeSubTab === subTab.id ? 'bg-indigo-300' : 'hover:bg-indigo-100'
                           }`}
                         >
@@ -398,7 +398,7 @@ function SideBar({ setSelectedTool, activeTab, setActiveTab, activeSubTab, setAc
                             ></span>
                           )}
                           {/* ******************************************************************************** */}
-                          <ul className="absolute    top-0 bottom-0  left-[70px]  bg-indigo-200 hidden group-hover:flex">
+                          <ul className="absolute    top-0 bottom-0  left-[70px]  bg-indigo-200 hidden group-hover/edit:flex">
                             {subTab?.subTabs?.map((subTab) => (
                               <li
                                 key={subTab.id}

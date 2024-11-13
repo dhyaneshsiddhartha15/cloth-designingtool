@@ -3,6 +3,7 @@ import { fabric } from 'fabric';
 import { FabricJSCanvas, useFabricJSEditor } from 'fabricjs-react';
 
 function Canvas({ selectedFile, selectedTool }) {
+  console.log(selectedTool);
   const { editor, onReady } = useFabricJSEditor();
   const [isDrawing, setIsDrawing] = useState(false);
   const [line, setLine] = useState(null);
@@ -602,22 +603,18 @@ function Canvas({ selectedFile, selectedTool }) {
     }
 
     if (selectedTool === 'curve') {
-      // Set up the event listeners for drawing the curve
       canvas.on('mouse:down', function (o) {
         setIsDrawing(true);
 
         const pointer = canvas.getPointer(o.e);
 
-        // Define the starting point of the curve
         const startX = pointer.x;
         const startY = pointer.y;
 
-        // Define the curve path string (initial curve, which can be customized)
         const path = `M ${startX} ${startY} Q ${startX + 50} ${startY - 50}, ${
           startX + 100
         } ${startY}`;
 
-        // Create the curve as a Path object
         const curve = new fabric.Path(path, {
           stroke: 'black',
           fill: 'transparent',
@@ -625,10 +622,8 @@ function Canvas({ selectedFile, selectedTool }) {
           selectable: false,
         });
 
-        // Add the curve to the canvas
         canvas.add(curve);
 
-        // Stop drawing on mouse up
         canvas.on('mouse:up', function () {
           setIsDrawing(false);
         });
@@ -714,6 +709,41 @@ function Canvas({ selectedFile, selectedTool }) {
           editor.canvas.renderAll();
         }
       }
+    }
+
+    if (selectedTool === 'convertor') {
+      canvas.on('mouse:down', function (o) {
+        const activeObject = canvas.getActiveObject();
+
+        // Check if there's an active selection
+        if (activeObject) {
+          // Get the bounding box of the selected object to place the curve in the same location
+          const { left, top, width, height } = activeObject.getBoundingRect();
+
+          // Remove the selected object
+          canvas.remove(activeObject);
+
+          // Define starting point of the curve based on the selected object's position
+          const startX = left;
+          const startY = top + height / 2;
+
+          // Define the curve path to replace the selected object
+          const path = `M ${startX} ${startY} Q ${startX + 50} ${startY - 50}, ${
+            startX + 100
+          } ${startY}`;
+
+          // Create the curve as a Path object
+          const curve = new fabric.Path(path, {
+            stroke: 'black',
+            fill: 'transparent',
+            strokeWidth: 0.2,
+            selectable: false,
+          });
+
+          // Add the curve to the canvas
+          canvas.add(curve);
+        }
+      });
     }
 
     canvas.renderAll();
