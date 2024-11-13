@@ -31,6 +31,7 @@ function Canvas({ selectedFile, selectedTool }) {
     updateObjectSelectability();
     canvas.off('mouse:down');
     canvas.off('mouse:move');
+
     canvas.off('mouse:up');
     canvas.off('mouse:wheel');
 
@@ -56,14 +57,14 @@ function Canvas({ selectedFile, selectedTool }) {
     }
 
     if (selectedTool === 'fabric width') {
-      const fabricWidth = parseInt(prompt("Enter desired width for the canvas:"), 10);
-    
+      const fabricWidth = parseInt(prompt('Enter desired width for the canvas:'), 10);
+
       if (fabricWidth && !isNaN(fabricWidth)) {
         canvas.setWidth(fabricWidth);
         canvas.setHeight(fabricWidth * 1.4);
         const objects = canvas.getObjects();
         const bgImage = canvas.backgroundImage;
-    
+
         if (bgImage || objects.length > 0) {
           if (bgImage) {
             const scale = fabricWidth / bgImage.width;
@@ -82,7 +83,7 @@ function Canvas({ selectedFile, selectedTool }) {
           canvas.renderAll();
         }
       } else {
-        alert("Please enter a valid width.");
+        alert('Please enter a valid width.');
       }
     }
 
@@ -105,7 +106,7 @@ function Canvas({ selectedFile, selectedTool }) {
         });
       }
 
-      canvas.on('mouse:down', function(opt) {
+      canvas.on('mouse:down', function (opt) {
         const target = opt.target;
         if (target) {
           if (mirrorDirection === 'horizontal') {
@@ -113,7 +114,7 @@ function Canvas({ selectedFile, selectedTool }) {
           } else {
             target.set('flipY', !target.flipY);
           }
-          
+
           if (target.type === 'group') {
             target.getObjects().forEach((obj) => {
               if (mirrorDirection === 'horizontal') {
@@ -123,7 +124,7 @@ function Canvas({ selectedFile, selectedTool }) {
               }
             });
           }
-          
+
           target.setCoords();
           canvas.renderAll();
         } else {
@@ -601,15 +602,37 @@ function Canvas({ selectedFile, selectedTool }) {
     }
 
     if (selectedTool === 'curve') {
-      var arc1 = new fabric.Path('M 255 135 A 50 50 0 0 1 200 110', {
-        stroke: 'black',
-        fill: 'transparent',
-        stroke: 'black',
-        strokeWidth: 0.2,
-      });
-      console.log(arc1);
+      // Set up the event listeners for drawing the curve
+      canvas.on('mouse:down', function (o) {
+        setIsDrawing(true);
 
-      canvas.add(arc1);
+        const pointer = canvas.getPointer(o.e);
+
+        // Define the starting point of the curve
+        const startX = pointer.x;
+        const startY = pointer.y;
+
+        // Define the curve path string (initial curve, which can be customized)
+        const path = `M ${startX} ${startY} Q ${startX + 50} ${startY - 50}, ${
+          startX + 100
+        } ${startY}`;
+
+        // Create the curve as a Path object
+        const curve = new fabric.Path(path, {
+          stroke: 'black',
+          fill: 'transparent',
+          strokeWidth: 0.2,
+          selectable: false,
+        });
+
+        // Add the curve to the canvas
+        canvas.add(curve);
+
+        // Stop drawing on mouse up
+        canvas.on('mouse:up', function () {
+          setIsDrawing(false);
+        });
+      });
     }
 
     if (selectedTool === 'save') {
