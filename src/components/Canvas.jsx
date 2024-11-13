@@ -6,13 +6,14 @@ function Canvas({ selectedFile, selectedTool }) {
   const { editor, onReady } = useFabricJSEditor();
   const [isDrawing, setIsDrawing] = useState(false);
   const [line, setLine] = useState(null);
-  const [curve, setCurve] = useState(null);
+
   const [startPoint, setStartPoint] = useState(null);
   const [rect, setRect] = useState(null);
-  const [controlPoint, setControlPoint] = useState(null);
+
   const [cropRect, setCropRect] = useState(null);
   const [triangle, setTriangle] = useState(null);
   const [mirrorDirection, setMirrorDirection] = useState('horizontal');
+  const [copySvg, setCopySvg] = useState(null);
 
   useEffect(() => {
     if (!editor || !fabric) return;
@@ -600,36 +601,15 @@ function Canvas({ selectedFile, selectedTool }) {
     }
 
     if (selectedTool === 'curve') {
-      canvas.on('mouse:down', function (o) {
-        setIsDrawing(true);
-        const pointer = canvas.getPointer(o.e);
-        const points = [pointer.x, pointer.y, pointer.x, pointer.y];
-
-        const lineType = document.getElementById('linetype')?.value || 'solid';
-        const newLine = new fabric.Line(points, {
-          strokeWidth: lineType === 'dashed' ? 5 : 0.5,
-          strokeDashArray: lineType === 'dashed' ? [15, 5] : null,
-          fill: lineType === 'dashed' ? 'gray' : 'black',
-          stroke: lineType === 'dashed' ? 'gray' : 'black',
-          originX: 'center',
-          originY: 'center',
-        });
-
-        canvas.add(newLine);
-        setLine(newLine);
+      var arc1 = new fabric.Path('M 255 135 A 50 50 0 0 1 200 110', {
+        stroke: 'black',
+        fill: 'transparent',
+        stroke: 'black',
+        strokeWidth: 0.2,
       });
+      console.log(arc1);
 
-      canvas.on('mouse:move', function (o) {
-        if (!isDrawing || !line) return;
-        const pointer = canvas.getPointer(o.e);
-        line.set({ x2: pointer.x, y2: pointer.y });
-        canvas.renderAll();
-      });
-
-      canvas.on('mouse:up', function () {
-        setIsDrawing(false);
-        setLine(null);
-      });
+      canvas.add(arc1);
     }
 
     if (selectedTool === 'save') {
@@ -663,6 +643,54 @@ function Canvas({ selectedFile, selectedTool }) {
         .setCoords();
 
       editor.canvas.renderAll();
+    }
+    if (selectedTool === 'duplicate') {
+      const activeObjects = editor.canvas.getActiveObjects();
+
+      activeObjects.forEach((obj) => {
+        obj.clone((clonedObj) => {
+          clonedObj.set({
+            left: obj.left + 20,
+            top: obj.top + 20,
+            evented: true,
+          });
+
+          editor.canvas.add(clonedObj);
+        });
+      });
+
+      editor.canvas.renderAll();
+    }
+
+    if (selectedTool === 'copy') {
+      const activeObjects = editor.canvas.getActiveObjects();
+      setCopySvg(activeObjects);
+    }
+    if (selectedTool === 'paste') {
+      copySvg.forEach((obj) => {
+        obj.clone((clonedObj) => {
+          clonedObj.set({
+            left: obj.left + 20,
+            top: obj.top + 20,
+            evented: true,
+          });
+
+          editor.canvas.add(clonedObj);
+        });
+      });
+
+      editor.canvas.renderAll();
+    }
+    if (selectedTool === 'delete') {
+      {
+        const activeObjects = editor.canvas.getActiveObjects();
+
+        if (activeObjects.length > 1) {
+          activeObjects.forEach((obj) => editor.canvas.remove(obj));
+
+          editor.canvas.renderAll();
+        }
+      }
     }
 
     canvas.renderAll();
