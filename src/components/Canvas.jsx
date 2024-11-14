@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { fabric } from 'fabric';
 import { FabricJSCanvas, useFabricJSEditor } from 'fabricjs-react';
 
-function Canvas({ selectedFile, selectedTool }) {
+function Canvas({ selectedFile, selectedTool, setSelectedTool }) {
   console.log(selectedTool);
   const { editor, onReady } = useFabricJSEditor();
   const [isDrawing, setIsDrawing] = useState(false);
@@ -739,8 +739,7 @@ function Canvas({ selectedFile, selectedTool }) {
             strokeWidth: 0.2,
             selectable: false,
           });
-
-          // Add the curve to the canvas
+          setSelectedTool('select');
           canvas.add(curve);
         }
       });
