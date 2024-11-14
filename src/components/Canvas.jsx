@@ -29,6 +29,76 @@ function Canvas({ selectedFile, selectedTool, setSelectedTool }) {
       canvas.renderAll();
     };
 
+
+    const createSeamAllowance = (width) => {
+      try {
+        if (!editor?.canvas) {
+          console.error('Canvas not initialized');
+          return;
+        }
+  
+        const canvas = editor.canvas;
+        const activeObject = canvas.getActiveObject();
+  
+        if (!activeObject) {
+          alert('Please select an object first');
+          return;
+        }
+  
+        // Get the bounding rectangle of the active object
+        const bounds = activeObject.getBoundingRect(true);
+  
+        // Create the seam allowance rectangle
+        const seamRect = new fabric.Rect({
+          left: bounds.left - width,
+          top: bounds.top - width,
+          width: bounds.width + (width * 2),
+          height: bounds.height + (width * 2),
+          fill: 'transparent',
+          stroke: '#666',
+          strokeWidth: 0.5,
+          strokeDashArray: [5, 5],
+          originX: 'left',
+          originY: 'top'
+        });
+  
+        // Create the label
+        const text = new fabric.Text(`${width}mm seam`, {
+          left: bounds.left,
+          top: bounds.top - 20,
+          fontSize: 12,
+          fill: '#666',
+          selectable: false,
+          evented: false
+        });
+  
+        // Clone the active object to preserve its properties
+        activeObject.clone((clonedObj) => {
+          // Create array of objects to group
+          const objectsToGroup = [clonedObj, seamRect, text];
+  
+          // Create the group
+          const group = new fabric.Group(objectsToGroup, {
+            left: bounds.left,
+            top: bounds.top,
+            selectable: true,
+            hasControls: true
+          });
+  
+          // Remove the original object
+          canvas.remove(activeObject);
+  
+          // Add the new group
+          canvas.add(group);
+          canvas.setActiveObject(group);
+          canvas.renderAll();
+        });
+      } catch (error) {
+        console.error('Error creating seam allowance:', error);
+        alert('Error creating seam allowance. Please try again.');
+      }
+    };
+
     updateObjectSelectability();
     canvas.off('mouse:down');
     canvas.off('mouse:move');
@@ -58,35 +128,51 @@ function Canvas({ selectedFile, selectedTool, setSelectedTool }) {
     }
 
     if (selectedTool === 'fabric width') {
-      const fabricWidth = parseInt(prompt('Enter desired width for the canvas:'), 10);
-
-      if (fabricWidth && !isNaN(fabricWidth)) {
+      const fabricWidths = [120, 140, 150];
+      const fabricWidth = parseInt(prompt('Enter desired width for the canvas (120, 140, or 150 cm):'), 10);
+    
+      if (fabricWidths.includes(fabricWidth)) {
+        // Set canvas dimensions based on selected fabric width, keeping existing objects
         canvas.setWidth(fabricWidth);
         canvas.setHeight(fabricWidth * 1.4);
-        const objects = canvas.getObjects();
+    
+        // Adjust background image or objects only if necessary
         const bgImage = canvas.backgroundImage;
-
-        if (bgImage || objects.length > 0) {
-          if (bgImage) {
-            const scale = fabricWidth / bgImage.width;
-            bgImage.scale(scale);
-            bgImage.center();
-          }
-          objects.forEach((obj) => {
-            const objBounds = obj.getBoundingRect();
-            if (objBounds.width > fabricWidth) {
-              const scale = fabricWidth / objBounds.width;
-              obj.scale(scale);
-            }
-            obj.center();
-            obj.setCoords();
-          });
-          canvas.renderAll();
+        const objects = canvas.getObjects();
+    
+        // Scale background image to fit new width if it exists
+        if (bgImage) {
+          const scale = fabricWidth / bgImage.width;
+          bgImage.scale(scale);
+          bgImage.center();
         }
+    
+        // Keep SVGs in place and adjust any objects if they need resizing to fit the new canvas
+        objects.forEach((obj) => {
+          const objBounds = obj.getBoundingRect();
+    
+          // Only scale if object width exceeds the canvas width
+          if (objBounds.width > fabricWidth) {
+            const scale = fabricWidth / objBounds.width;
+            obj.scale(scale);
+          }
+          obj.center();
+          obj.setCoords();
+        });
+    
+        // Render changes to maintain the layout with all objects and SVGs intact
+        canvas.renderAll();
       } else {
-        alert('Please enter a valid width.');
+        alert('Please enter a valid width: 120, 140, or 150.');
       }
     }
+    
+
+    if (selectedTool === '5mm seam') createSeamAllowance(5);
+    if (selectedTool === '10mm seam') createSeamAllowance(10);
+    if (selectedTool === '15mm seam') createSeamAllowance(15);
+    if (selectedTool === '20mm seam') createSeamAllowance(20);
+    if (selectedTool === '40mm seam') createSeamAllowance(40);
 
     if (selectedTool === 'mirror') {
       // Create mirror controls if they don't exist
