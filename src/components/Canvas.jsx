@@ -169,6 +169,68 @@ function Canvas({ selectedFile, selectedTool, setSelectedTool }) {
       }
     }
 
+    if (selectedTool === 'grading') {
+      // const canvas = canvasRef.current;
+      const activeObject = canvas.getActiveObject();
+    
+      if (activeObject) {
+        console.log("Before Scaling:", activeObject.scaleX, activeObject.scaleY);
+        const scaleFactor = prompt("Enter scale factor (e.g., 1.2 for 20% increase):", "1.0");
+        if (scaleFactor) {
+          activeObject.scaleX *= parseFloat(scaleFactor);
+          activeObject.scaleY *= parseFloat(scaleFactor);
+          activeObject.strokeUniform = true; // Maintain stroke width
+          activeObject.setCoords();
+          console.log("After Scaling:", activeObject.scaleX, activeObject.scaleY);
+          canvas.renderAll();
+        }
+      } else {
+        alert("Please select a pattern to grade.");
+      }
+    }
+    
+    
+
+    if (selectedTool === 'size dupe') {
+      // const canvas = canvasRef.current; // Assuming canvasRef is already initialized
+      const activeObject = canvas.getActiveObject();
+    
+      if (activeObject) {
+        console.log("Original Object Properties:", activeObject.scaleX, activeObject.scaleY);
+        const scaleFactor = prompt("Enter scale factor for new size (e.g., 1.5 for 50% larger):", "1.0");
+    
+        if (scaleFactor) {
+          // Clone the active object
+          activeObject.clone((clonedObject) => {
+            // Scale the cloned object
+            clonedObject.scaleX = activeObject.scaleX * parseFloat(scaleFactor);
+            clonedObject.scaleY = activeObject.scaleY * parseFloat(scaleFactor);
+    
+            // Offset the position of the cloned object to avoid overlap
+            clonedObject.left = activeObject.left + 50;
+            clonedObject.top = activeObject.top + 50;
+    
+            // Ensure stroke width remains uniform
+            clonedObject.strokeUniform = true;
+    
+            // Add the cloned object to the canvas
+            canvas.add(clonedObject);
+            clonedObject.setCoords(); // Update its position
+            canvas.renderAll(); // Re-render the canvas
+    
+            console.log("New Object Properties:", clonedObject.scaleX, clonedObject.scaleY);
+          });
+        }
+      } else {
+        alert("Please select a pattern to duplicate.");
+      }
+    }
+    
+
+if(selectedTool==='3d grade'){}
+
+
+
     if (selectedTool === '5mm seam') createSeamAllowance(5);
     if (selectedTool === '10mm seam') createSeamAllowance(10);
     if (selectedTool === '15mm seam') createSeamAllowance(15);
