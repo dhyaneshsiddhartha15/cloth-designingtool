@@ -4,6 +4,7 @@ import { FabricJSCanvas, useFabricJSEditor } from 'fabricjs-react';
 
 function Canvas({ selectedFile, selectedTool, setSelectedTool }) {
   console.log(selectedTool);
+
   const { editor, onReady } = useFabricJSEditor();
   const [isDrawing, setIsDrawing] = useState(false);
   const [line, setLine] = useState(null);
@@ -714,6 +715,7 @@ function Canvas({ selectedFile, selectedTool, setSelectedTool }) {
       canvas.on('mouse:move', function (o) {
         if (!isDrawing || !line) return;
         const pointer = canvas.getPointer(o.e);
+
         line.set({ x2: pointer.x, y2: pointer.y });
         canvas.renderAll();
       });
@@ -894,6 +896,52 @@ function Canvas({ selectedFile, selectedTool, setSelectedTool }) {
     }
 
     if (selectedTool === 'cut line') {
+      let curve; // Store the curve reference
+      let startX, startY;
+
+      canvas.on('mouse:down', function (o) {
+        setIsDrawing(true);
+
+        const pointer = canvas.getPointer(o.e);
+        startX = pointer.x;
+        startY = pointer.y;
+
+        const path = `M ${startX} ${startY} Q ${startX + 50} ${startY - 50}, ${
+          startX + 100
+        } ${startY}`;
+        curve = new fabric.Path(path, {
+          stroke: 'red',
+          fill: 'transparent',
+          strokeWidth: 0.5,
+          strokeDashArray: [5, 5],
+          selectable: false,
+        });
+
+        canvas.add(curve);
+      });
+
+      canvas.on('mouse:move', function (o) {
+        if (isDrawing) {
+          const pointer = canvas.getPointer(o.e);
+          console.log(pointer.x);
+          const endX = pointer.x;
+          const endY = pointer.y;
+
+          console.log('Mouse moving at:', pointer.x, pointer.y);
+
+          // Update curve path
+          const updatedPath = `M ${startX} ${startY} Q ${(startX + endX) / 2} ${
+            startY - 50
+          }, ${endX} ${endY}`;
+          curve.set({ path: updatedPath });
+          canvas.renderAll();
+        }
+      });
+
+      canvas.on('mouse:up', function () {
+        setIsDrawing(false);
+        setSelectedTool('select');
+      });
     }
 
     if (selectedTool === 'drill hole') {
