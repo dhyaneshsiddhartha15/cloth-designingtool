@@ -2,12 +2,12 @@ import React, { useEffect, useState } from 'react';
 import { fabric } from 'fabric';
 import { FabricJSCanvas, useFabricJSEditor } from 'fabricjs-react';
 
-function Canvas({ selectedFile, selectedTool }) {
+function Canvas({ selectedFile, selectedTool, setSelectedTool }) {
   console.log(selectedTool);
   const { editor, onReady } = useFabricJSEditor();
   const [isDrawing, setIsDrawing] = useState(false);
   const [line, setLine] = useState(null);
-
+  const [cutLine, setCutLine] = useState(null);
   const [startPoint, setStartPoint] = useState(null);
   const [rect, setRect] = useState(null);
 
@@ -29,39 +29,38 @@ function Canvas({ selectedFile, selectedTool }) {
       canvas.renderAll();
     };
 
-
     const createSeamAllowance = (width) => {
       try {
         if (!editor?.canvas) {
           console.error('Canvas not initialized');
           return;
         }
-  
+
         const canvas = editor.canvas;
         const activeObject = canvas.getActiveObject();
-  
+
         if (!activeObject) {
           alert('Please select an object first');
           return;
         }
-  
+
         // Get the bounding rectangle of the active object
         const bounds = activeObject.getBoundingRect(true);
-  
+
         // Create the seam allowance rectangle
         const seamRect = new fabric.Rect({
           left: bounds.left - width,
           top: bounds.top - width,
-          width: bounds.width + (width * 2),
-          height: bounds.height + (width * 2),
+          width: bounds.width + width * 2,
+          height: bounds.height + width * 2,
           fill: 'transparent',
           stroke: '#666',
           strokeWidth: 0.5,
           strokeDashArray: [5, 5],
           originX: 'left',
-          originY: 'top'
+          originY: 'top',
         });
-  
+
         // Create the label
         const text = new fabric.Text(`${width}mm seam`, {
           left: bounds.left,
@@ -69,25 +68,25 @@ function Canvas({ selectedFile, selectedTool }) {
           fontSize: 12,
           fill: '#666',
           selectable: false,
-          evented: false
+          evented: false,
         });
-  
+
         // Clone the active object to preserve its properties
         activeObject.clone((clonedObj) => {
           // Create array of objects to group
           const objectsToGroup = [clonedObj, seamRect, text];
-  
+
           // Create the group
           const group = new fabric.Group(objectsToGroup, {
             left: bounds.left,
             top: bounds.top,
             selectable: true,
-            hasControls: true
+            hasControls: true,
           });
-  
+
           // Remove the original object
           canvas.remove(activeObject);
-  
+
           // Add the new group
           canvas.add(group);
           canvas.setActiveObject(group);
@@ -275,28 +274,31 @@ function Canvas({ selectedFile, selectedTool }) {
     
     if (selectedTool === 'fabric width') {
       const fabricWidths = [120, 140, 150];
-      const fabricWidth = parseInt(prompt('Enter desired width for the canvas (120, 140, or 150 cm):'), 10);
-    
+      const fabricWidth = parseInt(
+        prompt('Enter desired width for the canvas (120, 140, or 150 cm):'),
+        10
+      );
+
       if (fabricWidths.includes(fabricWidth)) {
         // Set canvas dimensions based on selected fabric width, keeping existing objects
         canvas.setWidth(fabricWidth);
         canvas.setHeight(fabricWidth * 1.4);
-    
+
         // Adjust background image or objects only if necessary
         const bgImage = canvas.backgroundImage;
         const objects = canvas.getObjects();
-    
+
         // Scale background image to fit new width if it exists
         if (bgImage) {
           const scale = fabricWidth / bgImage.width;
           bgImage.scale(scale);
           bgImage.center();
         }
-    
+
         // Keep SVGs in place and adjust any objects if they need resizing to fit the new canvas
         objects.forEach((obj) => {
           const objBounds = obj.getBoundingRect();
-    
+
           // Only scale if object width exceeds the canvas width
           if (objBounds.width > fabricWidth) {
             const scale = fabricWidth / objBounds.width;
@@ -305,76 +307,74 @@ function Canvas({ selectedFile, selectedTool }) {
           obj.center();
           obj.setCoords();
         });
-    
+
         // Render changes to maintain the layout with all objects and SVGs intact
         canvas.renderAll();
       } else {
         alert('Please enter a valid width: 120, 140, or 150.');
       }
     }
-    
 
     if (selectedTool === 'grading') {
       // const canvas = canvasRef.current;
       const activeObject = canvas.getActiveObject();
-    
+
       if (activeObject) {
-        console.log("Before Scaling:", activeObject.scaleX, activeObject.scaleY);
-        const scaleFactor = prompt("Enter scale factor (e.g., 1.2 for 20% increase):", "1.0");
+        console.log('Before Scaling:', activeObject.scaleX, activeObject.scaleY);
+        const scaleFactor = prompt('Enter scale factor (e.g., 1.2 for 20% increase):', '1.0');
         if (scaleFactor) {
           activeObject.scaleX *= parseFloat(scaleFactor);
           activeObject.scaleY *= parseFloat(scaleFactor);
           activeObject.strokeUniform = true; // Maintain stroke width
           activeObject.setCoords();
-          console.log("After Scaling:", activeObject.scaleX, activeObject.scaleY);
+          console.log('After Scaling:', activeObject.scaleX, activeObject.scaleY);
           canvas.renderAll();
         }
       } else {
-        alert("Please select a pattern to grade.");
+        alert('Please select a pattern to grade.');
       }
     }
-    
-    
 
     if (selectedTool === 'size dupe') {
       // const canvas = canvasRef.current; // Assuming canvasRef is already initialized
       const activeObject = canvas.getActiveObject();
-    
+
       if (activeObject) {
-        console.log("Original Object Properties:", activeObject.scaleX, activeObject.scaleY);
-        const scaleFactor = prompt("Enter scale factor for new size (e.g., 1.5 for 50% larger):", "1.0");
-    
+        console.log('Original Object Properties:', activeObject.scaleX, activeObject.scaleY);
+        const scaleFactor = prompt(
+          'Enter scale factor for new size (e.g., 1.5 for 50% larger):',
+          '1.0'
+        );
+
         if (scaleFactor) {
           // Clone the active object
           activeObject.clone((clonedObject) => {
             // Scale the cloned object
             clonedObject.scaleX = activeObject.scaleX * parseFloat(scaleFactor);
             clonedObject.scaleY = activeObject.scaleY * parseFloat(scaleFactor);
-    
+
             // Offset the position of the cloned object to avoid overlap
             clonedObject.left = activeObject.left + 50;
             clonedObject.top = activeObject.top + 50;
-    
+
             // Ensure stroke width remains uniform
             clonedObject.strokeUniform = true;
-    
+
             // Add the cloned object to the canvas
             canvas.add(clonedObject);
             clonedObject.setCoords(); // Update its position
             canvas.renderAll(); // Re-render the canvas
-    
-            console.log("New Object Properties:", clonedObject.scaleX, clonedObject.scaleY);
+
+            console.log('New Object Properties:', clonedObject.scaleX, clonedObject.scaleY);
           });
         }
       } else {
-        alert("Please select a pattern to duplicate.");
+        alert('Please select a pattern to duplicate.');
       }
     }
-    
 
-if(selectedTool==='3d grade'){}
-
-
+    if (selectedTool === '3d grade') {
+    }
 
     if (selectedTool === '5mm seam') createSeamAllowance(5);
     if (selectedTool === '10mm seam') createSeamAllowance(10);
@@ -953,7 +953,7 @@ if(selectedTool==='3d grade'){}
           angle: (group.angle + 90) % 360,
         })
         .setCoords();
-
+      setSelectedTool('select');
       editor.canvas.renderAll();
     }
     if (selectedTool === 'duplicate') {
@@ -1033,10 +1033,157 @@ if(selectedTool==='3d grade'){}
             strokeWidth: 0.2,
             selectable: false,
           });
-
-          // Add the curve to the canvas
+          setSelectedTool('select');
           canvas.add(curve);
         }
+      });
+    }
+
+    if (selectedTool === 'cut line') {
+    }
+
+    if (selectedTool === 'drill hole') {
+      const canvas = editor.canvas;
+      canvas.on('mouse:down', (event) => {
+        const pointer = canvas.getPointer(event.e);
+
+        // 5mm diameter circle (convert to canvas units)
+        const diameterInPx = 5; // Adjust if scaling is applied
+        const circle = new fabric.Circle({
+          left: pointer.x - diameterInPx / 2, // Center the circle at click point
+          top: pointer.y - diameterInPx / 2,
+          radius: diameterInPx / 2,
+          fill: 'transparent', // No fill
+          stroke: 'black', // Mark with red outline
+          strokeWidth: 1,
+          selectable: false, // Prevent selection
+          evented: false, // Ignore events
+        });
+
+        canvas.add(circle);
+        canvas.renderAll();
+      });
+    }
+
+    if (selectedTool === 'button hole') {
+      const canvas = editor.canvas;
+
+      canvas.on('mouse:down', (event) => {
+        const pointer = canvas.getPointer(event.e);
+
+        // Parameters for button hole size
+        const holeLength = 30; // Length of the main line
+        const crossLength = 5; // Length of the cross lines (T-bar)
+        const crossWidth = 2; // Thickness of the cross lines
+        const strokeWidth = 2;
+
+        // Create the main line (horizontal)
+        const line = new fabric.Line(
+          [pointer.x - holeLength / 2, pointer.y, pointer.x + holeLength / 2, pointer.y],
+          {
+            stroke: 'black',
+            strokeWidth: strokeWidth,
+            selectable: false,
+            evented: false,
+          }
+        );
+
+        // Create the cross lines at the left end
+        const leftCross = new fabric.Line(
+          [
+            pointer.x - holeLength / 2 - crossLength,
+            pointer.y - crossWidth / 2,
+            pointer.x - holeLength / 2 + crossLength,
+            pointer.y - crossWidth / 2,
+          ],
+          {
+            stroke: 'black',
+            strokeWidth: strokeWidth,
+            selectable: false,
+            evented: false,
+          }
+        );
+        const rightCross = new fabric.Line(
+          [
+            pointer.x - holeLength / 2 - crossLength,
+            pointer.y + crossWidth / 2,
+            pointer.x - holeLength / 2 + crossLength,
+            pointer.y + crossWidth / 2,
+          ],
+          {
+            stroke: 'black',
+            strokeWidth: strokeWidth,
+            selectable: false,
+            evented: false,
+          }
+        );
+
+        // Create the cross lines at the right end
+        const leftCrossRight = new fabric.Line(
+          [
+            pointer.x + holeLength / 2 - crossLength,
+            pointer.y - crossWidth / 2,
+            pointer.x + holeLength / 2 + crossLength,
+            pointer.y - crossWidth / 2,
+          ],
+          {
+            stroke: 'black',
+            strokeWidth: strokeWidth,
+            selectable: false,
+            evented: false,
+          }
+        );
+        const rightCrossRight = new fabric.Line(
+          [
+            pointer.x + holeLength / 2 - crossLength,
+            pointer.y + crossWidth / 2,
+            pointer.x + holeLength / 2 + crossLength,
+            pointer.y + crossWidth / 2,
+          ],
+          {
+            stroke: 'black',
+            strokeWidth: 2,
+            selectable: false,
+            evented: false,
+          }
+        );
+
+        // Add all parts to the canvas
+        canvas.add(line);
+        canvas.add(leftCross);
+        canvas.add(rightCross);
+        canvas.add(leftCrossRight);
+        canvas.add(rightCrossRight);
+
+        canvas.renderAll();
+      });
+    }
+
+    if (selectedTool === 'notches') {
+      const canvas = editor.canvas;
+      canvas.on('mouse:down', (event) => {
+        const pointer = canvas.getPointer(event.e);
+
+        // Parameters for the notch size
+        const notchWidth = 2; // Width of the notch in mm (converted to pixels)
+        const notchLength = 5; // Length of the notch in mm (converted to pixels)
+        const notchWidthInPixels = (notchWidth * canvas.getWidth()) / 210; // Convert mm to pixels (assuming 210mm width canvas)
+        const notchLengthInPixels = (notchLength * canvas.getHeight()) / 297; // Convert mm to pixels (assuming 297mm height canvas)
+
+        // Create the notch rectangle (2mm wide, 5mm long)
+        const notch = new fabric.Rect({
+          left: pointer.x - notchWidthInPixels / 2, // Center the notch around the pointer
+          top: pointer.y - notchLengthInPixels / 2, // Center the notch around the pointer
+          width: notchWidthInPixels,
+          height: notchLengthInPixels,
+          fill: 'black',
+          selectable: false,
+          evented: false,
+        });
+
+        // Add the notch to the canvas
+        canvas.add(notch);
+        canvas.renderAll();
       });
     }
 
