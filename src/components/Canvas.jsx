@@ -126,7 +126,153 @@ function Canvas({ selectedFile, selectedTool, setSelectedTool }) {
 
       editor.canvas.renderAll();
     }
+    if (selectedTool === 'seams') {
 
+      console.log("Seam selection")
+      canvas.isDrawingMode = true;
+      canvas.freeDrawingBrush.width = 1;
+      canvas.freeDrawingBrush.color = '#FF0000';
+    
+      let drawingPath = null;
+      let points = [];
+    
+      canvas.on('mouse:down', function(o) {
+        const pointer = canvas.getPointer(o.e);
+        points = [pointer.x, pointer.y];
+        drawingPath = new fabric.Path(`M ${pointer.x} ${pointer.y}`, {
+          strokeWidth: 1,
+          stroke: '#FF0000',
+          fill: 'transparent',
+          selectable: true,
+          hasControls: true
+        });
+        canvas.add(drawingPath);
+      });
+    
+      canvas.on('mouse:move', function(o) {
+        if (!canvas.isDrawing) return;
+        const pointer = canvas.getPointer(o.e);
+        points.push(pointer.x, pointer.y);
+        
+        // Update the path with new points
+        const pathData = `M ${points[0]} ${points[1]} ${points
+          .slice(2)
+          .reduce((path, coord, i) => {
+            return path + (i % 2 ? ` ${coord}` : ` L ${coord}`);
+          }, '')}`;
+        
+        drawingPath.set({ path: pathData });
+        canvas.renderAll();
+      });
+    
+      canvas.on('mouse:up', function() {
+        canvas.isDrawing = false;
+        
+        // Convert the drawing to a proper pattern piece
+        if (drawingPath) {
+          // Create a new pattern piece from the drawn path
+          const patternPiece = new fabric.Path(drawingPath.path, {
+            strokeWidth: 1,
+            stroke: '#000000',
+            fill: 'transparent',
+            selectable: true,
+            hasControls: true,
+            cornerStyle: 'circle',
+            cornerColor: '#2196F3',
+            cornerSize: 6,
+            transparentCorners: false,
+            lockScalingFlip: true
+          });
+    
+          // Remove the drawing path and add the pattern piece
+          canvas.remove(drawingPath);
+          canvas.add(patternPiece);
+          canvas.renderAll();
+    
+          // Reset the drawing state
+          drawingPath = null;
+          points = [];
+        }
+      });
+    
+      // Clean up function to reset canvas state
+      return () => {
+        canvas.isDrawingMode = false;
+        canvas.off('mouse:down');
+        canvas.off('mouse:move');
+        canvas.off('mouse:up');
+      };
+    }
+      
+    
+    
+
+    
+    if (selectedTool === 'mirror') {
+      // const canvas = canvasRef.current;
+      const activeObject = canvas?.getActiveObject();
+    
+      if (activeObject) {
+        // Flip the object horizontally to mirror it
+        activeObject.set('flipX', !activeObject.flipX);
+        canvas.renderAll();
+      } else {
+        alert('Please select a pattern piece to mirror.');
+      }
+    }
+    
+    if (selectedTool === 'grain') {
+      // const canvas = canvasRef.current;
+      const activeObject = canvas?.getActiveObject();
+    
+      if (activeObject) {
+        // Add a grain line down the middle of the object
+        const grainLine = new fabric.Line(
+          [
+            activeObject.left + activeObject.width / 2,
+            activeObject.top,
+            activeObject.left + activeObject.width / 2,
+            activeObject.top + activeObject.height,
+          ],
+          {
+            stroke: 'blue',
+            strokeWidth: 2,
+          }
+        );
+        canvas.add(grainLine);
+        canvas.renderAll();
+      } else {
+        alert('Please select a pattern piece to add a grain line.');
+      }
+    }
+    
+    if (selectedTool === 'notches') {
+      // const canvas = canvasRef.current;
+      const activeObject = canvas?.getActiveObject();
+    
+      if (activeObject) {
+        // Add notches at key points on the object (top-left and bottom-right)
+        const notch1 = new fabric.Circle({
+          radius: 5,
+          fill: 'black',
+          left: activeObject.left - 5,
+          top: activeObject.top - 5,
+        });
+    
+        const notch2 = new fabric.Circle({
+          radius: 5,
+          fill: 'black',
+          left: activeObject.left + activeObject.width - 5,
+          top: activeObject.top + activeObject.height - 5,
+        });
+    
+        canvas.add(notch1, notch2);
+        canvas.renderAll();
+      } else {
+        alert('Please select a pattern piece to add notches.');
+      }
+    }
+    
     if (selectedTool === 'fabric width') {
       const fabricWidths = [120, 140, 150];
       const fabricWidth = parseInt(
