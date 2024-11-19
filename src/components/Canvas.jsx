@@ -107,25 +107,28 @@ function Canvas({ selectedFile, selectedTool, setSelectedTool }) {
     canvas.off('mouse:wheel');
 
     if (selectedTool === 'duplicate') {
-      const activeObjects = editor.canvas.getActiveObjects();
+      // Get the entire canvas as SVG string
+      const svgString = editor.canvas.toSVG();
 
-      if (activeObjects.length === 0) {
-        return;
-      }
+      // Load the SVG string to duplicate all its contents
+      fabric.loadSVGFromString(svgString, (objects, options) => {
+        const clonedGroup = fabric.util.groupSVGElements(objects, options);
 
-      activeObjects.forEach((obj) => {
-        obj.clone((clonedObj) => {
-          clonedObj.set({
-            left: obj.left + 20,
-            top: obj.top + 20,
-          });
-          editor.canvas.add(clonedObj);
-          clonedObj.setCoords();
+        // Set position offset for the cloned group
+        clonedGroup.set({
+          left: clonedGroup.left + 20 || 20, // Offset for better visibility
+          top: clonedGroup.top + 20 || 20,
         });
-      });
 
-      editor.canvas.renderAll();
+        // Add the cloned group to the canvas
+        editor.canvas.add(clonedGroup);
+        clonedGroup.setCoords();
+
+        // Render the canvas to reflect the duplication
+        editor.canvas.renderAll();
+      });
     }
+
     if (selectedTool === 'seams') {
       console.log('Seam selection');
       canvas.isDrawingMode = true;
@@ -1451,14 +1454,19 @@ function Canvas({ selectedFile, selectedTool, setSelectedTool }) {
   useEffect(() => {
     if (editor && selectedFile) {
       fabric.loadSVGFromString(selectedFile, (objects, options) => {
-        editor.canvas._objects.splice(0, editor.canvas._objects.length);
-        editor.canvas.backgroundImage = objects[0];
-        const newObj = objects.filter((_, index) => index !== 0);
-        newObj.forEach((object) => {
-          editor.canvas.add(object);
+        editor.canvas.clear(); // Clear the canvas to remove existing objects
+
+        const svgGroup = fabric.util.groupSVGElements(objects, options); // Group SVG elements
+        svgGroup.set({
+          left: editor.canvas.width / 2 - svgGroup.width / 2,
+          top: editor.canvas.height / 2 - svgGroup.height / 2,
+          originX: 'center',
+          originY: 'center',
         });
 
-        editor.canvas.renderAll();
+        editor.canvas.add(svgGroup); // Add the group to the canvas
+        editor.canvas.setActiveObject(svgGroup); // Set the group as active
+        editor.canvas.renderAll(); // Render changes
       });
     }
   }, [selectedFile, editor]);
