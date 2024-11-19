@@ -125,83 +125,83 @@ function Canvas({ selectedFile, selectedTool, setSelectedTool }) {
 
       editor.canvas.renderAll();
     }
-    if (selectedTool === 'seams') {
+    // if (selectedTool === 'seams') {
 
-      console.log("Seam selection")
-      canvas.isDrawingMode = true;
-      canvas.freeDrawingBrush.width = 1;
-      canvas.freeDrawingBrush.color = '#FF0000';
+    //   console.log("Seam selection")
+    //   canvas.isDrawingMode = true;
+    //   canvas.freeDrawingBrush.width = 1;
+    //   canvas.freeDrawingBrush.color = '#FF0000';
     
-      let drawingPath = null;
-      let points = [];
+    //   let drawingPath = null;
+    //   let points = [];
     
-      canvas.on('mouse:down', function(o) {
-        const pointer = canvas.getPointer(o.e);
-        points = [pointer.x, pointer.y];
-        drawingPath = new fabric.Path(`M ${pointer.x} ${pointer.y}`, {
-          strokeWidth: 1,
-          stroke: '#FF0000',
-          fill: 'transparent',
-          selectable: true,
-          hasControls: true
-        });
-        canvas.add(drawingPath);
-      });
+    //   canvas.on('mouse:down', function(o) {
+    //     const pointer = canvas.getPointer(o.e);
+    //     points = [pointer.x, pointer.y];
+    //     drawingPath = new fabric.Path(`M ${pointer.x} ${pointer.y}`, {
+    //       strokeWidth: 1,
+    //       stroke: '#FF0000',
+    //       fill: 'transparent',
+    //       selectable: true,
+    //       hasControls: true
+    //     });
+    //     canvas.add(drawingPath);
+    //   });
     
-      canvas.on('mouse:move', function(o) {
-        if (!canvas.isDrawing) return;
-        const pointer = canvas.getPointer(o.e);
-        points.push(pointer.x, pointer.y);
+    //   canvas.on('mouse:move', function(o) {
+    //     if (!canvas.isDrawing) return;
+    //     const pointer = canvas.getPointer(o.e);
+    //     points.push(pointer.x, pointer.y);
         
-        // Update the path with new points
-        const pathData = `M ${points[0]} ${points[1]} ${points
-          .slice(2)
-          .reduce((path, coord, i) => {
-            return path + (i % 2 ? ` ${coord}` : ` L ${coord}`);
-          }, '')}`;
+    //     // Update the path with new points
+    //     const pathData = `M ${points[0]} ${points[1]} ${points
+    //       .slice(2)
+    //       .reduce((path, coord, i) => {
+    //         return path + (i % 2 ? ` ${coord}` : ` L ${coord}`);
+    //       }, '')}`;
         
-        drawingPath.set({ path: pathData });
-        canvas.renderAll();
-      });
+    //     drawingPath.set({ path: pathData });
+    //     canvas.renderAll();
+    //   });
     
-      canvas.on('mouse:up', function() {
-        canvas.isDrawing = false;
+    //   canvas.on('mouse:up', function() {
+    //     canvas.isDrawing = false;
         
-        // Convert the drawing to a proper pattern piece
-        if (drawingPath) {
-          // Create a new pattern piece from the drawn path
-          const patternPiece = new fabric.Path(drawingPath.path, {
-            strokeWidth: 1,
-            stroke: '#000000',
-            fill: 'transparent',
-            selectable: true,
-            hasControls: true,
-            cornerStyle: 'circle',
-            cornerColor: '#2196F3',
-            cornerSize: 6,
-            transparentCorners: false,
-            lockScalingFlip: true
-          });
+    //     // Convert the drawing to a proper pattern piece
+    //     if (drawingPath) {
+    //       // Create a new pattern piece from the drawn path
+    //       const patternPiece = new fabric.Path(drawingPath.path, {
+    //         strokeWidth: 1,
+    //         stroke: '#000000',
+    //         fill: 'transparent',
+    //         selectable: true,
+    //         hasControls: true,
+    //         cornerStyle: 'circle',
+    //         cornerColor: '#2196F3',
+    //         cornerSize: 6,
+    //         transparentCorners: false,
+    //         lockScalingFlip: true
+    //       });
     
-          // Remove the drawing path and add the pattern piece
-          canvas.remove(drawingPath);
-          canvas.add(patternPiece);
-          canvas.renderAll();
+    //       // Remove the drawing path and add the pattern piece
+    //       canvas.remove(drawingPath);
+    //       canvas.add(patternPiece);
+    //       canvas.renderAll();
     
-          // Reset the drawing state
-          drawingPath = null;
-          points = [];
-        }
-      });
+    //       // Reset the drawing state
+    //       drawingPath = null;
+    //       points = [];
+    //     }
+    //   });
     
-      // Clean up function to reset canvas state
-      return () => {
-        canvas.isDrawingMode = false;
-        canvas.off('mouse:down');
-        canvas.off('mouse:move');
-        canvas.off('mouse:up');
-      };
-    }
+    //   // Clean up function to reset canvas state
+    //   return () => {
+    //     canvas.isDrawingMode = false;
+    //     canvas.off('mouse:down');
+    //     canvas.off('mouse:move');
+    //     canvas.off('mouse:up');
+    //   };
+    // }
       
     
     
@@ -580,121 +580,131 @@ function Canvas({ selectedFile, selectedTool, setSelectedTool }) {
       };
     }
 
-    if (selectedTool === 'extract') {
-      canvas.getObjects().forEach((obj) => {
-        obj.selectable = true;
-        obj.hasControls = true;
-      });
 
-      canvas.on('mouse:down', function (o) {
-        if (!isDrawing) {
-          const pointer = canvas.getPointer(o.e);
-          setStartPoint({ x: pointer.x, y: pointer.y });
 
-          const newCropRect = new fabric.Rect({
-            left: pointer.x,
-            top: pointer.y,
-            width: 0,
-            height: 0,
-            fill: 'rgba(0,0,0,0.3)',
-            stroke: '#2196F3',
-            strokeWidth: 2,
-            strokeDashArray: [5, 5],
-            selectable: true,
-            hasControls: true,
-            transparentCorners: false,
-            cornerColor: '#2196F3',
-            cornerStrokeColor: '#2196F3',
-            borderColor: '#2196F3',
-            cornerSize: 10,
-            padding: 0,
-            cornerStyle: 'circle',
-          });
 
-          canvas.add(newCropRect);
-          setCropRect(newCropRect);
-          setIsDrawing(true);
-        }
-      });
+    //my code//
+ 
 
-      canvas.on('mouse:move', function (o) {
-        if (isDrawing && cropRect && startPoint) {
-          const pointer = canvas.getPointer(o.e);
-          const width = Math.abs(pointer.x - startPoint.x);
-          const height = Math.abs(pointer.y - startPoint.y);
 
-          cropRect.set({
-            width: width,
-            height: height,
-            left: Math.min(pointer.x, startPoint.x),
-            top: Math.min(pointer.y, startPoint.y),
-          });
+    ///
 
-          canvas.renderAll();
-        }
-      });
 
-      canvas.on('mouse:up', function () {
-        if (cropRect) {
-          cropRect.setControlsVisibility({
-            mt: true,
-            mb: true,
-            ml: true,
-            mr: true,
-            mtr: true,
-          });
+    // if (selectedTool === 'extract') {
+    //   canvas.getObjects().forEach((obj) => {
+    //     obj.selectable = true;
+    //     obj.hasControls = true;
+    //   });
 
-          cropRect.on('modified', function () {
-            performCrop();
-          });
-        }
-        setIsDrawing(false);
-      });
+    //   canvas.on('mouse:down', function (o) {
+    //     if (!isDrawing) {
+    //       const pointer = canvas.getPointer(o.e);
+    //       setStartPoint({ x: pointer.x, y: pointer.y });
 
-      const performCrop = () => {
-        if (!cropRect) return;
+    //       const newCropRect = new fabric.Rect({
+    //         left: pointer.x,
+    //         top: pointer.y,
+    //         width: 0,
+    //         height: 0,
+    //         fill: 'rgba(0,0,0,0.3)',
+    //         stroke: '#2196F3',
+    //         strokeWidth: 2,
+    //         strokeDashArray: [5, 5],
+    //         selectable: true,
+    //         hasControls: true,
+    //         transparentCorners: false,
+    //         cornerColor: '#2196F3',
+    //         cornerStrokeColor: '#2196F3',
+    //         borderColor: '#2196F3',
+    //         cornerSize: 10,
+    //         padding: 0,
+    //         cornerStyle: 'circle',
+    //       });
 
-        const objects = canvas.getObjects();
-        const cropBounds = {
-          left: cropRect.left,
-          top: cropRect.top,
-          right: cropRect.left + cropRect.width * cropRect.scaleX,
-          bottom: cropRect.top + cropRect.height * cropRect.scaleY,
-        };
+    //       canvas.add(newCropRect);
+    //       setCropRect(newCropRect);
+    //       setIsDrawing(true);
+    //     }
+    //   });
 
-        objects.forEach((obj) => {
-          if (obj !== cropRect && obj.intersectsWithRect(cropBounds)) {
-            const clonedObj = fabric.util.object.clone(obj);
+    //   canvas.on('mouse:move', function (o) {
+    //     if (isDrawing && cropRect && startPoint) {
+    //       const pointer = canvas.getPointer(o.e);
+    //       const width = Math.abs(pointer.x - startPoint.x);
+    //       const height = Math.abs(pointer.y - startPoint.y);
 
-            const objBounds = obj.getBoundingRect();
-            const intersection = {
-              left: Math.max(cropBounds.left, objBounds.left),
-              top: Math.max(cropBounds.top, objBounds.top),
-              right: Math.min(cropBounds.right, objBounds.left + objBounds.width),
-              bottom: Math.min(cropBounds.bottom, objBounds.top + objBounds.height),
-            };
+    //       cropRect.set({
+    //         width: width,
+    //         height: height,
+    //         left: Math.min(pointer.x, startPoint.x),
+    //         top: Math.min(pointer.y, startPoint.y),
+    //       });
 
-            clonedObj.set({
-              left: intersection.left,
-              top: intersection.top,
-              width: intersection.right - intersection.left,
-              height: intersection.bottom - intersection.top,
-              clipPath: new fabric.Rect({
-                left: -intersection.left + cropBounds.left,
-                top: -intersection.top + cropBounds.top,
-                width: cropRect.width * cropRect.scaleX,
-                height: cropRect.height * cropRect.scaleY,
-                absolutePositioned: true,
-              }),
-            });
+    //       canvas.renderAll();
+    //     }
+    //   });
 
-            canvas.add(clonedObj);
-          }
-        });
+    //   canvas.on('mouse:up', function () {
+    //     if (cropRect) {
+    //       cropRect.setControlsVisibility({
+    //         mt: true,
+    //         mb: true,
+    //         ml: true,
+    //         mr: true,
+    //         mtr: true,
+    //       });
 
-        canvas.renderAll();
-      };
-    }
+    //       cropRect.on('modified', function () {
+    //         performCrop();
+    //       });
+    //     }
+    //     setIsDrawing(false);
+    //   });
+
+    //   const performCrop = () => {
+    //     if (!cropRect) return;
+
+    //     const objects = canvas.getObjects();
+    //     const cropBounds = {
+    //       left: cropRect.left,
+    //       top: cropRect.top,
+    //       right: cropRect.left + cropRect.width * cropRect.scaleX,
+    //       bottom: cropRect.top + cropRect.height * cropRect.scaleY,
+    //     };
+
+    //     objects.forEach((obj) => {
+    //       if (obj !== cropRect && obj.intersectsWithRect(cropBounds)) {
+    //         const clonedObj = fabric.util.object.clone(obj);
+
+    //         const objBounds = obj.getBoundingRect();
+    //         const intersection = {
+    //           left: Math.max(cropBounds.left, objBounds.left),
+    //           top: Math.max(cropBounds.top, objBounds.top),
+    //           right: Math.min(cropBounds.right, objBounds.left + objBounds.width),
+    //           bottom: Math.min(cropBounds.bottom, objBounds.top + objBounds.height),
+    //         };
+
+    //         clonedObj.set({
+    //           left: intersection.left,
+    //           top: intersection.top,
+    //           width: intersection.right - intersection.left,
+    //           height: intersection.bottom - intersection.top,
+    //           clipPath: new fabric.Rect({
+    //             left: -intersection.left + cropBounds.left,
+    //             top: -intersection.top + cropBounds.top,
+    //             width: cropRect.width * cropRect.scaleX,
+    //             height: cropRect.height * cropRect.scaleY,
+    //             absolutePositioned: true,
+    //           }),
+    //         });
+
+    //         canvas.add(clonedObj);
+    //       }
+    //     });
+
+    //     canvas.renderAll();
+    //   };
+    // }
 
     if (selectedTool === 'rectangle') {
       canvas.on('mouse:down', function (o) {
