@@ -4,6 +4,7 @@ import { FabricJSCanvas, useFabricJSEditor } from 'fabricjs-react';
 
 function Canvas({ selectedFile, selectedTool, setSelectedTool }) {
   console.log(selectedTool);
+
   const { editor, onReady } = useFabricJSEditor();
   const [isDrawing, setIsDrawing] = useState(false);
   const [line, setLine] = useState(null);
@@ -125,83 +126,83 @@ function Canvas({ selectedFile, selectedTool, setSelectedTool }) {
 
       editor.canvas.renderAll();
     }
-    // if (selectedTool === 'seams') {
+    if (selectedTool === 'seams') {
 
-    //   console.log("Seam selection")
-    //   canvas.isDrawingMode = true;
-    //   canvas.freeDrawingBrush.width = 1;
-    //   canvas.freeDrawingBrush.color = '#FF0000';
+      console.log("Seam selection")
+      canvas.isDrawingMode = true;
+      canvas.freeDrawingBrush.width = 1;
+      canvas.freeDrawingBrush.color = '#FF0000';
     
-    //   let drawingPath = null;
-    //   let points = [];
+      let drawingPath = null;
+      let points = [];
     
-    //   canvas.on('mouse:down', function(o) {
-    //     const pointer = canvas.getPointer(o.e);
-    //     points = [pointer.x, pointer.y];
-    //     drawingPath = new fabric.Path(`M ${pointer.x} ${pointer.y}`, {
-    //       strokeWidth: 1,
-    //       stroke: '#FF0000',
-    //       fill: 'transparent',
-    //       selectable: true,
-    //       hasControls: true
-    //     });
-    //     canvas.add(drawingPath);
-    //   });
+      canvas.on('mouse:down', function(o) {
+        const pointer = canvas.getPointer(o.e);
+        points = [pointer.x, pointer.y];
+        drawingPath = new fabric.Path(`M ${pointer.x} ${pointer.y}`, {
+          strokeWidth: 1,
+          stroke: '#FF0000',
+          fill: 'transparent',
+          selectable: true,
+          hasControls: true
+        });
+        canvas.add(drawingPath);
+      });
     
-    //   canvas.on('mouse:move', function(o) {
-    //     if (!canvas.isDrawing) return;
-    //     const pointer = canvas.getPointer(o.e);
-    //     points.push(pointer.x, pointer.y);
+      canvas.on('mouse:move', function(o) {
+        if (!canvas.isDrawing) return;
+        const pointer = canvas.getPointer(o.e);
+        points.push(pointer.x, pointer.y);
         
-    //     // Update the path with new points
-    //     const pathData = `M ${points[0]} ${points[1]} ${points
-    //       .slice(2)
-    //       .reduce((path, coord, i) => {
-    //         return path + (i % 2 ? ` ${coord}` : ` L ${coord}`);
-    //       }, '')}`;
+        // Update the path with new points
+        const pathData = `M ${points[0]} ${points[1]} ${points
+          .slice(2)
+          .reduce((path, coord, i) => {
+            return path + (i % 2 ? ` ${coord}` : ` L ${coord}`);
+          }, '')}`;
         
-    //     drawingPath.set({ path: pathData });
-    //     canvas.renderAll();
-    //   });
+        drawingPath.set({ path: pathData });
+        canvas.renderAll();
+      });
     
-    //   canvas.on('mouse:up', function() {
-    //     canvas.isDrawing = false;
+      canvas.on('mouse:up', function() {
+        canvas.isDrawing = false;
         
-    //     // Convert the drawing to a proper pattern piece
-    //     if (drawingPath) {
-    //       // Create a new pattern piece from the drawn path
-    //       const patternPiece = new fabric.Path(drawingPath.path, {
-    //         strokeWidth: 1,
-    //         stroke: '#000000',
-    //         fill: 'transparent',
-    //         selectable: true,
-    //         hasControls: true,
-    //         cornerStyle: 'circle',
-    //         cornerColor: '#2196F3',
-    //         cornerSize: 6,
-    //         transparentCorners: false,
-    //         lockScalingFlip: true
-    //       });
+        // Convert the drawing to a proper pattern piece
+        if (drawingPath) {
+          // Create a new pattern piece from the drawn path
+          const patternPiece = new fabric.Path(drawingPath.path, {
+            strokeWidth: 1,
+            stroke: '#000000',
+            fill: 'transparent',
+            selectable: true,
+            hasControls: true,
+            cornerStyle: 'circle',
+            cornerColor: '#2196F3',
+            cornerSize: 6,
+            transparentCorners: false,
+            lockScalingFlip: true
+          });
     
-    //       // Remove the drawing path and add the pattern piece
-    //       canvas.remove(drawingPath);
-    //       canvas.add(patternPiece);
-    //       canvas.renderAll();
+          // Remove the drawing path and add the pattern piece
+          canvas.remove(drawingPath);
+          canvas.add(patternPiece);
+          canvas.renderAll();
     
-    //       // Reset the drawing state
-    //       drawingPath = null;
-    //       points = [];
-    //     }
-    //   });
+          // Reset the drawing state
+          drawingPath = null;
+          points = [];
+        }
+      });
     
-    //   // Clean up function to reset canvas state
-    //   return () => {
-    //     canvas.isDrawingMode = false;
-    //     canvas.off('mouse:down');
-    //     canvas.off('mouse:move');
-    //     canvas.off('mouse:up');
-    //   };
-    // }
+      // Clean up function to reset canvas state
+      return () => {
+        canvas.isDrawingMode = false;
+        canvas.off('mouse:down');
+        canvas.off('mouse:move');
+        canvas.off('mouse:up');
+      };
+    }
       
     
     
@@ -210,7 +211,7 @@ function Canvas({ selectedFile, selectedTool, setSelectedTool }) {
     if (selectedTool === 'mirror') {
       // const canvas = canvasRef.current;
       const activeObject = canvas?.getActiveObject();
-    
+
       if (activeObject) {
         // Flip the object horizontally to mirror it
         activeObject.set('flipX', !activeObject.flipX);
@@ -219,36 +220,50 @@ function Canvas({ selectedFile, selectedTool, setSelectedTool }) {
         alert('Please select a pattern piece to mirror.');
       }
     }
-    
+
     if (selectedTool === 'grain') {
-      // const canvas = canvasRef.current;
-      const activeObject = canvas?.getActiveObject();
-    
-      if (activeObject) {
-        // Add a grain line down the middle of the object
-        const grainLine = new fabric.Line(
-          [
-            activeObject.left + activeObject.width / 2,
-            activeObject.top,
-            activeObject.left + activeObject.width / 2,
-            activeObject.top + activeObject.height,
-          ],
-          {
-            stroke: 'blue',
-            strokeWidth: 2,
-          }
-        );
-        canvas.add(grainLine);
-        canvas.renderAll();
-      } else {
-        alert('Please select a pattern piece to add a grain line.');
-      }
+      canvas.on('mouse:down', function (o) {
+        const pointer = canvas.getPointer(o.e);
+        const { x, y } = pointer;
+
+        const grainLineHeight = 100;
+
+        const grainLine = new fabric.Line([0, 0, 0, grainLineHeight], {
+          stroke: 'black',
+          strokeWidth: 2,
+        });
+
+        const topArrow = new fabric.Triangle({
+          left: -4.5,
+          top: -15,
+          width: 10,
+          height: 15,
+          fill: 'black',
+        });
+
+        const bottomArrow = new fabric.Triangle({
+          left: 6.5,
+          top: grainLineHeight + 5,
+          width: 10,
+          height: 15,
+          fill: 'black',
+          angle: 180,
+        });
+
+        const grainGroup = new fabric.Group([grainLine, topArrow, bottomArrow], {
+          left: x,
+          top: y,
+          selectable: true,
+        });
+
+        canvas.add(grainGroup);
+        setSelectedTool('select');
+      });
     }
-    
     if (selectedTool === 'notches') {
       // const canvas = canvasRef.current;
       const activeObject = canvas?.getActiveObject();
-    
+
       if (activeObject) {
         // Add notches at key points on the object (top-left and bottom-right)
         const notch1 = new fabric.Circle({
@@ -257,21 +272,21 @@ function Canvas({ selectedFile, selectedTool, setSelectedTool }) {
           left: activeObject.left - 5,
           top: activeObject.top - 5,
         });
-    
+
         const notch2 = new fabric.Circle({
           radius: 5,
           fill: 'black',
           left: activeObject.left + activeObject.width - 5,
           top: activeObject.top + activeObject.height - 5,
         });
-    
+
         canvas.add(notch1, notch2);
         canvas.renderAll();
       } else {
         alert('Please select a pattern piece to add notches.');
       }
     }
-    
+
     if (selectedTool === 'fabric width') {
       const fabricWidths = [120, 140, 150];
       const fabricWidth = parseInt(
@@ -870,6 +885,7 @@ function Canvas({ selectedFile, selectedTool, setSelectedTool }) {
       canvas.on('mouse:move', function (o) {
         if (!isDrawing || !line) return;
         const pointer = canvas.getPointer(o.e);
+
         line.set({ x2: pointer.x, y2: pointer.y });
         canvas.renderAll();
       });
@@ -1004,14 +1020,12 @@ function Canvas({ selectedFile, selectedTool, setSelectedTool }) {
       editor.canvas.renderAll();
     }
     if (selectedTool === 'delete') {
-      {
-        const activeObjects = editor.canvas.getActiveObjects();
+      const activeObjects = editor.canvas.getActiveObjects();
 
-        if (activeObjects.length > 1) {
-          activeObjects.forEach((obj) => editor.canvas.remove(obj));
+      if (activeObjects.length > 0) {
+        activeObjects.forEach((obj) => editor.canvas.remove(obj));
 
-          editor.canvas.renderAll();
-        }
+        editor.canvas.renderAll();
       }
     }
 
@@ -1050,6 +1064,52 @@ function Canvas({ selectedFile, selectedTool, setSelectedTool }) {
     }
 
     if (selectedTool === 'cut line') {
+      let curve; // Store the curve reference
+      let startX, startY;
+
+      canvas.on('mouse:down', function (o) {
+        setIsDrawing(true);
+
+        const pointer = canvas.getPointer(o.e);
+        startX = pointer.x;
+        startY = pointer.y;
+
+        const path = `M ${startX} ${startY} Q ${startX + 50} ${startY - 50}, ${
+          startX + 100
+        } ${startY}`;
+        curve = new fabric.Path(path, {
+          stroke: 'red',
+          fill: 'transparent',
+          strokeWidth: 0.5,
+          strokeDashArray: [5, 5],
+          selectable: false,
+        });
+
+        canvas.add(curve);
+      });
+
+      canvas.on('mouse:move', function (o) {
+        if (isDrawing) {
+          const pointer = canvas.getPointer(o.e);
+          console.log(pointer.x);
+          const endX = pointer.x;
+          const endY = pointer.y;
+
+          console.log('Mouse moving at:', pointer.x, pointer.y);
+
+          // Update curve path
+          const updatedPath = `M ${startX} ${startY} Q ${(startX + endX) / 2} ${
+            startY - 50
+          }, ${endX} ${endY}`;
+          curve.set({ path: updatedPath });
+          canvas.renderAll();
+        }
+      });
+
+      canvas.on('mouse:up', function () {
+        setIsDrawing(false);
+        setSelectedTool('select');
+      });
     }
 
     if (selectedTool === 'drill hole') {
@@ -1197,6 +1257,204 @@ function Canvas({ selectedFile, selectedTool, setSelectedTool }) {
       });
     }
 
+    if (selectedTool === 'bias grain') {
+      canvas.on('mouse:down', function (o) {
+        const pointer = canvas.getPointer(o.e);
+        const { x, y } = pointer;
+
+        const grainLineHeight = 100;
+
+        // Create lines for the groups
+        const grainLine1 = new fabric.Line([0, 0, 0, grainLineHeight], {
+          stroke: 'black',
+          strokeWidth: 2,
+        });
+        const grainLine2 = new fabric.Line([0, 0, 0, grainLineHeight], {
+          stroke: 'black',
+          strokeWidth: 2,
+        });
+
+        // Create arrows for the groups
+        const topArrow1 = new fabric.Triangle({
+          left: -4.5,
+          top: -15,
+          width: 10,
+          height: 15,
+          fill: 'black',
+        });
+        const topArrow2 = new fabric.Triangle({
+          left: -4.5,
+          top: -15,
+          width: 10,
+          height: 15,
+          fill: 'black',
+        });
+
+        const bottomArrow1 = new fabric.Triangle({
+          left: 6.5,
+          top: grainLineHeight + 5,
+          width: 10,
+          height: 15,
+          fill: 'black',
+          angle: 180,
+        });
+        const bottomArrow2 = new fabric.Triangle({
+          left: 6.5,
+          top: grainLineHeight + 5,
+          width: 10,
+          height: 15,
+          fill: 'black',
+          angle: 180,
+        });
+
+        // Create the first group
+        const grainGroup1 = new fabric.Group([grainLine1, topArrow1, bottomArrow1], {
+          top: y,
+          left: x,
+          selectable: true,
+        });
+        grainGroup1.angle = 45;
+
+        // Add grainGroup1 to the canvas
+        canvas.add(grainGroup1);
+
+        // Get the center point of grainGroup1 after rotation
+        const centerPoint = grainGroup1.getCenterPoint();
+
+        // Create the second group
+        const grainGroup2 = new fabric.Group([grainLine2, topArrow2, bottomArrow2], {
+          selectable: true,
+        });
+        grainGroup2.angle = -45;
+
+        // Adjust grainGroup2's position to align its center with grainGroup1's center
+        grainGroup2.set({
+          left: centerPoint.x,
+          top: centerPoint.y,
+          originX: 'center',
+          originY: 'center',
+        });
+
+        // Add grainGroup2 to the canvas
+        canvas.add(grainGroup2);
+        const finalGroup = new fabric.Group([grainGroup1, grainGroup2], {
+          left: x,
+          top: y,
+          selectable: true,
+        });
+
+        // Remove individual groups from the canvas and add the final group
+        canvas.remove(grainGroup1, grainGroup2);
+        canvas.add(finalGroup);
+        // Set tool back to select
+        setSelectedTool('select');
+      });
+    }
+
+    if (selectedTool === 'custom grain') {
+      const customCount = prompt('Enter number of grains you would like to add? :');
+      console.log(customCount);
+      // if (customCount < 3) alert('Oh! Minimum count should be 3');
+
+      const grainLineHeight = 100; // Height of each arrow line
+
+      canvas.on('mouse:down', function (o) {
+        const pointer = canvas.getPointer(o.e);
+        const { x, y } = pointer;
+
+        // Clear any previous "mouse:down" listener for clean behavior
+        canvas.off('mouse:down');
+
+        for (let i = 0; i < customCount; i++) {
+          // Calculate the angle for each arrow
+          const angle = (360 / customCount) * i;
+
+          // Create the line for the arrow
+          const grainLine = new fabric.Line([0, 0, 0, grainLineHeight], {
+            stroke: 'black',
+            strokeWidth: 2,
+          });
+
+          // Create the top arrowhead
+          const topArrow = new fabric.Triangle({
+            left: -4.5,
+            top: -15,
+            width: 10,
+            height: 15,
+            fill: 'black',
+          });
+
+          // Create the bottom arrowhead
+          const bottomArrow = new fabric.Triangle({
+            left: 6.5,
+            top: grainLineHeight + 5,
+            width: 10,
+            height: 15,
+            fill: 'black',
+            angle: 180,
+          });
+
+          // Group the line and arrowheads
+          const grainGroup = new fabric.Group([grainLine, topArrow, bottomArrow], {
+            left: x,
+            top: y,
+            selectable: true,
+          });
+
+          // Rotate the group to the calculated angle
+          grainGroup.angle = angle;
+
+          // Add the group to the canvas
+          canvas.add(grainGroup);
+        }
+
+        // Re-render the canvas
+        canvas.renderAll();
+
+        // Reset the selected tool
+        setSelectedTool('select');
+      });
+    }
+
+    if (selectedTool === 'cross grain') {
+      canvas.on('mouse:down', function (o) {
+        const pointer = canvas.getPointer(o.e);
+        const { x, y } = pointer;
+
+        const grainLineHeight = 100;
+
+        const grainLine = new fabric.Line([0, 0, 0, grainLineHeight], {
+          stroke: 'black',
+          strokeWidth: 2,
+        });
+
+        const topArrow = new fabric.Triangle({
+          left: -4.5,
+          top: -15,
+          width: 10,
+          height: 15,
+          fill: 'black',
+        });
+
+        const bottomArrow = new fabric.Triangle({
+          left: 6.5,
+          top: grainLineHeight + 5,
+          width: 10,
+          height: 15,
+          fill: 'black',
+          angle: 180,
+        });
+
+        const grainGroup = new fabric.Group([grainLine, topArrow, bottomArrow], {
+          left: x,
+          top: y,
+          selectable: true,
+        });
+        grainGroup.angle = 90;
+        canvas.add(grainGroup);
+        setSelectedTool('select');
+      });
+    }
     canvas.renderAll();
 
     return () => {

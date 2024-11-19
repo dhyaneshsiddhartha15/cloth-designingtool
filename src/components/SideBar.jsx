@@ -320,6 +320,7 @@ function SideBar({ setSelectedTool, activeTab, setActiveTab, activeSubTab, setAc
                           }`}
                         >
                           <subTab.Icon className="h-6 w-6" />
+
                           {subTab?.subTabs && (
                             <span
                               className="bg-black h-2 w-2 absolute bottom-1 right-1"
