@@ -128,18 +128,16 @@ function Canvas({ selectedFile, selectedTool, setSelectedTool }) {
         editor.canvas.renderAll();
       });
     }
-
     if (selectedTool === 'seams') {
-
-      console.log("Seam selection")
+      console.log('Seam selection');
       canvas.isDrawingMode = true;
       canvas.freeDrawingBrush.width = 1;
       canvas.freeDrawingBrush.color = '#FF0000';
-    
+
       let drawingPath = null;
       let points = [];
-    
-      canvas.on('mouse:down', function(o) {
+
+      canvas.on('mouse:down', function (o) {
         const pointer = canvas.getPointer(o.e);
         points = [pointer.x, pointer.y];
         drawingPath = new fabric.Path(`M ${pointer.x} ${pointer.y}`, {
@@ -147,30 +145,28 @@ function Canvas({ selectedFile, selectedTool, setSelectedTool }) {
           stroke: '#FF0000',
           fill: 'transparent',
           selectable: true,
-          hasControls: true
+          hasControls: true,
         });
         canvas.add(drawingPath);
       });
-    
-      canvas.on('mouse:move', function(o) {
+
+      canvas.on('mouse:move', function (o) {
         if (!canvas.isDrawing) return;
         const pointer = canvas.getPointer(o.e);
         points.push(pointer.x, pointer.y);
-        
+
         // Update the path with new points
-        const pathData = `M ${points[0]} ${points[1]} ${points
-          .slice(2)
-          .reduce((path, coord, i) => {
-            return path + (i % 2 ? ` ${coord}` : ` L ${coord}`);
-          }, '')}`;
-        
+        const pathData = `M ${points[0]} ${points[1]} ${points.slice(2).reduce((path, coord, i) => {
+          return path + (i % 2 ? ` ${coord}` : ` L ${coord}`);
+        }, '')}`;
+
         drawingPath.set({ path: pathData });
         canvas.renderAll();
       });
-    
-      canvas.on('mouse:up', function() {
+
+      canvas.on('mouse:up', function () {
         canvas.isDrawing = false;
-        
+
         // Convert the drawing to a proper pattern piece
         if (drawingPath) {
           // Create a new pattern piece from the drawn path
@@ -184,20 +180,20 @@ function Canvas({ selectedFile, selectedTool, setSelectedTool }) {
             cornerColor: '#2196F3',
             cornerSize: 6,
             transparentCorners: false,
-            lockScalingFlip: true
+            lockScalingFlip: true,
           });
-    
+
           // Remove the drawing path and add the pattern piece
           canvas.remove(drawingPath);
           canvas.add(patternPiece);
           canvas.renderAll();
-    
+
           // Reset the drawing state
           drawingPath = null;
           points = [];
         }
       });
-    
+
       // Clean up function to reset canvas state
       return () => {
         canvas.isDrawingMode = false;
@@ -206,11 +202,7 @@ function Canvas({ selectedFile, selectedTool, setSelectedTool }) {
         canvas.off('mouse:up');
       };
     }
-      
-    
-    
 
-    
     if (selectedTool === 'mirror') {
       // const canvas = canvasRef.current;
       const activeObject = canvas?.getActiveObject();
@@ -598,15 +590,9 @@ function Canvas({ selectedFile, selectedTool, setSelectedTool }) {
       };
     }
 
-
-
-
     //my code//
- 
-
 
     ///
-
 
     // if (selectedTool === 'extract') {
     //   canvas.getObjects().forEach((obj) => {
@@ -1471,19 +1457,14 @@ function Canvas({ selectedFile, selectedTool, setSelectedTool }) {
   useEffect(() => {
     if (editor && selectedFile) {
       fabric.loadSVGFromString(selectedFile, (objects, options) => {
-        editor.canvas.clear(); // Clear the canvas to remove existing objects
-
-        const svgGroup = fabric.util.groupSVGElements(objects, options); // Group SVG elements
-        svgGroup.set({
-          left: editor.canvas.width / 2 - svgGroup.width / 2,
-          top: editor.canvas.height / 2 - svgGroup.height / 2,
-          originX: 'center',
-          originY: 'center',
+        editor.canvas._objects.splice(0, editor.canvas._objects.length);
+        editor.canvas.backgroundImage = objects[0];
+        const newObj = objects.filter((_, index) => index !== 0);
+        newObj.forEach((object) => {
+          editor.canvas.add(object);
         });
 
-        editor.canvas.add(svgGroup); // Add the group to the canvas
-        editor.canvas.setActiveObject(svgGroup); // Set the group as active
-        editor.canvas.renderAll(); // Render changes
+        editor.canvas.renderAll();
       });
     }
   }, [selectedFile, editor]);
