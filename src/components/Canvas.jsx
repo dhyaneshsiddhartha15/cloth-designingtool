@@ -1476,9 +1476,18 @@ function Canvas({ selectedFile, selectedTool, setSelectedTool }) {
         // Group SVG elements
         const svgGroup = fabric.util.groupSVGElements(objects, options);
 
+        // Scale down the SVG to fit the canvas
+        const scaleFactor = Math.min(
+          editor.canvas.width / svgGroup.width,
+          editor.canvas.height / svgGroup.height,
+          1 // Ensure it doesn't scale up
+        );
+        svgGroup.scale(scaleFactor);
+
+        // Center the SVG on the canvas
         svgGroup.set({
-          left: editor.canvas.width / 2 - svgGroup.width / 2,
-          top: editor.canvas.height / 2 - svgGroup.height / 2,
+          left: editor.canvas.width / 2,
+          top: editor.canvas.height / 2,
           originX: 'center',
           originY: 'center',
         });
@@ -1492,6 +1501,8 @@ function Canvas({ selectedFile, selectedTool, setSelectedTool }) {
         editor.canvas.remove(svgGroup); // Remove the group from the canvas
 
         items.forEach((item) => {
+          // Adjust scale and position for individual items
+          item.scale(scaleFactor);
           editor.canvas.add(item); // Add individual objects to the canvas
         });
 
