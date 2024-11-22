@@ -106,29 +106,6 @@ function Canvas({ selectedFile, selectedTool, setSelectedTool }) {
     canvas.off('mouse:up');
     canvas.off('mouse:wheel');
 
-    // if (selectedTool === 'duplicate') {
-    //   // Get the entire canvas as SVG string
-    //   const svgString = editor.canvas.toSVG();
-
-    //   // Load the SVG string to duplicate all its contents
-    //   fabric.loadSVGFromString(svgString, (objects, options) => {
-    //     const clonedGroup = fabric.util.groupSVGElements(objects, options);
-
-    //     // Set position offset for the cloned group
-    //     clonedGroup.set({
-    //       left: clonedGroup.left + 20 || 20, // Offset for better visibility
-    //       top: clonedGroup.top + 20 || 20,
-    //     });
-
-    //     // Add the cloned group to the canvas
-    //     editor.canvas.add(clonedGroup);
-    //     clonedGroup.setCoords();
-
-    //     // Render the canvas to reflect the duplication
-    //     editor.canvas.renderAll();
-    //   });
-    // }
-
     if (selectedTool === 'seams') {
       console.log('Seam selection');
       canvas.isDrawingMode = true;
@@ -591,126 +568,6 @@ function Canvas({ selectedFile, selectedTool, setSelectedTool }) {
       };
     }
 
-    //my code//
-
-    ///
-
-    // if (selectedTool === 'extract') {
-    //   canvas.getObjects().forEach((obj) => {
-    //     obj.selectable = true;
-    //     obj.hasControls = true;
-    //   });
-
-    //   canvas.on('mouse:down', function (o) {
-    //     if (!isDrawing) {
-    //       const pointer = canvas.getPointer(o.e);
-    //       setStartPoint({ x: pointer.x, y: pointer.y });
-
-    //       const newCropRect = new fabric.Rect({
-    //         left: pointer.x,
-    //         top: pointer.y,
-    //         width: 0,
-    //         height: 0,
-    //         fill: 'rgba(0,0,0,0.3)',
-    //         stroke: '#2196F3',
-    //         strokeWidth: 2,
-    //         strokeDashArray: [5, 5],
-    //         selectable: true,
-    //         hasControls: true,
-    //         transparentCorners: false,
-    //         cornerColor: '#2196F3',
-    //         cornerStrokeColor: '#2196F3',
-    //         borderColor: '#2196F3',
-    //         cornerSize: 10,
-    //         padding: 0,
-    //         cornerStyle: 'circle',
-    //       });
-
-    //       canvas.add(newCropRect);
-    //       setCropRect(newCropRect);
-    //       setIsDrawing(true);
-    //     }
-    //   });
-
-    //   canvas.on('mouse:move', function (o) {
-    //     if (isDrawing && cropRect && startPoint) {
-    //       const pointer = canvas.getPointer(o.e);
-    //       const width = Math.abs(pointer.x - startPoint.x);
-    //       const height = Math.abs(pointer.y - startPoint.y);
-
-    //       cropRect.set({
-    //         width: width,
-    //         height: height,
-    //         left: Math.min(pointer.x, startPoint.x),
-    //         top: Math.min(pointer.y, startPoint.y),
-    //       });
-
-    //       canvas.renderAll();
-    //     }
-    //   });
-
-    //   canvas.on('mouse:up', function () {
-    //     if (cropRect) {
-    //       cropRect.setControlsVisibility({
-    //         mt: true,
-    //         mb: true,
-    //         ml: true,
-    //         mr: true,
-    //         mtr: true,
-    //       });
-
-    //       cropRect.on('modified', function () {
-    //         performCrop();
-    //       });
-    //     }
-    //     setIsDrawing(false);
-    //   });
-
-    //   const performCrop = () => {
-    //     if (!cropRect) return;
-
-    //     const objects = canvas.getObjects();
-    //     const cropBounds = {
-    //       left: cropRect.left,
-    //       top: cropRect.top,
-    //       right: cropRect.left + cropRect.width * cropRect.scaleX,
-    //       bottom: cropRect.top + cropRect.height * cropRect.scaleY,
-    //     };
-
-    //     objects.forEach((obj) => {
-    //       if (obj !== cropRect && obj.intersectsWithRect(cropBounds)) {
-    //         const clonedObj = fabric.util.object.clone(obj);
-
-    //         const objBounds = obj.getBoundingRect();
-    //         const intersection = {
-    //           left: Math.max(cropBounds.left, objBounds.left),
-    //           top: Math.max(cropBounds.top, objBounds.top),
-    //           right: Math.min(cropBounds.right, objBounds.left + objBounds.width),
-    //           bottom: Math.min(cropBounds.bottom, objBounds.top + objBounds.height),
-    //         };
-
-    //         clonedObj.set({
-    //           left: intersection.left,
-    //           top: intersection.top,
-    //           width: intersection.right - intersection.left,
-    //           height: intersection.bottom - intersection.top,
-    //           clipPath: new fabric.Rect({
-    //             left: -intersection.left + cropBounds.left,
-    //             top: -intersection.top + cropBounds.top,
-    //             width: cropRect.width * cropRect.scaleX,
-    //             height: cropRect.height * cropRect.scaleY,
-    //             absolutePositioned: true,
-    //           }),
-    //         });
-
-    //         canvas.add(clonedObj);
-    //       }
-    //     });
-
-    //     canvas.renderAll();
-    //   };
-    // }
-
     if (selectedTool === 'rectangle') {
       canvas.on('mouse:down', function (o) {
         if (!isDrawing) {
@@ -1008,6 +865,9 @@ function Canvas({ selectedFile, selectedTool, setSelectedTool }) {
       setCopySvg(activeObjects);
     }
     if (selectedTool === 'paste') {
+      if (!copySvg) {
+        return;
+      }
       copySvg.forEach((obj) => {
         obj.clone((clonedObj) => {
           clonedObj.set({
@@ -1458,6 +1318,92 @@ function Canvas({ selectedFile, selectedTool, setSelectedTool }) {
         setSelectedTool('select');
       });
     }
+
+    if (selectedTool === 'extract') {
+      const cropRect = new fabric.Rect({
+        fill: 'transparent',
+        originX: 'left',
+        originY: 'top',
+        stroke: '#333',
+        strokeDashArray: [2, 2],
+        opacity: 1,
+        width: 1,
+        height: 1,
+        visible: false,
+      });
+
+      canvas.add(cropRect);
+
+      let isCropping = false;
+      let startPoint = { x: 0, y: 0 };
+
+      canvas.on('mouse:down', (event) => {
+        const rectBounds = canvas.lowerCanvasEl.getBoundingClientRect();
+        const left = event.e.clientX - rectBounds.left;
+        const top = event.e.clientY - rectBounds.top;
+
+        cropRect.set({
+          left,
+          top,
+          width: 1,
+          height: 1,
+          visible: true,
+        });
+
+        startPoint = { x: left, y: top };
+        isCropping = true;
+        canvas.renderAll();
+      });
+
+      canvas.on('mouse:move', (event) => {
+        if (!isCropping) return;
+
+        const rectBounds = canvas.lowerCanvasEl.getBoundingClientRect();
+        const mouseX = event.e.clientX - rectBounds.left;
+        const mouseY = event.e.clientY - rectBounds.top;
+
+        const width = mouseX - startPoint.x > 0 ? mouseX - startPoint.x : 1;
+        const height = mouseY - startPoint.y > 0 ? mouseY - startPoint.y : 1;
+
+        cropRect.set({
+          width,
+          height,
+        });
+
+        canvas.renderAll();
+      });
+
+      canvas.on('mouse:up', () => {
+        isCropping = false;
+
+        if (cropRect.visible) {
+          const cropBounds = {
+            left: cropRect.left,
+            top: cropRect.top,
+            right: cropRect.left + cropRect.width * cropRect.scaleX,
+            bottom: cropRect.top + cropRect.height * cropRect.scaleY,
+          };
+
+          const objectsToCut = canvas
+            .getObjects()
+            .filter((obj) => obj.intersectsWithRect(cropBounds));
+
+          objectsToCut.forEach((obj) => {
+            // Use clipping or remove objects from the canvas
+            const objectClone = fabric.util.object.clone(obj);
+            objectClone.clipPath = cropRect;
+            objectClone.clipTo = null;
+            canvas.add(objectClone);
+
+            canvas.remove(obj); // Remove the original object
+          });
+
+          cropRect.set({ visible: false }); // Hide the crop rectangle
+          canvas.renderAll();
+        }
+      });
+    }
+
     canvas.renderAll();
 
     return () => {

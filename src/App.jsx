@@ -1995,6 +1995,1379 @@ function App() {
 </svg>
 `,
     },
+    {
+      _id: '1767872323',
+      name: 'Jeans Pattern1',
+      isOpen: false,
+      file: `<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 15.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="2267.72px" height="3401.58px" viewBox="0 0 2267.72 3401.58" enable-background="new 0 0 2267.72 3401.58"
+	 xml:space="preserve">
+<g>
+	
+		<line fill="none" stroke="#000000" stroke-width="0.7087" stroke-miterlimit="10" x1="394.399" y1="916.511" x2="1148.243" y2="916.511"/>
+	
+		<line fill="none" stroke="#000000" stroke-width="0.7087" stroke-miterlimit="10" x1="855.48" y1="253.097" x2="532.056" y2="201.236"/>
+	<path fill="none" stroke="#000000" stroke-width="0.7087" stroke-miterlimit="10" d="M1156.086,268.493
+		c-97.207,9.191-300.605-15.412-300.605-15.412"/>
+	
+		<line fill="none" stroke="#000000" stroke-width="0.7087" stroke-miterlimit="10" x1="532.056" y1="201.236" x2="447.329" y2="725.215"/>
+	
+		<line fill="none" stroke="#000000" stroke-width="0.7087" stroke-miterlimit="10" x1="770.906" y1="240.234" x2="747.183" y2="653.622"/>
+	
+		<line fill="none" stroke="#000000" stroke-width="0.7087" stroke-miterlimit="10" x1="855.005" y1="253.896" x2="747.284" y2="653.781"/>
+	
+		<line fill="none" stroke="#000000" stroke-width="0.7087" stroke-miterlimit="10" x1="813.065" y1="246.997" x2="704.768" y2="916.721"/>
+	<text transform="matrix(1.055 0 0 1 551.1343 273.375)" fill="#010101" font-family="'Calibri'" font-size="28.3465">WL</text>
+	<text transform="matrix(0.9695 0 0 1 420.9551 906.4004)" fill="#010101" font-family="'Calibri'" font-size="28.3465">HL</text>
+	<text transform="matrix(0.9695 0 0 1 503.0078 1856.5664)" fill="#010101" font-family="'Calibri'" font-size="28.3465">KL</text>
+	<path fill="none" stroke="#000000" stroke-width="0.7087" stroke-miterlimit="10" d="M200.043,1128.237
+		c229.369,289.368,260.32,738.632,260.32,738.632"/>
+	
+		<line fill="none" stroke="#000000" stroke-width="0.7087" stroke-miterlimit="10" stroke-dasharray="0.8504" x1="260.065" y1="1214.217" x2="1134.103" y2="1214.221"/>
+	
+		<line fill="none" stroke="#000000" stroke-width="0.7087" stroke-miterlimit="10" x1="1101.353" y1="1866.869" x2="1059.007" y2="3200.344"/>
+	
+		<line fill="none" stroke="#000000" stroke-width="0.7087" stroke-miterlimit="10" x1="200.043" y1="1128.311" x2="1137.343" y2="1128.315"/>
+	<path fill="none" stroke="#000000" stroke-width="0.7087" stroke-miterlimit="10" d="M1136.704,1128.315
+		c-8.291,317.1-35.352,738.554-35.352,738.554"/>
+	
+		<line fill="none" stroke="#000000" stroke-width="0.7087" stroke-miterlimit="10" x1="460.363" y1="1866.869" x2="1101.353" y2="1866.869"/>
+	
+		<line fill="none" stroke="#000000" stroke-width="0.7087" stroke-miterlimit="10" x1="476.302" y1="2292.701" x2="1086.235" y2="2292.701"/>
+	
+		<line fill="none" stroke="#000000" stroke-width="0.7087" stroke-miterlimit="10" x1="503.017" y1="3200.344" x2="1058.695" y2="3200.344"/>
+	
+		<line fill="none" stroke="#000000" stroke-width="0.7087" stroke-miterlimit="10" x1="476.302" y1="2292.701" x2="503.017" y2="3200.344"/>
+	
+		<line fill="none" stroke="#000000" stroke-width="0.7087" stroke-miterlimit="10" x1="1160.561" y1="705.049" x2="1136.704" y2="1128.315"/>
+	
+		<line fill="none" stroke="#000000" stroke-width="0.7087" stroke-miterlimit="10" x1="460.363" y1="1866.869" x2="476.302" y2="2292.701"/>
+	<path fill="none" stroke="#000000" stroke-width="0.7087" stroke-miterlimit="10" d="M448.182,718.61
+		c-63.246,380.538-247.508,409.705-247.508,409.705"/>
+	<path fill="none" stroke="#000000" stroke-width="0.7087" stroke-miterlimit="10" d="M1156.433,268.338
+		c27.738,182.024,4.093,436.878,4.093,436.878"/>
+	<text transform="matrix(0.9566 0.1501 -0.1451 0.9894 489.8823 531.105)"><tspan x="0" y="0" fill="#010101" font-family="'Calibri'" font-size="28.3465">C</tspan><tspan x="0" y="34.016" fill="#010101" font-family="'Calibri'" font-size="28.3465">B</tspan></text>
+	
+		<line fill="none" stroke="#ED2224" stroke-width="0.7087" stroke-miterlimit="10" x1="513.387" y1="313.905" x2="764.917" y2="352.445"/>
+	<path fill="none" stroke="#ED2224" stroke-width="0.7087" stroke-miterlimit="10" d="M825.362,365.72
+		c166.54,18.27,342.885,6.813,342.885,6.813"/>
+	
+		<line fill="none" stroke="#ED2224" stroke-width="0.7087" stroke-miterlimit="10" x1="490.15" y1="425.496" x2="759.987" y2="462.896"/>
+	<path fill="none" stroke="#ED2224" stroke-width="0.7087" stroke-miterlimit="10" d="M795.751,469.217
+		c273.49,19.351,372.441,0,372.441,0"/>
+	
+		<line fill="none" stroke="#ED2224" stroke-width="0.7087" stroke-miterlimit="10" x1="490.808" y1="1866.869" x2="531.405" y2="3198.475"/>
+	
+		<line fill="none" stroke="#ED2224" stroke-width="0.7087" stroke-miterlimit="10" x1="1057.014" y1="1866.869" x2="1021.984" y2="3200.15"/>
+	
+		<line fill="none" stroke="#ED2224" stroke-width="0.7087" stroke-miterlimit="10" x1="1148.243" y1="916.511" x2="1057.014" y2="1866.869"/>
+	<path fill="none" stroke="#ED2224" stroke-width="0.7087" stroke-miterlimit="10" d="M200.043,1128.237
+		c287.91,353.477,290.765,738.632,290.765,738.632"/>
+	
+		<line fill="none" stroke="#ED2224" stroke-width="0.7087" stroke-miterlimit="10" x1="1167.749" y1="567.914" x2="451.851" y2="697.243"/>
+	
+		<line fill="none" stroke="#ED2224" stroke-width="0.7087" stroke-miterlimit="10" x1="555.261" y1="743.643" x2="929.069" y2="704.901"/>
+	
+		<line fill="none" stroke="#ED2224" stroke-width="0.7087" stroke-miterlimit="10" x1="929.069" y1="704.901" x2="998.289" y2="1037.456"/>
+	
+		<line fill="none" stroke="#ED2224" stroke-width="0.7087" stroke-miterlimit="10" x1="998.289" y1="1037.456" x2="780.934" y2="1154.619"/>
+	
+		<line fill="none" stroke="#ED2224" stroke-width="0.7087" stroke-miterlimit="10" x1="780.934" y1="1154.619" x2="543.925" y2="1087.925"/>
+	
+		<line fill="none" stroke="#ED2224" stroke-width="0.7087" stroke-miterlimit="10" x1="543.925" y1="1087.925" x2="555.261" y2="743.643"/>
+	<text transform="matrix(0.9963 0 0 1 387.4146 1112.3799)" fill="#010101" font-family="'Calibri'" font-size="28.3465">CL</text>
+	<g>
+		<g>
+			
+				<line fill="none" stroke="#000000" stroke-width="1.417" stroke-miterlimit="10" x1="800.898" y1="1376.895" x2="800.898" y2="2688.525"/>
+			<g>
+				<path d="M793.769,1385.981c0,0.234,0.116,0.463,0.328,0.598c0.329,0.21,0.768,0.113,0.978-0.217l5.823-9.144l5.823,9.144
+					c0.21,0.33,0.649,0.427,0.978,0.217c0.33-0.21,0.425-0.651,0.217-0.978l-6.421-10.082c-0.13-0.204-0.355-0.328-0.598-0.328
+					s-0.468,0.124-0.598,0.328l-6.421,10.082C793.805,1385.719,793.769,1385.851,793.769,1385.981
+					C793.769,1386.215,793.769,1385.851,793.769,1385.981z"/>
+			</g>
+			<g>
+				<path d="M793.769,2679.44c0-0.234,0.116-0.463,0.328-0.599c0.329-0.211,0.768-0.113,0.978,0.217l5.823,9.144l5.823-9.144
+					c0.21-0.33,0.649-0.428,0.978-0.217c0.33,0.21,0.425,0.65,0.217,0.979l-6.421,10.081c-0.13,0.204-0.355,0.328-0.598,0.328
+					s-0.468-0.124-0.598-0.328l-6.421-10.081C793.805,2679.702,793.769,2679.57,793.769,2679.44
+					C793.769,2679.206,793.769,2679.57,793.769,2679.44z"/>
+			</g>
+		</g>
+	</g>
+	<text transform="matrix(0 -1 1 0 833.3984 1524.6797)" fill="#9A9899" font-family="'Calibri'" font-size="28.3465">BCSizing ©</text>
+	<text transform="matrix(0 -1 1 0 781.2695 2617.7188)"><tspan x="0" y="0" font-family="'Calibri'" font-size="28.3465">B</tspan><tspan x="15.164" y="0" font-family="'Calibri'" font-size="28.3465">A</tspan><tspan x="31.367" y="0" font-family="'Calibri'" font-size="28.3465">CK T</tspan><tspan x="81.43" y="0" font-family="'Calibri'" font-size="28.3465">R</tspan><tspan x="96.566" y="0" font-family="'Calibri'" font-size="28.3465">OUSER L</tspan><tspan x="194.104" y="0" font-family="'Calibri'" font-size="28.3465">E</tspan><tspan x="207.66" y="0" font-family="'Calibri'" font-size="28.3465">G</tspan></text>
+	<text transform="matrix(0 -1 1 0 787.1123 1725.0225)" font-family="'Calibri'" font-size="28.3465">MRUK12 - MRUS8 - MREU38</text>
+	<text transform="matrix(0 -1 1 0 833.3984 2617.7188)" font-family="'Calibri'" font-size="28.3465">JEANS</text>
+</g>
+<g>
+	<text transform="matrix(1.0546 0 0 1 1920.1133 345.4912)" fill="#010101" font-family="'Calibri'" font-size="28.3465">WL</text>
+	
+		<line fill="none" stroke="#000000" stroke-width="0.7087" stroke-miterlimit="10" x1="1641.87" y1="308.437" x2="1968.922" y2="308.437"/>
+	<text transform="matrix(0.9691 0 0 1 1933.6582 909.3682)" fill="#010101" font-family="'Calibri'" font-size="28.3465">HL</text>
+	<path fill="none" stroke="#000000" stroke-width="0.7087" stroke-miterlimit="10" d="M1343.133,276.085
+		c94.347,24.432,298.737,32.333,298.737,32.333"/>
+	<text transform="matrix(0.9691 0 0 1 1805.4453 1850.5596)" fill="#010101" font-family="'Calibri'" font-size="28.3465">KL</text>
+	
+		<line fill="none" stroke="#000000" stroke-width="0.7087" stroke-miterlimit="10" x1="1968.922" y1="308.437" x2="1968.922" y2="917.582"/>
+	
+		<line fill="none" stroke="#000000" stroke-width="0.7087" stroke-miterlimit="10" x1="1969.244" y1="917.582" x2="1258.751" y2="917.582"/>
+	<path fill="none" stroke="#000000" stroke-width="0.7087" stroke-miterlimit="10" d="M1343.518,275.984
+		c-78.445,233.514-84.767,642.136-84.767,642.136"/>
+	
+		<line fill="none" stroke="#000000" stroke-width="0.7087" stroke-miterlimit="10" x1="1684.639" y1="308.367" x2="1684.639" y2="917.749"/>
+	
+		<line fill="none" stroke="#000000" stroke-width="0.7087" stroke-miterlimit="10" x1="1727.221" y1="308.204" x2="1684.721" y2="607.475"/>
+	
+		<line fill="none" stroke="#000000" stroke-width="0.7087" stroke-miterlimit="10" x1="1642.154" y1="308.324" x2="1684.592" y2="607.576"/>
+	<path fill="none" stroke="#000000" stroke-width="0.7087" stroke-miterlimit="10" d="M2080.73,1129.108
+		c-166.999,289.022-189.527,737.747-189.527,737.747"/>
+	
+		<line fill="none" stroke="#000000" stroke-width="0.7087" stroke-miterlimit="10" stroke-dasharray="0.8504" x1="2037.115" y1="1214.904" x2="1264.481" y2="1214.908"/>
+	<path fill="none" stroke="#000000" stroke-width="0.7087" stroke-miterlimit="10" d="M1969.042,917.729
+		c3.837,182.359,111.688,211.379,111.688,211.379"/>
+	
+		<line fill="none" stroke="#000000" stroke-width="0.7087" stroke-miterlimit="10" x1="1336.792" y1="1866.855" x2="1379.456" y2="3198.475"/>
+	
+		<line fill="none" stroke="#000000" stroke-width="0.7087" stroke-miterlimit="10" x1="2080.73" y1="1129.108" x2="1258.102" y2="1129.112"/>
+	
+		<line fill="none" stroke="#000000" stroke-width="0.7087" stroke-miterlimit="10" x1="1258.751" y1="918.121" x2="1258.751" y2="1129.112"/>
+	
+		<line fill="none" stroke="#000000" stroke-width="0.7087" stroke-miterlimit="10" x1="1336.792" y1="1866.855" x2="1891.203" y2="1866.855"/>
+	
+		<line fill="none" stroke="#000000" stroke-width="0.7087" stroke-miterlimit="10" x1="1352.005" y1="2292.004" x2="1875.17" y2="2292.004"/>
+	
+		<line fill="none" stroke="#000000" stroke-width="0.7087" stroke-miterlimit="10" x1="1379.456" y1="3198.475" x2="1848.535" y2="3198.475"/>
+	
+		<line fill="none" stroke="#000000" stroke-width="0.7087" stroke-miterlimit="10" x1="1875.17" y1="2292.004" x2="1848.535" y2="3198.475"/>
+	
+		<line fill="none" stroke="#000000" stroke-width="0.7087" stroke-miterlimit="10" x1="1891.203" y1="1866.855" x2="1875.17" y2="2292.004"/>
+	<path fill="none" stroke="#000000" stroke-width="0.7087" stroke-miterlimit="10" d="M1258.751,1129.112
+		c18.3,316.754,78.041,737.743,78.041,737.743"/>
+	<text transform="matrix(0.9959 0 0 1 1933.6562 1113.8579)" fill="#010101" font-family="'Calibri'" font-size="28.3465">CL</text>
+	<path fill="none" stroke="#ED2224" stroke-width="0.7087" stroke-miterlimit="10" d="M1319.064,380.042
+		c129.93,37.63,339.484,43.897,339.484,43.897"/>
+	<path fill="none" stroke="#ED2224" stroke-width="0.7087" stroke-miterlimit="10" d="M1300.307,474.974
+		c123.69,40.217,371.223,42.925,371.223,42.925"/>
+	
+		<line fill="none" stroke="#ED2224" stroke-width="0.7087" stroke-miterlimit="10" x1="1671.529" y1="517.899" x2="2030.272" y2="517.899"/>
+	
+		<line fill="none" stroke="#ED2224" stroke-width="0.7087" stroke-miterlimit="10" x1="1710.74" y1="424.241" x2="2030.272" y2="424.241"/>
+	
+		<line fill="none" stroke="#ED2224" stroke-width="0.7087" stroke-miterlimit="10" x1="1968.385" y1="839.385" x2="2030.272" y2="839.385"/>
+	
+		<line fill="none" stroke="#ED2224" stroke-width="0.7087" stroke-miterlimit="10" x1="2030.272" y1="839.385" x2="2030.272" y2="424.241"/>
+	
+		<line fill="none" stroke="#ED2224" stroke-width="0.7087" stroke-miterlimit="10" x1="1913.689" y1="517.899" x2="1913.689" y2="788.954"/>
+	<path fill="none" stroke="#ED2224" stroke-width="0.7087" stroke-miterlimit="10" d="M1913.689,788.954
+		c-1.812,41.43,54.695,50.431,54.695,50.431"/>
+	
+		<line fill="none" stroke="#ED2224" stroke-width="0.7087" stroke-miterlimit="10" x1="1605.155" y1="515.815" x2="1605.155" y2="722.772"/>
+	
+		<line fill="none" stroke="#ED2224" stroke-width="0.7087" stroke-miterlimit="10" x1="1605.155" y1="722.772" x2="1268.646" y2="718.987"/>
+	<path fill="none" stroke="#ED2224" stroke-width="0.7087" stroke-miterlimit="10" d="M1319.064,480.54
+		c-27.96,67.368-39.545,124.875-39.545,124.875"/>
+	
+		<rect x="1425.797" y="598.04" fill="none" stroke="#ED2224" stroke-width="0.7087" stroke-miterlimit="10" width="207.171" height="245.85"/>
+	
+		<line fill="none" stroke="#ED2224" stroke-width="0.7087" stroke-miterlimit="10" x1="1371.047" y1="1866.855" x2="1409.838" y2="3198.475"/>
+	
+		<line fill="none" stroke="#ED2224" stroke-width="0.7087" stroke-miterlimit="10" x1="1849.371" y1="1861.417" x2="1815.237" y2="3198.475"/>
+	<path fill="none" stroke="#ED2224" stroke-width="0.7087" stroke-miterlimit="10" d="M1258.751,917.582
+		c-13.525,245.427,112.296,950.612,112.296,950.612"/>
+	<path fill="none" stroke="#ED2224" stroke-width="0.7087" stroke-miterlimit="10" d="M2076.901,1139.264
+		c-214.619,313.419-227.79,727.592-227.79,727.592"/>
+	<text transform="matrix(1.0038 0 0 1 1927.5039 633.7314)"><tspan x="0" y="0" fill="#010101" font-family="'Calibri'" font-size="28.3465">C</tspan><tspan x="0" y="34.016" fill="#010101" font-family="'Calibri'" font-size="28.3465">F</tspan></text>
+	
+		<line fill="none" stroke="#ED2224" stroke-width="0.7087" stroke-miterlimit="10" x1="1686.454" y1="985.275" x2="1258.751" y2="985.275"/>
+	
+		<line fill="none" stroke="#ED2224" stroke-width="0.7087" stroke-miterlimit="10" x1="1686.454" y1="515.815" x2="1686.454" y2="987.529"/>
+	<g>
+		<g>
+			
+				<line fill="none" stroke="#000000" stroke-width="1.417" stroke-miterlimit="10" x1="1607.152" y1="1390.91" x2="1607.152" y2="2702.54"/>
+			<g>
+				<path d="M1600.023,1399.996c0,0.234,0.115,0.463,0.328,0.598c0.328,0.21,0.768,0.113,0.978-0.217l5.823-9.144l5.823,9.144
+					c0.21,0.33,0.649,0.427,0.978,0.217c0.33-0.21,0.426-0.651,0.218-0.978l-6.421-10.082c-0.13-0.204-0.355-0.328-0.598-0.328
+					s-0.468,0.124-0.598,0.328l-6.421,10.082C1600.059,1399.733,1600.023,1399.865,1600.023,1399.996
+					C1600.023,1400.229,1600.023,1399.865,1600.023,1399.996z"/>
+			</g>
+			<g>
+				<path d="M1600.023,2693.455c0-0.234,0.115-0.463,0.328-0.599c0.328-0.211,0.768-0.113,0.978,0.217l5.823,9.144l5.823-9.144
+					c0.21-0.33,0.649-0.428,0.978-0.217c0.33,0.21,0.426,0.65,0.218,0.979l-6.421,10.081c-0.13,0.204-0.355,0.328-0.598,0.328
+					s-0.468-0.124-0.598-0.328l-6.421-10.081C1600.059,2693.717,1600.023,2693.585,1600.023,2693.455
+					C1600.023,2693.221,1600.023,2693.585,1600.023,2693.455z"/>
+			</g>
+		</g>
+	</g>
+	<text transform="matrix(0 -1 1 0 1639.6523 1538.6943)" fill="#9A9899" font-family="'Calibri'" font-size="28.3465">BCSizing ©</text>
+	<text transform="matrix(0 -1 1 0 1587.5234 2631.7344)"><tspan x="0" y="0" font-family="'Calibri'" font-size="28.3465">FRONT</tspan><tspan x="78.02" y="0" font-family="'Calibri'" font-size="28.3465"> T</tspan><tspan x="98.242" y="0" font-family="'Calibri'" font-size="28.3465">R</tspan><tspan x="113.377" y="0" font-family="'Calibri'" font-size="28.3465">OUSER L</tspan><tspan x="210.914" y="0" font-family="'Calibri'" font-size="28.3465">E</tspan><tspan x="224.473" y="0" font-family="'Calibri'" font-size="28.3465">G</tspan></text>
+	<text transform="matrix(0 -1 1 0 1593.3662 1739.0381)" font-family="'Calibri'" font-size="28.3465">MRUK12 - MRUS8 - MREU38</text>
+	<text transform="matrix(0 -1 1 0 1639.6523 2631.7324)" font-family="'Calibri'" font-size="28.3465">JEANS</text>
+</g>
+</svg>
+`,
+    },
+    {
+      _id: '176787asdf2323',
+      name: 'Jeans Pattern2',
+      isOpen: false,
+      file: `<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 15.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="2267.72px" height="3401.58px" viewBox="0 0 2267.72 3401.58" enable-background="new 0 0 2267.72 3401.58"
+	 xml:space="preserve">
+<g>
+	<rect x="1827.707" y="677.113" fill="none" stroke="#000000" stroke-miterlimit="10" width="207.012" height="245.957"/>
+	<g>
+		<g>
+			
+				<line fill="none" stroke="#000000" stroke-width="0.7087" stroke-miterlimit="10" x1="1998.965" y1="710.738" x2="1998.965" y2="874.489"/>
+			<g>
+				<path d="M1998.965,706.461c-0.747,2.013-2.021,4.509-3.37,6.057l3.37-1.219l3.369,1.219
+					C2000.984,710.97,1999.711,708.474,1998.965,706.461z"/>
+			</g>
+			<g>
+				<path d="M1998.965,878.766c-0.747-2.013-2.021-4.509-3.37-6.057l3.37,1.219l3.369-1.219
+					C2000.984,874.256,1999.711,876.753,1998.965,878.766z"/>
+			</g>
+		</g>
+	</g>
+	<text transform="matrix(0.9947 0 0 1 1851.0918 767.5352)"><tspan x="0" y="0" fill="#010101" font-family="'Calibri'" font-size="28.3465">COIN</tspan><tspan x="0" y="34.016" fill="#010101" font-family="'Calibri'" font-size="28.3465">POCKET</tspan><tspan x="0" y="68.032" fill="#010101" font-family="'Calibri'" font-size="28.3465">CUT 1</tspan></text>
+</g>
+<g>
+	<line fill="none" stroke="#000000" stroke-miterlimit="10" x1="1887.697" y1="1616.014" x2="1887.697" y2="1883.693"/>
+	<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M1887.924,1883.693c8.809,60.926,55.574,49.797,55.574,49.797"/>
+	<line fill="none" stroke="#000000" stroke-miterlimit="10" x1="1943.498" y1="1933.49" x2="1943.498" y2="1616.014"/>
+	<line fill="none" stroke="#000000" stroke-miterlimit="10" x1="1887.697" y1="1616.014" x2="1943.498" y2="1616.014"/>
+	<text transform="matrix(0 -1 1 0 1915.5957 1852.7676)" fill="#010101" font-family="'Calibri'" font-size="28.3465">FLY FRONT CUT 1</text>
+	<g>
+		<g>
+			
+				<line fill="none" stroke="#000000" stroke-width="0.5" stroke-miterlimit="10" x1="1923.537" y1="1673.043" x2="1923.537" y2="1876.047"/>
+			<g>
+				<path d="M1923.537,1670.025c-0.527,1.42-1.426,3.182-2.378,4.273l2.378-0.86l2.377,0.86
+					C1924.963,1673.207,1924.063,1671.445,1923.537,1670.025z"/>
+			</g>
+			<g>
+				<path d="M1923.537,1879.064c-0.527-1.42-1.426-3.182-2.378-4.273l2.378,0.859l2.377-0.859
+					C1924.963,1875.883,1924.063,1877.645,1923.537,1879.064z"/>
+			</g>
+		</g>
+	</g>
+</g>
+<g>
+	<path fill="none" stroke="#000000" stroke-width="0.7087" stroke-miterlimit="10" d="M1743.025,1986.525
+		c119.688,37.934,359.164,40.48,359.164,40.48"/>
+	<g>
+		<g>
+			<line fill="none" stroke="#000000" stroke-miterlimit="10" x1="2015.682" y1="2023.972" x2="2015.682" y2="2037.178"/>
+			<g>
+				<circle cx="2015.682" cy="2036.99" r="3.76"/>
+			</g>
+		</g>
+	</g>
+	<g>
+		<g>
+			
+				<line fill="none" stroke="#000000" stroke-width="0.7087" stroke-miterlimit="10" x1="1701.741" y1="2229.396" x2="1689.432" y2="2227.74"/>
+			<g>
+				<circle cx="1701.609" cy="2229.379" r="2.664"/>
+			</g>
+		</g>
+	</g>
+	<path fill="none" stroke="#000000" stroke-width="0.7087" stroke-miterlimit="10" d="M1745.143,1988.342
+		c-60.215,74.59-72.93,497.805-72.93,497.805"/>
+	<g>
+		<g>
+			<path fill="none" stroke="#010101" stroke-miterlimit="10" d="M1865.76,2121.542c-7.391,0-13.367-5.603-13.367-12.527
+				c0-6.919,5.977-12.522,13.367-12.522s13.355,5.604,13.355,12.522C1879.115,2115.939,1873.15,2121.542,1865.76,2121.542z"/>
+			<path fill="none" stroke="#010101" stroke-miterlimit="10" d="M1876.889,2109.015c0-5.771-4.98-10.435-11.129-10.435
+				c-6.152,0-11.137,4.664-11.137,10.435c0,5.778,4.984,10.437,11.137,10.437
+				C1871.908,2119.451,1876.889,2114.793,1876.889,2109.015z"/>
+			<path fill="none" stroke="#010101" stroke-miterlimit="10" d="M1865.76,2117.373c-4.922,0-8.906-3.746-8.906-8.358
+				c0-4.61,3.984-8.351,8.906-8.351c4.926,0,8.898,3.74,8.898,8.351C1874.658,2113.627,1870.686,2117.373,1865.76,2117.373z"/>
+			<path fill="none" stroke="#010101" stroke-miterlimit="10" d="M1872.443,2109.015c0-3.458-2.984-6.261-6.684-6.261
+				c-3.691,0-6.684,2.803-6.684,6.261c0,3.461,2.992,6.262,6.684,6.262C1869.459,2115.276,1872.443,2112.476,1872.443,2109.015z"/>
+			<path fill="none" stroke="#010101" stroke-miterlimit="10" d="M1865.76,2113.189c-2.453,0-4.453-1.857-4.453-4.175
+				c0-2.307,2-4.166,4.453-4.166c2.449,0,4.453,1.859,4.453,4.166C1870.213,2111.332,1868.209,2113.189,1865.76,2113.189z"/>
+			<path fill="none" stroke="#010101" stroke-miterlimit="10" d="M1867.979,2109.015c0-1.149-0.988-2.087-2.219-2.087
+				c-1.238,0-2.23,0.938-2.23,2.087c0,1.151,0.992,2.099,2.23,2.099C1866.99,2111.113,1867.979,2110.166,1867.979,2109.015z"/>
+		</g>
+		<g>
+			<line fill="none" stroke="#010101" stroke-miterlimit="10" x1="1865.76" y1="2109.015" x2="1865.76" y2="2121.542"/>
+			<line fill="none" stroke="#010101" stroke-miterlimit="10" x1="1865.76" y1="2109.015" x2="1878.459" y2="2112.881"/>
+			<line fill="none" stroke="#010101" stroke-miterlimit="10" x1="1865.76" y1="2109.015" x2="1873.607" y2="2098.889"/>
+			<line fill="none" stroke="#010101" stroke-miterlimit="10" x1="1865.76" y1="2109.015" x2="1857.904" y2="2098.889"/>
+			<line fill="none" stroke="#010101" stroke-miterlimit="10" x1="1865.76" y1="2109.015" x2="1853.061" y2="2112.881"/>
+		</g>
+	</g>
+	<g>
+		<g>
+			<path fill="none" stroke="#010101" stroke-miterlimit="10" d="M2061.67,2123.636c-7.387,0-13.359-5.604-13.359-12.528
+				c0-6.921,5.973-12.527,13.359-12.527c7.379,0,13.355,5.606,13.355,12.527C2075.025,2118.032,2069.049,2123.636,2061.67,2123.636z
+				"/>
+			<path fill="none" stroke="#010101" stroke-miterlimit="10" d="M2072.803,2111.107c0-5.77-4.98-10.435-11.133-10.435
+				c-6.148,0-11.129,4.665-11.129,10.435c0,5.775,4.98,10.435,11.129,10.435C2067.822,2121.542,2072.803,2116.883,2072.803,2111.107
+				z"/>
+			<path fill="none" stroke="#010101" stroke-miterlimit="10" d="M2061.67,2119.464c-4.922,0-8.91-3.741-8.91-8.356
+				c0-4.609,3.988-8.354,8.91-8.354c4.926,0,8.902,3.744,8.902,8.354C2070.572,2115.723,2066.596,2119.464,2061.67,2119.464z"/>
+			<path fill="none" stroke="#010101" stroke-miterlimit="10" d="M2068.342,2111.107c0-3.463-2.98-6.259-6.672-6.259
+				c-3.688,0-6.68,2.796-6.68,6.259c0,3.464,2.992,6.266,6.68,6.266C2065.361,2117.373,2068.342,2114.571,2068.342,2111.107z"/>
+			<path fill="none" stroke="#010101" stroke-miterlimit="10" d="M2061.67,2115.276c-2.457,0-4.461-1.854-4.461-4.169
+				c0-2.312,2.004-4.169,4.461-4.169c2.453,0,4.453,1.856,4.453,4.169C2066.123,2113.423,2064.123,2115.276,2061.67,2115.276z"/>
+			<path fill="none" stroke="#010101" stroke-miterlimit="10" d="M2063.893,2111.107c0-1.146-0.996-2.093-2.223-2.093
+				c-1.238,0-2.23,0.947-2.23,2.093c0,1.152,0.992,2.094,2.23,2.094C2062.896,2113.201,2063.893,2112.26,2063.893,2111.107z"/>
+		</g>
+		<g>
+			<line fill="none" stroke="#010101" stroke-miterlimit="10" x1="2061.67" y1="2111.107" x2="2061.67" y2="2123.636"/>
+			<line fill="none" stroke="#010101" stroke-miterlimit="10" x1="2061.67" y1="2111.107" x2="2074.373" y2="2114.977"/>
+			<line fill="none" stroke="#010101" stroke-miterlimit="10" x1="2061.67" y1="2111.107" x2="2069.521" y2="2100.979"/>
+			<line fill="none" stroke="#010101" stroke-miterlimit="10" x1="2061.67" y1="2111.107" x2="2053.822" y2="2100.979"/>
+			<line fill="none" stroke="#010101" stroke-miterlimit="10" x1="2061.67" y1="2111.107" x2="2048.959" y2="2114.977"/>
+		</g>
+	</g>
+	
+		<line fill="none" stroke="#000000" stroke-width="0.7087" stroke-miterlimit="10" x1="1672.92" y1="2486.146" x2="2103.182" y2="2486.146"/>
+	
+		<line fill="none" stroke="#000000" stroke-width="0.7087" stroke-miterlimit="10" x1="2103.182" y1="2486.08" x2="2103.182" y2="2026.838"/>
+	<g>
+		<g>
+			
+				<line fill="none" stroke="#000000" stroke-width="0.7087" stroke-miterlimit="10" x1="1790.299" y1="2022.936" x2="1790.299" y2="2465.199"/>
+			<g>
+				<path d="M1786.733,2027.479c0,0.117,0.058,0.231,0.164,0.3c0.165,0.105,0.384,0.057,0.489-0.108l2.912-4.573l2.912,4.573
+					c0.105,0.165,0.324,0.214,0.489,0.108s0.213-0.326,0.108-0.489l-3.211-5.042c-0.064-0.103-0.178-0.164-0.299-0.164
+					s-0.234,0.062-0.299,0.164l-3.211,5.042C1786.751,2027.349,1786.733,2027.415,1786.733,2027.479
+					C1786.733,2027.597,1786.733,2027.415,1786.733,2027.479z"/>
+			</g>
+			<g>
+				<path d="M1786.733,2460.654c0-0.116,0.058-0.23,0.164-0.299c0.165-0.105,0.384-0.057,0.489,0.108l2.912,4.573l2.912-4.573
+					c0.105-0.165,0.324-0.214,0.489-0.108s0.213,0.326,0.108,0.489l-3.211,5.042c-0.064,0.102-0.178,0.164-0.299,0.164
+					s-0.234-0.062-0.299-0.164l-3.211-5.042C1786.751,2460.786,1786.733,2460.72,1786.733,2460.654
+					C1786.733,2460.538,1786.733,2460.72,1786.733,2460.654z"/>
+			</g>
+		</g>
+	</g>
+	<text transform="matrix(0 -1 1 0 1827.377 2187.709)" fill="#999798" font-family="'Calibri'" font-size="28.5775">BCSizing ©</text>
+	<text transform="matrix(0 -1 1 0 1773.5098 2443.1328)"><tspan x="0" y="0" fill="#231F20" font-family="'Calibri'" font-size="28.3465">POCKET BACK  </tspan><tspan x="171.793" y="0" fill="#231F20" font-family="'Calibri'" font-size="28.3465" letter-spacing="3">	</tspan><tspan x="181.465" y="0" fill="#231F20" font-family="'Calibri'" font-size="28.3465">CUT 2</tspan></text>
+	<text transform="matrix(0 -1 1 0 1817.79 2437)" fill="#010101" font-family="'Calibri'" font-size="28.3465">JEANS</text>
+</g>
+<g>
+	
+		<line fill="none" stroke="#3A53A4" stroke-width="0.7087" stroke-miterlimit="10" x1="2124.244" y1="737.303" x2="2124.244" y2="942.545"/>
+	
+		<line fill="none" stroke="#3A53A4" stroke-width="0.7087" stroke-miterlimit="10" x1="2124.244" y1="941.1" x2="1802.475" y2="937.369"/>
+	
+		<line fill="none" stroke="#3A53A4" stroke-width="0.7087" stroke-miterlimit="10" x1="1802.475" y1="937.369" x2="1785.486" y2="1190.971"/>
+	
+		<line fill="none" stroke="#3A53A4" stroke-width="0.7087" stroke-miterlimit="10" x1="1783.834" y1="1192.631" x2="2214.096" y2="1192.631"/>
+	<line fill="none" stroke="#3A53A4" stroke-miterlimit="10" x1="2214.096" y1="1192.568" x2="2214.096" y2="737.303"/>
+	
+		<line fill="none" stroke="#3A53A4" stroke-width="0.7087" stroke-miterlimit="10" x1="2124.244" y1="737.303" x2="2214.096" y2="737.303"/>
+	<g>
+		<g>
+			
+				<line fill="none" stroke="#000000" stroke-width="0.7087" stroke-miterlimit="10" x1="2150.318" y1="794.229" x2="2150.318" y2="1187.49"/>
+			<g>
+				<path d="M2146.753,798.773c0,0.117,0.058,0.231,0.164,0.299c0.165,0.105,0.384,0.056,0.489-0.109l2.912-4.573l2.912,4.573
+					c0.105,0.165,0.324,0.214,0.489,0.109c0.165-0.105,0.213-0.326,0.108-0.489l-3.211-5.042c-0.064-0.102-0.178-0.164-0.299-0.164
+					s-0.234,0.062-0.299,0.164l-3.211,5.042C2146.771,798.642,2146.753,798.708,2146.753,798.773
+					C2146.753,798.89,2146.753,798.708,2146.753,798.773z"/>
+			</g>
+			<g>
+				<path d="M2146.753,1182.946c0-0.117,0.058-0.231,0.164-0.299c0.165-0.105,0.384-0.056,0.489,0.109l2.912,4.573l2.912-4.573
+					c0.105-0.165,0.324-0.214,0.489-0.109c0.165,0.105,0.213,0.326,0.108,0.489l-3.211,5.042c-0.064,0.102-0.178,0.164-0.299,0.164
+					s-0.234-0.062-0.299-0.164l-3.211-5.042C2146.771,1183.077,2146.753,1183.011,2146.753,1182.946
+					C2146.753,1182.829,2146.753,1183.011,2146.753,1182.946z"/>
+			</g>
+		</g>
+	</g>
+	<text transform="matrix(0 -1 1 0 2197.7852 982.0312)" fill="#999798" font-family="'Calibri'" font-size="28.5775">BCSizing ©</text>
+	<text transform="matrix(0 -1 1 0 2030.6641 1148.8867)"><tspan x="0" y="0" fill="#231F20" font-family="'Calibri'" font-size="28.3465">POCKET </tspan><tspan x="0" y="34.016" fill="#231F20" font-family="'Calibri'" font-size="28.3465">LINING  </tspan><tspan x="93.496" y="34.016" fill="#231F20" font-family="'Calibri'" font-size="28.3465" letter-spacing="8">	</tspan><tspan x="0" y="68.031" fill="#231F20" font-family="'Calibri'" font-size="28.3465">CUT 2</tspan></text>
+	<text transform="matrix(0 -1 1 0 2197.7871 1122.7598)" fill="#010101" font-family="'Calibri'" font-size="28.3465">JEANS</text>
+</g>
+<g>
+	
+		<line fill="none" stroke="#000000" stroke-width="0.7087" stroke-miterlimit="10" x1="1643.568" y1="287.373" x2="1644.322" y2="381.682"/>
+	<path fill="none" stroke="#000000" stroke-width="0.7087" stroke-miterlimit="10" d="M1071.049,137.998
+		c110.59,84.715,310,152.09,310,152.09"/>
+	
+		<line fill="none" stroke="#000000" stroke-width="0.7087" stroke-miterlimit="10" x1="1368.201" y1="383.889" x2="1644.322" y2="381.682"/>
+	
+		<line fill="none" stroke="#000000" stroke-width="0.7087" stroke-miterlimit="10" x1="1381.049" y1="290.088" x2="1643.568" y2="287.994"/>
+	
+		<line fill="none" stroke="#000000" stroke-width="0.7087" stroke-miterlimit="10" x1="1073.068" y1="138.287" x2="1027.002" y2="223.826"/>
+	<text transform="matrix(1.0149 -0.0081 0.008 1 1374.5527 329.5903)"><tspan x="0" y="0" fill="#010101" font-family="'Calibri'" font-size="28.3465">RIGHT FRONT</tspan><tspan x="0.001" y="34.015" fill="#010101" font-family="'Calibri'" font-size="28.3465">WAISTBAND</tspan></text>
+	<text transform="matrix(1.0149 -0.0081 0.008 1 1616.4336 329.585)"><tspan x="0" y="0" fill="#010101" font-family="'Calibri'" font-size="28.3465">C</tspan><tspan x="0" y="34.016" fill="#010101" font-family="'Calibri'" font-size="28.3465">F</tspan></text>
+	<path fill="none" stroke="#000000" stroke-width="0.7087" stroke-miterlimit="10" d="M1027.002,222.553
+		c105.434,80.242,342.59,161.336,342.59,161.336"/>
+	<text transform="matrix(1 0 0 1 1228.8555 313.0234)" fill="#010101" font-family="'Calibri'" font-size="28.3465">CUT 2</text>
+	<g>
+		<g>
+			
+				<line fill="none" stroke="#000000" stroke-width="0.7087" stroke-miterlimit="10" x1="1363.9" y1="293.318" x2="1363.9" y2="371.077"/>
+			<g>
+				<path d="M1363.9,289.041c-0.747,2.013-2.021,4.509-3.37,6.057l3.37-1.219l3.369,1.219
+					C1365.921,293.55,1364.646,291.054,1363.9,289.041z"/>
+			</g>
+			<g>
+				<path d="M1363.9,375.354c-0.747-2.013-2.021-4.509-3.37-6.057l3.37,1.219l3.369-1.219
+					C1365.921,370.844,1364.646,373.341,1363.9,375.354z"/>
+			</g>
+		</g>
+	</g>
+</g>
+<g>
+	<text transform="matrix(1 0 0 1 1371.5625 441.6953)"><tspan x="0" y="0" fill="#010101" font-family="'Calibri'" font-size="28.3465">LEFT FRONT</tspan><tspan x="0" y="34.016" fill="#010101" font-family="'Calibri'" font-size="28.3465">WAISTBAND</tspan></text>
+	
+		<line fill="none" stroke="#000000" stroke-width="0.7087" stroke-miterlimit="10" stroke-dasharray="2" x1="1615.441" y1="409.475" x2="1616.203" y2="504.646"/>
+	<path fill="none" stroke="#000000" stroke-width="0.7087" stroke-miterlimit="10" d="M1042.91,258.717
+		c113.91,83.719,317.863,152.172,317.863,152.172"/>
+	
+		<line fill="none" stroke="#000000" stroke-width="0.7087" stroke-miterlimit="10" x1="1340.066" y1="504.604" x2="1677.828" y2="501.908"/>
+	
+		<line fill="none" stroke="#000000" stroke-width="0.7087" stroke-miterlimit="10" x1="1360.344" y1="410.74" x2="1677.742" y2="408.205"/>
+	
+		<line fill="none" stroke="#000000" stroke-width="0.7087" stroke-miterlimit="10" x1="1044.93" y1="259.006" x2="998.867" y2="344.545"/>
+	<text transform="matrix(1.0149 -0.0081 0.008 1 1586.0332 441.771)"><tspan x="0" y="0" fill="#010101" font-family="'Calibri'" font-size="28.3465">C</tspan><tspan x="0.001" y="34.016" fill="#010101" font-family="'Calibri'" font-size="28.3465">F</tspan></text>
+	<path fill="none" stroke="#000000" stroke-width="0.7087" stroke-miterlimit="10" d="M998.867,344.545
+		c105.117,79.367,341.199,160.059,341.199,160.059"/>
+	
+		<line fill="none" stroke="#000000" stroke-width="0.7087" stroke-miterlimit="10" x1="1677.832" y1="501.908" x2="1677.832" y2="408.088"/>
+	<text transform="matrix(1 0 0 1 1200.7207 433.7422)" fill="#010101" font-family="'Calibri'" font-size="28.3465">CUT 2</text>
+	<g>
+		<g>
+			
+				<line fill="none" stroke="#000000" stroke-width="0.7087" stroke-miterlimit="10" x1="1340.066" y1="410.466" x2="1340.066" y2="499.53"/>
+			<g>
+				<path d="M1340.066,406.189c-0.747,2.013-2.021,4.509-3.37,6.057l3.37-1.219l3.369,1.219
+					C1342.087,410.699,1340.812,408.202,1340.066,406.189z"/>
+			</g>
+			<g>
+				<path d="M1340.066,503.807c-0.747-2.013-2.021-4.509-3.37-6.057l3.37,1.219l3.369-1.219
+					C1342.087,499.297,1340.812,501.794,1340.066,503.807z"/>
+			</g>
+		</g>
+	</g>
+</g>
+<g>
+	<rect x="1741.951" y="1616.811" fill="none" stroke="#000000" stroke-miterlimit="10" width="120.797" height="317.477"/>
+	
+		<line fill="none" stroke="#000000" stroke-miterlimit="10" stroke-dasharray="2" x1="1801.83" y1="1616.811" x2="1802.346" y2="1934.287"/>
+	<g>
+		<g>
+			
+				<line fill="none" stroke="#000000" stroke-width="0.5" stroke-miterlimit="10" x1="1830.873" y1="1673.648" x2="1830.873" y2="1876.652"/>
+			<g>
+				<path d="M1830.873,1670.631c-0.527,1.42-1.426,3.182-2.378,4.273l2.378-0.86l2.377,0.86
+					C1832.299,1673.812,1831.399,1672.051,1830.873,1670.631z"/>
+			</g>
+			<g>
+				<path d="M1830.873,1879.67c-0.527-1.42-1.426-3.182-2.378-4.273l2.378,0.859l2.377-0.859
+					C1832.299,1876.488,1831.399,1878.25,1830.873,1879.67z"/>
+			</g>
+		</g>
+	</g>
+	<text transform="matrix(0 -1 1 0 1787.8418 1876.3457)" fill="#010101" font-family="'Calibri'" font-size="28.3465">FLY BACK CUT 1</text>
+</g>
+<g>
+	
+		<line fill="none" stroke="#000000" stroke-width="0.7087" stroke-miterlimit="10" x1="294.447" y1="561.947" x2="294.342" y2="839.389"/>
+	
+		<line fill="none" stroke="#000000" stroke-width="0.7087" stroke-miterlimit="10" x1="294.342" y1="839.389" x2="578.861" y2="739.146"/>
+	
+		<line fill="none" stroke="#000000" stroke-width="0.7087" stroke-miterlimit="10" x1="562.076" y1="557.299" x2="294.447" y2="561.947"/>
+	<path fill="none" stroke="#000000" stroke-width="0.7087" stroke-miterlimit="10" d="M559.74,558.045
+		c267.91-74.895,355.926-126.984,355.926-126.984"/>
+	
+		<line fill="none" stroke="#000000" stroke-width="0.7087" stroke-miterlimit="10" x1="948.658" y1="524.838" x2="578.861" y2="739.146"/>
+	
+		<line fill="none" stroke="#000000" stroke-width="0.7087" stroke-miterlimit="10" x1="915.666" y1="431.061" x2="948.658" y2="524.838"/>
+	<text transform="matrix(0.9643 0.0155 -0.0048 1 309.5073 693.8203)"><tspan x="0" y="0" fill="#010101" font-family="'Calibri'" font-size="28.3465">C</tspan><tspan x="0" y="34.016" fill="#010101" font-family="'Calibri'" font-size="28.3465">B</tspan></text>
+	<g>
+		<g>
+			
+				<line fill="none" stroke="#000000" stroke-width="0.7087" stroke-miterlimit="10" x1="384.182" y1="592.271" x2="384.182" y2="785.499"/>
+			<g>
+				<path d="M384.182,587.994c-0.747,2.013-2.021,4.509-3.37,6.057l3.37-1.219l3.37,1.219
+					C386.202,592.503,384.928,590.007,384.182,587.994z"/>
+			</g>
+			<g>
+				<path d="M384.182,789.775c-0.747-2.013-2.021-4.509-3.37-6.057l3.37,1.219l3.37-1.219
+					C386.202,785.266,384.928,787.763,384.182,789.775z"/>
+			</g>
+		</g>
+	</g>
+	<text transform="matrix(1 0 0 1 400.6973 677.1133)"><tspan x="0" y="0" fill="#010101" font-family="'Calibri'" font-size="28.3465">BACK YOKE</tspan><tspan x="0" y="34.016" fill="#010101" font-family="'Calibri'" font-size="28.3465">CUT 2</tspan></text>
+</g>
+<g>
+	<g>
+		<g>
+			<line fill="none" stroke="#000000" stroke-miterlimit="10" x1="2094.607" y1="1265.83" x2="2094.607" y2="1495.225"/>
+			<g>
+				<path d="M2094.607,1259.795c-1.054,2.84-2.852,6.363-4.756,8.547l4.756-1.72l4.755,1.72
+					C2097.458,1266.158,2095.66,1262.635,2094.607,1259.795z"/>
+			</g>
+			<g>
+				<path d="M2094.607,1501.26c-1.054-2.84-2.852-6.363-4.756-8.547l4.756,1.72l4.755-1.72
+					C2097.458,1494.896,2095.66,1498.42,2094.607,1501.26z"/>
+			</g>
+		</g>
+	</g>
+	
+		<line fill="none" stroke="#000000" stroke-width="0.7087" stroke-miterlimit="10" x1="2191.639" y1="1237.494" x2="2218.58" y2="1502.217"/>
+	
+		<line fill="none" stroke="#000000" stroke-width="0.7087" stroke-miterlimit="10" x1="2218.58" y1="1502.217" x2="2033.674" y2="1573.885"/>
+	
+		<line fill="none" stroke="#000000" stroke-width="0.7087" stroke-miterlimit="10" x1="2033.674" y1="1573.885" x2="1848.854" y2="1500.865"/>
+	
+		<line fill="none" stroke="#000000" stroke-width="0.7087" stroke-miterlimit="10" x1="1848.854" y1="1500.865" x2="1887.697" y2="1234.205"/>
+	<text transform="matrix(1 0 0 1 1931.2109 1356.5723)"><tspan x="0" y="0" fill="#010101" font-family="'Calibri'" font-size="28.3465">BACK</tspan><tspan x="0" y="34.016" fill="#010101" font-family="'Calibri'" font-size="28.3465">POCKET</tspan><tspan x="0" y="68.032" fill="#010101" font-family="'Calibri'" font-size="28.3465">CUT 2</tspan></text>
+	
+		<line fill="none" stroke="#000000" stroke-width="0.7087" stroke-miterlimit="10" x1="2192.318" y1="1234.205" x2="1887.697" y2="1234.205"/>
+</g>
+<g>
+	
+		<line fill="none" stroke="#000000" stroke-miterlimit="10" stroke-dasharray="2" x1="1561.668" y1="523.744" x2="1562.691" y2="634.154"/>
+	<text transform="matrix(0.8913 0.0251 0.0028 1 1538.1738 567.7764)"><tspan x="0" y="0" fill="#010101" font-family="'Calibri'" font-size="28.3465">C</tspan><tspan x="0" y="34.016" fill="#010101" font-family="'Calibri'" font-size="28.3465">B</tspan></text>
+	<line fill="none" stroke="#000000" stroke-miterlimit="10" x1="2152.164" y1="423.107" x2="2184.16" y2="520.1"/>
+	<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M1835.992,634.256c173.23-33.445,347.902-114.961,347.902-114.961"/>
+	<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M1821.652,523.545c154.258-28.836,331.844-101.41,331.844-101.41"/>
+	<g>
+		<g>
+			
+				<line fill="none" stroke="#000000" stroke-width="0.7087" stroke-miterlimit="10" x1="1661.375" y1="535.076" x2="1661.375" y2="623.307"/>
+			<g>
+				<path d="M1661.375,530.799c-0.747,2.013-2.021,4.509-3.37,6.057l3.37-1.219l3.369,1.219
+					C1663.396,535.308,1662.121,532.812,1661.375,530.799z"/>
+			</g>
+			<g>
+				<path d="M1661.375,627.584c-0.747-2.013-2.021-4.509-3.37-6.057l3.37,1.219l3.369-1.219
+					C1663.396,623.075,1662.121,625.571,1661.375,627.584z"/>
+			</g>
+		</g>
+	</g>
+	<line fill="none" stroke="#000000" stroke-miterlimit="10" x1="1835.992" y1="634.248" x2="1289.516" y2="634.248"/>
+	<line fill="none" stroke="#000000" stroke-miterlimit="10" x1="971.348" y1="421.873" x2="939.352" y2="518.865"/>
+	<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M1290.488,633.021c-174.754-33.336-350.867-114.961-350.867-114.961"
+		/>
+	<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M1301.859,523.861c-153.648-31.371-332.004-102.48-332.004-102.48"/>
+	<line fill="none" stroke="#000000" stroke-miterlimit="10" x1="1300.945" y1="523.545" x2="1821.652" y2="523.545"/>
+	<text transform="matrix(1 0 0 1 1249.0117 567.9609)"><tspan x="0" y="0" fill="#010101" font-family="'Calibri'" font-size="28.3465">BACK WAISTBAND</tspan><tspan x="0" y="34.016" fill="#010101" font-family="'Calibri'" font-size="28.3465">CUT 2</tspan></text>
+</g>
+<line fill="none" stroke="#000000" stroke-width="0.7087" stroke-miterlimit="10" x1="236.713" y1="1070.85" x2="992.893" y2="1070.85"/>
+<text transform="matrix(0.9655 0 0 1 263.3594 1060.6641)" fill="#010101" font-family="'Calibri'" font-size="28.3465">HL</text>
+<text transform="matrix(0.9655 0 0 1 345.666 2017.7383)" fill="#010101" font-family="'Calibri'" font-size="28.3465">KL</text>
+<line fill="none" stroke="#000000" stroke-width="0.7087" stroke-miterlimit="10" stroke-dasharray="0.8504" x1="101.963" y1="1370.721" x2="963.795" y2="1370.721"/>
+<line fill="none" stroke="#000000" stroke-width="0.7087" stroke-miterlimit="10" x1="41.76" y1="1284.186" x2="972.498" y2="1284.193"/>
+<line fill="none" stroke="#000000" stroke-width="0.7087" stroke-miterlimit="10" x1="333.42" y1="2028.115" x2="901.381" y2="2028.115"/>
+<line fill="none" stroke="#000000" stroke-width="0.7087" stroke-miterlimit="10" x1="345.666" y1="2457.045" x2="889.854" y2="2457.045"/>
+<line fill="none" stroke="#000000" stroke-width="0.7087" stroke-miterlimit="10" x1="374.146" y1="3371.287" x2="866.24" y2="3371.287"/>
+<path fill="none" stroke="#000000" stroke-width="0.7087" stroke-miterlimit="10" d="M294.342,849.986
+	c-64.375,403.293-251.953,434.207-251.953,434.207"/>
+<line fill="none" stroke="#000000" stroke-width="0.7087" stroke-miterlimit="10" x1="333.42" y1="2028.115" x2="374.146" y2="3369.404"/>
+<line fill="none" stroke="#000000" stroke-width="0.7087" stroke-miterlimit="10" x1="901.381" y1="2028.115" x2="866.248" y2="3371.096"/>
+<line fill="none" stroke="#000000" stroke-width="0.7087" stroke-miterlimit="10" x1="992.893" y1="1070.85" x2="901.381" y2="2028.115"/>
+<path fill="none" stroke="#000000" stroke-width="0.7087" stroke-miterlimit="10" d="M41.76,1284.115
+	c288.797,356.047,291.66,744,291.66,744"/>
+<line fill="none" stroke="#000000" stroke-width="0.7087" stroke-miterlimit="10" x1="1012.459" y1="719.717" x2="294.342" y2="849.986"/>
+<text transform="matrix(0.9922 0 0 1 229.7129 1268.1406)" fill="#010101" font-family="'Calibri'" font-size="28.3465">CL</text>
+<g>
+	<g>
+		<g>
+			
+				<line fill="none" stroke="#000000" stroke-width="2.8346" stroke-miterlimit="10" x1="638.637" y1="1570.169" x2="638.637" y2="2856.989"/>
+			<g>
+				<path d="M624.375,1588.345c0,0.468,0.232,0.926,0.656,1.197c0.659,0.42,1.537,0.226,1.958-0.435l11.648-18.291l11.648,18.291
+					c0.421,0.661,1.298,0.855,1.958,0.435c0.659-0.421,0.85-1.303,0.435-1.958l-12.845-20.167c-0.26-0.408-0.711-0.656-1.196-0.656
+					s-0.936,0.248-1.196,0.656l-12.845,20.167C624.447,1587.82,624.375,1588.084,624.375,1588.345
+					C624.375,1588.812,624.375,1588.084,624.375,1588.345z"/>
+			</g>
+			<g>
+				<path d="M624.375,2838.813c0-0.468,0.232-0.926,0.656-1.197c0.659-0.42,1.537-0.226,1.958,0.435l11.648,18.291l11.648-18.291
+					c0.421-0.66,1.298-0.854,1.958-0.435c0.659,0.421,0.85,1.303,0.435,1.957l-12.845,20.168c-0.26,0.408-0.711,0.656-1.196,0.656
+					s-0.936-0.248-1.196-0.656l-12.845-20.168C624.447,2839.339,624.375,2839.074,624.375,2838.813
+					C624.375,2838.346,624.375,2839.074,624.375,2838.813z"/>
+			</g>
+		</g>
+	</g>
+	<text transform="matrix(0 -1 1 0 617.7598 2774.8428)" fill="#231F20" font-family="'Calibri'" font-size="28.3465">BACK TROUSER LEG</text>
+	<text transform="matrix(0 -1 1 0 666.3184 1757.9873)" fill="#999798" font-family="'Calibri'" font-size="28.5775">BCSizing ©</text>
+	<text transform="matrix(0 -1 1 0 683.0391 2765.3623)" fill="#010101" font-family="'Calibri'" font-size="28.3465">JEANS</text>
+</g>
+<path fill="none" stroke="#000000" stroke-width="0.7087" stroke-miterlimit="10" d="M1012.459,719.717
+	c-1.645,101.848-19.566,351.133-19.566,351.133"/>
+<text transform="matrix(0 -1 1 0 617.4004 2242.1426)" fill="#010101" font-family="'Calibri'" font-size="28.3465">CUT 2</text>
+<g>
+	<g>
+		<path fill="none" stroke="#010101" stroke-miterlimit="10" d="M766.51,881.365c-6.141,0-11.109-5.855-11.109-13.086
+			s4.969-13.086,11.109-13.086s11.102,5.855,11.102,13.086S772.65,881.365,766.51,881.365z"/>
+		<path fill="none" stroke="#010101" stroke-miterlimit="10" d="M775.764,868.279c0-6.031-4.141-10.898-9.254-10.898
+			s-9.254,4.867-9.254,10.898s4.141,10.898,9.254,10.898S775.764,874.311,775.764,868.279z"/>
+		<path fill="none" stroke="#010101" stroke-miterlimit="10" d="M766.51,877.006c-4.09,0-7.402-3.91-7.402-8.727
+			s3.312-8.727,7.402-8.727c4.094,0,7.398,3.91,7.398,8.727S770.604,877.006,766.51,877.006z"/>
+		<path fill="none" stroke="#010101" stroke-miterlimit="10" d="M772.064,868.279c0-3.617-2.48-6.543-5.555-6.543
+			c-3.066,0-5.555,2.926-5.555,6.543s2.488,6.543,5.555,6.543C769.584,874.822,772.064,871.896,772.064,868.279z"/>
+		<path fill="none" stroke="#010101" stroke-miterlimit="10" d="M766.51,872.635c-2.039,0-3.699-1.941-3.699-4.355
+			s1.66-4.355,3.699-4.355s3.699,1.941,3.699,4.355S768.549,872.635,766.51,872.635z"/>
+		<path fill="none" stroke="#010101" stroke-miterlimit="10" d="M768.357,868.279c0-1.203-0.824-2.188-1.848-2.188
+			c-1.027,0-1.855,0.984-1.855,2.188c0,1.199,0.828,2.188,1.855,2.188C767.533,870.467,768.357,869.479,768.357,868.279z"/>
+	</g>
+	<g>
+		<line fill="none" stroke="#010101" stroke-miterlimit="10" x1="766.51" y1="868.279" x2="766.51" y2="881.365"/>
+		<line fill="none" stroke="#010101" stroke-miterlimit="10" x1="766.51" y1="868.279" x2="777.064" y2="872.318"/>
+		<line fill="none" stroke="#010101" stroke-miterlimit="10" x1="766.51" y1="868.279" x2="773.037" y2="857.701"/>
+		<line fill="none" stroke="#010101" stroke-miterlimit="10" x1="766.51" y1="868.279" x2="759.982" y2="857.701"/>
+		<line fill="none" stroke="#010101" stroke-miterlimit="10" x1="766.51" y1="868.279" x2="755.951" y2="872.318"/>
+	</g>
+</g>
+<g>
+	<g>
+		<path fill="none" stroke="#010101" stroke-miterlimit="10" d="M398.076,909.811c-6.141,0-11.105-5.855-11.105-13.086
+			s4.965-13.086,11.105-13.086c6.145,0,11.102,5.855,11.102,13.086S404.221,909.811,398.076,909.811z"/>
+		<path fill="none" stroke="#010101" stroke-miterlimit="10" d="M407.33,896.725c0-6.031-4.141-10.898-9.254-10.898
+			s-9.25,4.867-9.25,10.898s4.137,10.898,9.25,10.898S407.33,902.756,407.33,896.725z"/>
+		<path fill="none" stroke="#010101" stroke-miterlimit="10" d="M398.076,905.451c-4.094,0-7.406-3.91-7.406-8.727
+			s3.312-8.727,7.406-8.727c4.098,0,7.402,3.91,7.402,8.727S402.174,905.451,398.076,905.451z"/>
+		<path fill="none" stroke="#010101" stroke-miterlimit="10" d="M403.631,896.725c0-3.613-2.477-6.543-5.555-6.543
+			c-3.062,0-5.551,2.93-5.551,6.543c0,3.617,2.488,6.543,5.551,6.543C401.154,903.268,403.631,900.342,403.631,896.725z"/>
+		<path fill="none" stroke="#010101" stroke-miterlimit="10" d="M398.076,901.08c-2.035,0-3.699-1.941-3.699-4.355
+			s1.664-4.355,3.699-4.355c2.039,0,3.699,1.941,3.699,4.355S400.115,901.08,398.076,901.08z"/>
+		<path fill="none" stroke="#010101" stroke-miterlimit="10" d="M399.924,896.725c0-1.199-0.828-2.184-1.848-2.184
+			c-1.027,0-1.852,0.984-1.852,2.184s0.824,2.188,1.852,2.188C399.096,898.912,399.924,897.924,399.924,896.725z"/>
+	</g>
+	<g>
+		<line fill="none" stroke="#010101" stroke-miterlimit="10" x1="398.076" y1="896.725" x2="398.076" y2="909.811"/>
+		<line fill="none" stroke="#010101" stroke-miterlimit="10" x1="398.076" y1="896.725" x2="408.635" y2="900.764"/>
+		<line fill="none" stroke="#010101" stroke-miterlimit="10" x1="398.076" y1="896.725" x2="404.604" y2="886.146"/>
+		<line fill="none" stroke="#010101" stroke-miterlimit="10" x1="398.076" y1="896.725" x2="391.553" y2="886.146"/>
+		<line fill="none" stroke="#010101" stroke-miterlimit="10" x1="398.076" y1="896.725" x2="387.521" y2="900.764"/>
+	</g>
+</g>
+<text transform="matrix(0.9655 0 0 1 1691.0547 1062.5586)" fill="#010101" font-family="'Calibri'" font-size="28.3465">HL</text>
+<text transform="matrix(0.9655 0 0 1 1577.168 2011.8164)" fill="#010101" font-family="'Calibri'" font-size="28.3465">KL</text>
+<line fill="none" stroke="#000000" stroke-width="0.7087" stroke-miterlimit="10" x1="1744.51" y1="667.729" x2="1744.51" y2="1070.838"/>
+<line fill="none" stroke="#000000" stroke-width="0.7087" stroke-miterlimit="10" x1="1744.83" y1="1070.838" x2="1032.144" y2="1070.838"/>
+<line fill="none" stroke="#000000" stroke-width="0.7087" stroke-miterlimit="10" stroke-dasharray="0.8504" x1="1800.744" y1="1370.709" x2="1047.541" y2="1370.713"/>
+<path fill="none" stroke="#000000" stroke-width="0.7087" stroke-miterlimit="10" d="M1744.627,1070.99
+	c3.855,183.918,112.223,213.188,112.223,213.188"/>
+<line fill="none" stroke="#000000" stroke-width="0.7087" stroke-miterlimit="10" x1="1856.85" y1="1284.178" x2="1039.783" y2="1284.182"/>
+<line fill="none" stroke="#000000" stroke-width="0.7087" stroke-miterlimit="10" x1="1144.104" y1="2028.252" x2="1624.127" y2="2028.252"/>
+<line fill="none" stroke="#000000" stroke-width="0.7087" stroke-miterlimit="10" x1="1156.377" y1="2457.045" x2="1613.131" y2="2457.045"/>
+<line fill="none" stroke="#000000" stroke-width="0.7087" stroke-miterlimit="10" x1="1182.76" y1="3371.287" x2="1590.088" y2="3371.287"/>
+<text transform="matrix(0.9922 0 0 1 1709.0703 1268.8008)" fill="#010101" font-family="'Calibri'" font-size="28.3465">CL</text>
+<line fill="none" stroke="#000000" stroke-width="0.7087" stroke-miterlimit="10" x1="1379.002" y1="667.729" x2="1744.51" y2="667.729"/>
+<g>
+	<g>
+		
+			<line fill="none" stroke="#000000" stroke-width="0.7087" stroke-miterlimit="10" x1="1729.324" y1="991.971" x2="1744.51" y2="991.971"/>
+		<g>
+			<circle cx="1729.457" cy="991.971" r="2.665"/>
+		</g>
+	</g>
+</g>
+<line fill="none" stroke="#000000" stroke-width="0.7087" stroke-miterlimit="10" x1="1379.002" y1="665.627" x2="1379.002" y2="874.361"/>
+<line fill="none" stroke="#000000" stroke-width="0.7087" stroke-miterlimit="10" x1="1379.01" y1="874.361" x2="1040.885" y2="870.545"/>
+<line fill="none" stroke="#000000" stroke-width="0.7087" stroke-miterlimit="10" x1="1143.779" y1="2028.252" x2="1182.76" y2="3371.287"/>
+<line fill="none" stroke="#000000" stroke-width="0.7087" stroke-miterlimit="10" x1="1624.385" y1="2022.771" x2="1590.088" y2="3371.287"/>
+<path fill="none" stroke="#000000" stroke-width="0.7087" stroke-miterlimit="10" d="M1853.002,1281.787
+	c-215.637,321.547-228.875,746.465-228.875,746.465"/>
+<text transform="matrix(1 0 0 1 1713.8574 839.3887)"><tspan x="0" y="0" fill="#010101" font-family="'Calibri'" font-size="28.3465">C</tspan><tspan x="0" y="34.016" fill="#010101" font-family="'Calibri'" font-size="28.3465">F</tspan></text>
+<g>
+	<g>
+		
+			<line fill="none" stroke="#000000" stroke-width="0.7087" stroke-miterlimit="10" x1="1042.302" y1="1139.111" x2="1033.444" y2="1139.111"/>
+		<g>
+			<circle cx="1042.168" cy="1139.111" r="2.665"/>
+		</g>
+	</g>
+</g>
+<text transform="matrix(0 -1 1 0 1328.2666 2246.3125)" fill="#010101" font-family="'Calibri'" font-size="28.3465">CUT 2</text>
+<g>
+	<g>
+		
+			<line fill="none" stroke="#000000" stroke-width="2.8346" stroke-miterlimit="10" x1="1342.055" y1="1541.459" x2="1342.055" y2="2885.699"/>
+		<g>
+			<path d="M1327.793,1559.635c0,0.468,0.232,0.926,0.656,1.197c0.658,0.42,1.536,0.226,1.957-0.435l11.648-18.291l11.648,18.291
+				c0.421,0.661,1.299,0.855,1.957,0.435c0.659-0.421,0.85-1.303,0.435-1.958l-12.844-20.167c-0.261-0.408-0.712-0.656-1.196-0.656
+				s-0.936,0.248-1.196,0.656l-12.844,20.167C1327.865,1559.11,1327.793,1559.374,1327.793,1559.635
+				C1327.793,1560.103,1327.793,1559.374,1327.793,1559.635z"/>
+		</g>
+		<g>
+			<path d="M1327.793,2867.523c0-0.468,0.232-0.926,0.656-1.197c0.658-0.42,1.536-0.226,1.957,0.435l11.648,18.291l11.648-18.291
+				c0.421-0.66,1.299-0.854,1.957-0.435c0.659,0.421,0.85,1.303,0.435,1.957l-12.844,20.168c-0.261,0.408-0.712,0.656-1.196,0.656
+				s-0.936-0.248-1.196-0.656l-12.844-20.168C1327.865,2868.049,1327.793,2867.784,1327.793,2867.523
+				C1327.793,2867.056,1327.793,2867.784,1327.793,2867.523z"/>
+		</g>
+	</g>
+</g>
+<text transform="matrix(0 -1 1 0 1374.5527 1723.5576)" fill="#9A9899" font-family="'Calibri'" font-size="28.3465">BCSizing ©</text>
+<text transform="matrix(0 -1 1 0 1322.4238 2816.5977)"><tspan x="0" y="0" font-family="'Calibri'" font-size="28.3465">FRONT</tspan><tspan x="78.02" y="0" font-family="'Calibri'" font-size="28.3465"> T</tspan><tspan x="98.242" y="0" font-family="'Calibri'" font-size="28.3465">R</tspan><tspan x="113.377" y="0" font-family="'Calibri'" font-size="28.3465">OUSER L</tspan><tspan x="210.916" y="0" font-family="'Calibri'" font-size="28.3465">E</tspan><tspan x="224.473" y="0" font-family="'Calibri'" font-size="28.3465">G</tspan></text>
+<text transform="matrix(0 -1 1 0 1322.4238 1923.9004)" font-family="'Calibri'" font-size="28.3465">MRUK12 - MRUS8 - MREU38</text>
+<text transform="matrix(0 -1 1 0 1374.5527 2816.5957)" font-family="'Calibri'" font-size="28.3465">JEANS</text>
+<text transform="matrix(0 -1 1 0 617.7598 1951.9004)" font-family="'Calibri'" font-size="28.3465">MRUK12 - MRUS8 - MREU38</text>
+<path fill="none" stroke="#000000" stroke-width="0.7087" stroke-miterlimit="10" d="M1039.783,1284.182
+	c4.312,148.423,103.996,744.07,103.996,744.07"/>
+<path fill="none" stroke="#000000" stroke-width="0.7087" stroke-miterlimit="10" d="M1040.885,870.545
+	c-19.289,131.582-1.102,413.637-1.102,413.637"/>
+</svg>
+`,
+    },
+    {
+      _id: '1767323872323',
+      name: 'Jeans Pattern3',
+      isOpen: false,
+      file: `<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 15.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="2267.72px" height="3401.58px" viewBox="0 0 2267.72 3401.58" enable-background="new 0 0 2267.72 3401.58"
+	 xml:space="preserve">
+<g>
+	<rect x="1893.418" y="635.901" fill="none" stroke="#000000" stroke-miterlimit="10" width="207.012" height="245.949"/>
+	<rect x="1869.586" y="576.53" fill="none" stroke="#ED2224" stroke-miterlimit="10" width="251.5" height="328.609"/>
+	<g>
+		<g>
+			
+				<line fill="none" stroke="#000000" stroke-width="0.7087" stroke-miterlimit="10" x1="2064.676" y1="669.518" x2="2064.676" y2="833.273"/>
+			<g>
+				<path d="M2064.676,665.241c-0.747,2.013-2.021,4.509-3.37,6.057l3.37-1.219l3.369,1.219
+					C2066.695,669.75,2065.422,667.254,2064.676,665.241z"/>
+			</g>
+			<g>
+				<path d="M2064.676,837.55c-0.747-2.013-2.021-4.509-3.37-6.057l3.37,1.219l3.369-1.219
+					C2066.695,833.041,2065.422,835.537,2064.676,837.55z"/>
+			</g>
+		</g>
+	</g>
+	<text transform="matrix(0.9947 0 0 1 1916.8047 726.3164)"><tspan x="0" y="0" fill="#010101" font-family="'Calibri'" font-size="28.3465">COIN</tspan><tspan x="0" y="34.016" fill="#010101" font-family="'Calibri'" font-size="28.3465">POCKET</tspan><tspan x="0" y="68.032" fill="#010101" font-family="'Calibri'" font-size="28.3465">CUT 1</tspan></text>
+</g>
+<g>
+	<line fill="none" stroke="#ED2224" stroke-miterlimit="10" x1="2058.355" y1="2699.94" x2="2058.355" y2="2360.909"/>
+	<line fill="none" stroke="#000000" stroke-miterlimit="10" x1="1982.133" y1="2360.909" x2="1982.133" y2="2650.144"/>
+	<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M1982.355,2650.144c12.047,60.922,76,49.797,76,49.797"/>
+	<line fill="none" stroke="#000000" stroke-miterlimit="10" x1="2037.93" y1="2699.94" x2="2037.93" y2="2382.464"/>
+	<line fill="none" stroke="#000000" stroke-miterlimit="10" x1="1982.133" y1="2382.464" x2="2037.93" y2="2382.464"/>
+	<line fill="none" stroke="#ED2224" stroke-miterlimit="10" x1="1979.008" y1="2360.909" x2="2058.355" y2="2360.909"/>
+	<text transform="matrix(0 -1 1 0 2010.0312 2619.2207)" fill="#010101" font-family="'Calibri'" font-size="26.6457">FLY FRONT CUT 1</text>
+	<g>
+		<g>
+			
+				<line fill="none" stroke="#000000" stroke-width="0.5" stroke-miterlimit="10" x1="2017.969" y1="2439.493" x2="2017.969" y2="2642.497"/>
+			<g>
+				<path d="M2017.969,2436.476c-0.527,1.42-1.426,3.182-2.378,4.273l2.378-0.859l2.377,0.859
+					C2019.395,2439.657,2018.495,2437.896,2017.969,2436.476z"/>
+			</g>
+			<g>
+				<path d="M2017.969,2645.515c-0.527-1.42-1.426-3.182-2.378-4.273l2.378,0.859l2.377-0.859
+					C2019.395,2642.333,2018.495,2644.095,2017.969,2645.515z"/>
+			</g>
+		</g>
+	</g>
+</g>
+<g>
+	<path fill="none" stroke="#000000" stroke-width="0.7087" stroke-miterlimit="10" d="M1839.098,2823.89
+		c119.688,37.93,359.164,40.477,359.164,40.477"/>
+	<g>
+		<g>
+			<line fill="none" stroke="#000000" stroke-miterlimit="10" x1="2111.754" y1="2837.315" x2="2111.754" y2="2866.428"/>
+			<g>
+				<circle cx="2111.754" cy="2866.24" r="3.76"/>
+			</g>
+		</g>
+	</g>
+	<g>
+		<g>
+			
+				<line fill="none" stroke="#000000" stroke-width="0.7087" stroke-miterlimit="10" x1="1792.487" y1="3068.644" x2="1764.047" y2="3065.151"/>
+			<g>
+				<circle cx="1792.355" cy="3068.627" r="2.664"/>
+			</g>
+		</g>
+	</g>
+	<path fill="none" stroke="#000000" stroke-width="0.7087" stroke-miterlimit="10" d="M1841.215,2825.702
+		c-60.215,74.59-72.93,497.805-72.93,497.805"/>
+	<path fill="none" stroke="#ED2224" stroke-width="0.7087" stroke-miterlimit="10" d="M1824.715,2798.718
+		c133.418,39.551,400.402,42.211,400.402,42.211"/>
+	<path fill="none" stroke="#ED2224" stroke-width="0.7087" stroke-miterlimit="10" d="M1824.715,2798.718
+		c-66.195,82.441-80.176,550.16-80.176,550.16"/>
+	<g>
+		<g>
+			<path fill="none" stroke="#010101" stroke-miterlimit="10" d="M1961.832,2958.731c-7.391,0-13.367-5.786-13.367-12.935
+				c0-7.145,5.977-12.933,13.367-12.933s13.355,5.788,13.355,12.933C1975.188,2952.945,1969.223,2958.731,1961.832,2958.731z"/>
+			<path fill="none" stroke="#010101" stroke-miterlimit="10" d="M1972.961,2945.797c0-5.961-4.98-10.774-11.129-10.774
+				c-6.152,0-11.137,4.813-11.137,10.774c0,5.963,4.984,10.773,11.137,10.773C1967.98,2956.57,1972.961,2951.76,1972.961,2945.797z"
+				/>
+			<path fill="none" stroke="#010101" stroke-miterlimit="10" d="M1961.832,2954.427c-4.922,0-8.906-3.868-8.906-8.63
+				c0-4.76,3.984-8.623,8.906-8.623c4.926,0,8.898,3.863,8.898,8.623C1970.73,2950.559,1966.758,2954.427,1961.832,2954.427z"/>
+			<path fill="none" stroke="#010101" stroke-miterlimit="10" d="M1968.516,2945.797c0-3.573-2.984-6.467-6.684-6.467
+				c-3.691,0-6.684,2.894-6.684,6.467c0,3.572,2.992,6.465,6.684,6.465C1965.531,2952.262,1968.516,2949.369,1968.516,2945.797z"/>
+			<path fill="none" stroke="#010101" stroke-miterlimit="10" d="M1961.832,2950.104c-2.453,0-4.453-1.917-4.453-4.307
+				c0-2.385,2-4.305,4.453-4.305c2.449,0,4.453,1.92,4.453,4.305C1966.285,2948.187,1964.281,2950.104,1961.832,2950.104z"/>
+			<path fill="none" stroke="#010101" stroke-miterlimit="10" d="M1964.055,2945.797c0-1.189-0.992-2.16-2.223-2.16
+				c-1.238,0-2.23,0.971-2.23,2.16c0,1.188,0.992,2.164,2.23,2.164C1963.062,2947.961,1964.055,2946.985,1964.055,2945.797z"/>
+		</g>
+		<g>
+			<line fill="none" stroke="#010101" stroke-miterlimit="10" x1="1961.832" y1="2945.797" x2="1961.832" y2="2958.731"/>
+			<line fill="none" stroke="#010101" stroke-miterlimit="10" x1="1961.832" y1="2945.797" x2="1974.531" y2="2949.787"/>
+			<line fill="none" stroke="#010101" stroke-miterlimit="10" x1="1961.832" y1="2945.797" x2="1969.68" y2="2935.342"/>
+			<line fill="none" stroke="#010101" stroke-miterlimit="10" x1="1961.832" y1="2945.797" x2="1953.977" y2="2935.342"/>
+			<line fill="none" stroke="#010101" stroke-miterlimit="10" x1="1961.832" y1="2945.797" x2="1949.133" y2="2949.787"/>
+		</g>
+	</g>
+	<g>
+		<g>
+			<path fill="none" stroke="#010101" stroke-miterlimit="10" d="M2157.746,2960.893c-7.391,0-13.363-5.785-13.363-12.936
+				c0-7.148,5.973-12.935,13.363-12.935c7.375,0,13.352,5.786,13.352,12.935C2171.098,2955.107,2165.121,2960.893,2157.746,2960.893
+				z"/>
+			<path fill="none" stroke="#010101" stroke-miterlimit="10" d="M2168.875,2947.957c0-5.96-4.98-10.773-11.129-10.773
+				c-6.152,0-11.133,4.813-11.133,10.773c0,5.964,4.98,10.774,11.133,10.774C2163.895,2958.731,2168.875,2953.921,2168.875,2947.957
+				z"/>
+			<path fill="none" stroke="#010101" stroke-miterlimit="10" d="M2157.746,2956.585c-4.926,0-8.914-3.862-8.914-8.628
+				c0-4.759,3.988-8.627,8.914-8.627c4.922,0,8.898,3.868,8.898,8.627C2166.645,2952.723,2162.668,2956.585,2157.746,2956.585z"/>
+			<path fill="none" stroke="#010101" stroke-miterlimit="10" d="M2164.414,2947.957c0-3.575-2.98-6.465-6.668-6.465
+				c-3.691,0-6.684,2.89-6.684,6.465c0,3.577,2.992,6.47,6.684,6.47C2161.434,2954.427,2164.414,2951.534,2164.414,2947.957z"/>
+			<path fill="none" stroke="#010101" stroke-miterlimit="10" d="M2157.746,2952.262c-2.461,0-4.465-1.917-4.465-4.305
+				c0-2.387,2.004-4.305,4.465-4.305c2.449,0,4.449,1.918,4.449,4.305C2162.195,2950.345,2160.195,2952.262,2157.746,2952.262z"/>
+			<path fill="none" stroke="#010101" stroke-miterlimit="10" d="M2159.965,2947.957c0-1.186-0.996-2.16-2.219-2.16
+				c-1.242,0-2.23,0.975-2.23,2.16c0,1.189,0.988,2.162,2.23,2.162C2158.969,2950.119,2159.965,2949.146,2159.965,2947.957z"/>
+		</g>
+		<g>
+			<line fill="none" stroke="#010101" stroke-miterlimit="10" x1="2157.746" y1="2947.957" x2="2157.746" y2="2960.893"/>
+			<line fill="none" stroke="#010101" stroke-miterlimit="10" x1="2157.746" y1="2947.957" x2="2170.445" y2="2951.952"/>
+			<line fill="none" stroke="#010101" stroke-miterlimit="10" x1="2157.746" y1="2947.957" x2="2165.594" y2="2937.5"/>
+			<line fill="none" stroke="#010101" stroke-miterlimit="10" x1="2157.746" y1="2947.957" x2="2149.895" y2="2937.5"/>
+			<line fill="none" stroke="#010101" stroke-miterlimit="10" x1="2157.746" y1="2947.957" x2="2145.031" y2="2951.952"/>
+		</g>
+	</g>
+	
+		<line fill="none" stroke="#000000" stroke-width="0.7087" stroke-miterlimit="10" x1="1768.992" y1="3323.507" x2="2199.254" y2="3323.507"/>
+	
+		<line fill="none" stroke="#ED2224" stroke-width="0.7087" stroke-miterlimit="10" x1="1744.539" y1="3348.878" x2="2224.617" y2="3348.878"/>
+	
+		<line fill="none" stroke="#000000" stroke-width="0.7087" stroke-miterlimit="10" x1="2199.254" y1="3323.444" x2="2199.254" y2="2864.202"/>
+	
+		<line fill="none" stroke="#ED2224" stroke-width="0.7087" stroke-miterlimit="10" x1="2224.617" y1="3348.878" x2="2224.617" y2="2837.315"/>
+	<g>
+		<g>
+			
+				<line fill="none" stroke="#000000" stroke-width="0.7087" stroke-miterlimit="10" x1="1886.371" y1="2865.053" x2="1886.371" y2="3306.148"/>
+			<g>
+				<path d="M1882.806,2869.598c0,0.116,0.058,0.23,0.164,0.299c0.165,0.105,0.384,0.057,0.489-0.108l2.912-4.573l2.912,4.573
+					c0.105,0.165,0.324,0.214,0.489,0.108s0.213-0.326,0.108-0.489l-3.211-5.042c-0.064-0.102-0.178-0.164-0.299-0.164
+					s-0.234,0.062-0.299,0.164l-3.211,5.042C1882.823,2869.466,1882.806,2869.532,1882.806,2869.598
+					C1882.806,2869.714,1882.806,2869.532,1882.806,2869.598z"/>
+			</g>
+			<g>
+				<path d="M1882.806,3301.604c0-0.116,0.058-0.23,0.164-0.299c0.165-0.105,0.384-0.057,0.489,0.108l2.912,4.573l2.912-4.573
+					c0.105-0.165,0.324-0.214,0.489-0.108s0.213,0.326,0.108,0.489l-3.211,5.042c-0.064,0.102-0.178,0.164-0.299,0.164
+					s-0.234-0.062-0.299-0.164l-3.211-5.042C1882.823,3301.735,1882.806,3301.669,1882.806,3301.604
+					C1882.806,3301.487,1882.806,3301.669,1882.806,3301.604z"/>
+			</g>
+		</g>
+	</g>
+	<text transform="matrix(0 -1 1 0 1923.4512 3025.0684)" fill="#999798" font-family="'Calibri'" font-size="28.5775">BCSizing ©</text>
+	<text transform="matrix(0 -1 1 0 1869.584 3280.4941)"><tspan x="0" y="0" fill="#231F20" font-family="'Calibri'" font-size="28.3465">POCKET BACK  </tspan><tspan x="171.793" y="0" fill="#231F20" font-family="'Calibri'" font-size="28.3465" letter-spacing="3">	</tspan><tspan x="181.465" y="0" fill="#231F20" font-family="'Calibri'" font-size="28.3465">CUT 2</tspan></text>
+	<text transform="matrix(0 -1 1 0 1934.8633 3233.8691)" fill="#010101" font-family="'Calibri'" font-size="28.3465">JEANS</text>
+</g>
+<g>
+	
+		<line fill="none" stroke="#3A53A4" stroke-width="0.7087" stroke-miterlimit="10" x1="2103.834" y1="1860.979" x2="2103.834" y2="2066.222"/>
+	
+		<line fill="none" stroke="#3A53A4" stroke-width="0.7087" stroke-miterlimit="10" x1="2103.834" y1="2064.776" x2="1782.061" y2="2061.046"/>
+	
+		<line fill="none" stroke="#3A53A4" stroke-width="0.7087" stroke-miterlimit="10" x1="2084.607" y1="1836.198" x2="2084.607" y2="2038.624"/>
+	
+		<line fill="none" stroke="#3A53A4" stroke-width="0.7087" stroke-miterlimit="10" x1="2084.607" y1="2038.718" x2="1765.076" y2="2034.991"/>
+	
+		<line fill="none" stroke="#3A53A4" stroke-width="0.7087" stroke-miterlimit="10" x1="1782.061" y1="2061.046" x2="1765.076" y2="2314.647"/>
+	
+		<line fill="none" stroke="#3A53A4" stroke-width="0.7087" stroke-miterlimit="10" x1="1765.076" y1="2034.94" x2="1741.654" y2="2339.632"/>
+	
+		<line fill="none" stroke="#3A53A4" stroke-width="0.7087" stroke-miterlimit="10" x1="1763.424" y1="2316.312" x2="2193.686" y2="2316.312"/>
+	
+		<line fill="none" stroke="#3A53A4" stroke-width="0.7087" stroke-miterlimit="10" x1="1738.967" y1="2341.675" x2="2219.049" y2="2341.675"/>
+	<line fill="none" stroke="#3A53A4" stroke-miterlimit="10" x1="2193.686" y1="2316.245" x2="2193.686" y2="1860.979"/>
+	
+		<line fill="none" stroke="#3A53A4" stroke-width="0.7087" stroke-miterlimit="10" x1="2219.049" y1="2341.675" x2="2219.049" y2="1836.198"/>
+	
+		<line fill="none" stroke="#3A53A4" stroke-width="0.7087" stroke-miterlimit="10" x1="2103.834" y1="1860.979" x2="2193.686" y2="1860.979"/>
+	
+		<line fill="none" stroke="#3A53A4" stroke-width="0.7087" stroke-miterlimit="10" x1="2084.607" y1="1836.198" x2="2219.049" y2="1836.198"/>
+	<g>
+		<g>
+			
+				<line fill="none" stroke="#000000" stroke-width="0.7087" stroke-miterlimit="10" x1="2129.908" y1="1917.909" x2="2129.908" y2="2311.167"/>
+			<g>
+				<path d="M2126.343,1922.453c0,0.117,0.058,0.231,0.164,0.3c0.165,0.105,0.384,0.057,0.489-0.108l2.912-4.573l2.912,4.573
+					c0.105,0.165,0.324,0.214,0.489,0.108s0.213-0.326,0.108-0.489l-3.211-5.042c-0.064-0.103-0.178-0.164-0.299-0.164
+					s-0.234,0.062-0.299,0.164l-3.211,5.042C2126.361,1922.322,2126.343,1922.389,2126.343,1922.453
+					C2126.343,1922.57,2126.343,1922.389,2126.343,1922.453z"/>
+			</g>
+			<g>
+				<path d="M2126.343,2306.622c0-0.116,0.058-0.23,0.164-0.299c0.165-0.105,0.384-0.057,0.489,0.108l2.912,4.573l2.912-4.573
+					c0.105-0.165,0.324-0.214,0.489-0.108s0.213,0.326,0.108,0.489l-3.211,5.042c-0.064,0.102-0.178,0.164-0.299,0.164
+					s-0.234-0.062-0.299-0.164l-3.211-5.042C2126.361,2306.754,2126.343,2306.688,2126.343,2306.622
+					C2126.343,2306.506,2126.343,2306.688,2126.343,2306.622z"/>
+			</g>
+		</g>
+	</g>
+	<text transform="matrix(0 -1 1 0 2177.377 2105.709)" fill="#999798" font-family="'Calibri'" font-size="28.5775">BCSizing ©</text>
+	<text transform="matrix(0 -1 1 0 2010.2539 2272.5625)"><tspan x="0" y="0" fill="#231F20" font-family="'Calibri'" font-size="28.3465">POCKET </tspan><tspan x="0" y="34.016" fill="#231F20" font-family="'Calibri'" font-size="28.3465">LINING  </tspan><tspan x="93.495" y="34.016" fill="#231F20" font-family="'Calibri'" font-size="28.3465" letter-spacing="8">	</tspan><tspan x="0" y="68.031" fill="#231F20" font-family="'Calibri'" font-size="28.3465">CUT 2</tspan></text>
+	<text transform="matrix(0 -1 1 0 2177.377 2246.4434)" fill="#010101" font-family="'Calibri'" font-size="28.3465">JEANS</text>
+</g>
+<g>
+	
+		<line fill="none" stroke="#000000" stroke-width="0.7087" stroke-miterlimit="10" x1="790.889" y1="364.06" x2="791.643" y2="458.372"/>
+	<path fill="none" stroke="#000000" stroke-width="0.7087" stroke-miterlimit="10" d="M218.369,214.688
+		c110.59,84.715,310,152.09,310,152.09"/>
+	
+		<line fill="none" stroke="#000000" stroke-width="0.7087" stroke-miterlimit="10" x1="515.521" y1="460.575" x2="791.643" y2="458.372"/>
+	
+		<line fill="none" stroke="#000000" stroke-width="0.7087" stroke-miterlimit="10" x1="528.369" y1="366.778" x2="790.889" y2="364.685"/>
+	
+		<line fill="none" stroke="#000000" stroke-width="0.7087" stroke-miterlimit="10" x1="220.389" y1="214.978" x2="174.322" y2="300.517"/>
+	<path fill="none" stroke="#ED2224" stroke-width="0.7087" stroke-miterlimit="10" d="M211.826,180.11
+		C326.971,270.806,535.6,341.81,535.6,341.81"/>
+	<path fill="none" stroke="#ED2224" stroke-width="0.7087" stroke-miterlimit="10" d="M141.654,305.649
+		c111.352,98.387,369.566,178.699,369.566,178.699"/>
+	
+		<line fill="none" stroke="#ED2224" stroke-width="0.7087" stroke-miterlimit="10" x1="511.221" y1="484.349" x2="816.217" y2="481.919"/>
+	
+		<line fill="none" stroke="#ED2224" stroke-width="0.7087" stroke-miterlimit="10" x1="535.6" y1="341.81" x2="815.076" y2="339.579"/>
+	
+		<line fill="none" stroke="#ED2224" stroke-width="0.7087" stroke-miterlimit="10" x1="815.076" y1="338.989" x2="816.217" y2="481.329"/>
+	
+		<line fill="none" stroke="#ED2224" stroke-width="0.7087" stroke-miterlimit="10" x1="211.768" y1="180.274" x2="141.463" y2="305.997"/>
+	<text transform="matrix(1.0149 -0.0081 0.008 1 521.8779 406.2817)"><tspan x="0" y="0" fill="#010101" font-family="'Calibri'" font-size="28.3465">RIGHT FRONT</tspan><tspan x="0" y="34.016" fill="#010101" font-family="'Calibri'" font-size="28.3465">WAISTBAND</tspan></text>
+	<text transform="matrix(1.0149 -0.0081 0.008 1 763.7588 406.2769)"><tspan x="0" y="0" fill="#010101" font-family="'Calibri'" font-size="28.3465">C</tspan><tspan x="0.001" y="34.016" fill="#010101" font-family="'Calibri'" font-size="28.3465">F</tspan></text>
+	<path fill="none" stroke="#000000" stroke-width="0.7087" stroke-miterlimit="10" d="M174.322,299.243
+		c105.434,80.238,342.59,161.332,342.59,161.332"/>
+	<text transform="matrix(1 0 0 1 376.1787 389.7148)" fill="#010101" font-family="'Calibri'" font-size="28.3465">CUT 2</text>
+	<g>
+		<g>
+			
+				<line fill="none" stroke="#000000" stroke-width="0.7087" stroke-miterlimit="10" x1="511.221" y1="351.891" x2="511.221" y2="478.173"/>
+			<g>
+				<path d="M511.221,347.614c-0.747,2.013-2.021,4.509-3.37,6.057l3.37-1.219l3.369,1.219
+					C513.241,352.124,511.967,349.627,511.221,347.614z"/>
+			</g>
+			<g>
+				<path d="M511.221,482.45c-0.747-2.013-2.021-4.509-3.37-6.057l3.37,1.219l3.369-1.219
+					C513.241,477.941,511.967,480.438,511.221,482.45z"/>
+			</g>
+		</g>
+	</g>
+</g>
+<g>
+	<text transform="matrix(1 0 0 1 458.8213 554.8223)"><tspan x="0" y="0" fill="#010101" font-family="'Calibri'" font-size="28.3465">LEFT FRONT</tspan><tspan x="0" y="34.016" fill="#010101" font-family="'Calibri'" font-size="28.3465">WAISTBAND</tspan></text>
+	
+		<line fill="none" stroke="#000000" stroke-width="0.7087" stroke-miterlimit="10" stroke-dasharray="2" x1="702.506" y1="498.413" x2="703.627" y2="638.483"/>
+	<path fill="none" stroke="#000000" stroke-width="0.7087" stroke-miterlimit="10" d="M130.166,371.839
+		c113.91,83.719,317.863,152.172,317.863,152.172"/>
+	
+		<line fill="none" stroke="#000000" stroke-width="0.7087" stroke-miterlimit="10" x1="427.322" y1="617.729" x2="765.084" y2="615.034"/>
+	
+		<line fill="none" stroke="#000000" stroke-width="0.7087" stroke-miterlimit="10" x1="447.6" y1="523.866" x2="764.994" y2="521.331"/>
+	
+		<line fill="none" stroke="#000000" stroke-width="0.7087" stroke-miterlimit="10" x1="132.186" y1="372.136" x2="86.123" y2="457.671"/>
+	<path fill="none" stroke="#ED2224" stroke-width="0.7087" stroke-miterlimit="10" d="M123.619,337.261
+		C238.771,427.956,447.396,498.96,447.396,498.96"/>
+	<path fill="none" stroke="#ED2224" stroke-width="0.7087" stroke-miterlimit="10" d="M53.455,462.804
+		c111.344,98.387,369.57,178.699,369.57,178.699"/>
+	
+		<line fill="none" stroke="#ED2224" stroke-width="0.7087" stroke-miterlimit="10" x1="423.025" y1="641.503" x2="793.115" y2="638.546"/>
+	
+		<line fill="none" stroke="#ED2224" stroke-width="0.7087" stroke-miterlimit="10" x1="447.396" y1="498.96" x2="791.975" y2="496.206"/>
+	
+		<line fill="none" stroke="#ED2224" stroke-width="0.7087" stroke-miterlimit="10" x1="791.975" y1="496.144" x2="793.115" y2="638.483"/>
+	
+		<line fill="none" stroke="#ED2224" stroke-width="0.7087" stroke-miterlimit="10" x1="123.564" y1="337.425" x2="53.455" y2="462.804"/>
+	<text transform="matrix(1.0149 -0.0081 0.008 1 673.291 554.894)"><tspan x="0" y="0" fill="#010101" font-family="'Calibri'" font-size="28.3465">C</tspan><tspan x="0.001" y="34.016" fill="#010101" font-family="'Calibri'" font-size="28.3465">F</tspan></text>
+	<path fill="none" stroke="#000000" stroke-width="0.7087" stroke-miterlimit="10" d="M86.123,457.671
+		c105.113,79.367,341.199,160.059,341.199,160.059"/>
+	
+		<line fill="none" stroke="#000000" stroke-width="0.7087" stroke-miterlimit="10" x1="765.088" y1="615.034" x2="765.088" y2="521.214"/>
+	<text transform="matrix(1 0 0 1 287.9775 546.8691)" fill="#010101" font-family="'Calibri'" font-size="28.3465">CUT 2</text>
+	<g>
+		<g>
+			
+				<line fill="none" stroke="#000000" stroke-width="0.7087" stroke-miterlimit="10" x1="423.025" y1="505.303" x2="423.025" y2="631.589"/>
+			<g>
+				<path d="M423.025,501.026c-0.747,2.013-2.021,4.509-3.37,6.057l3.37-1.219l3.369,1.219
+					C425.046,505.536,423.771,503.039,423.025,501.026z"/>
+			</g>
+			<g>
+				<path d="M423.025,635.866c-0.747-2.013-2.021-4.509-3.37-6.057l3.37,1.219l3.369-1.219
+					C425.046,631.357,423.771,633.854,423.025,635.866z"/>
+			</g>
+		</g>
+	</g>
+</g>
+<g>
+	<rect x="1789.707" y="2385.476" fill="none" stroke="#000000" stroke-miterlimit="10" width="120.797" height="317.477"/>
+	
+		<line fill="none" stroke="#000000" stroke-miterlimit="10" stroke-dasharray="2" x1="1849.586" y1="2385.476" x2="1850.102" y2="2702.952"/>
+	<rect x="1768.375" y="2365.03" fill="none" stroke="#ED2224" stroke-miterlimit="10" width="164.195" height="360.16"/>
+	<g>
+		<g>
+			
+				<line fill="none" stroke="#000000" stroke-width="0.5" stroke-miterlimit="10" x1="1878.625" y1="2442.317" x2="1878.625" y2="2645.321"/>
+			<g>
+				<path d="M1878.625,2439.3c-0.527,1.42-1.426,3.182-2.378,4.273l2.378-0.859l2.377,0.859
+					C1880.051,2442.481,1879.151,2440.72,1878.625,2439.3z"/>
+			</g>
+			<g>
+				<path d="M1878.625,2648.339c-0.527-1.42-1.426-3.182-2.378-4.273l2.378,0.859l2.377-0.859
+					C1880.051,2645.157,1879.151,2646.919,1878.625,2648.339z"/>
+			</g>
+		</g>
+	</g>
+	<text transform="matrix(0 -1 1 0 1835.5977 2645.0176)" fill="#010101" font-family="'Calibri'" font-size="26.6457">FLY BACK CUT 1</text>
+</g>
+<g>
+	
+		<line fill="none" stroke="#000000" stroke-width="0.7087" stroke-miterlimit="10" x1="1155.078" y1="335.992" x2="1154.98" y2="613.434"/>
+	
+		<line fill="none" stroke="#000000" stroke-width="0.7087" stroke-miterlimit="10" x1="1154.98" y1="613.434" x2="1439.5" y2="513.191"/>
+	
+		<line fill="none" stroke="#000000" stroke-width="0.7087" stroke-miterlimit="10" x1="1422.715" y1="331.348" x2="1155.078" y2="335.992"/>
+	<path fill="none" stroke="#000000" stroke-width="0.7087" stroke-miterlimit="10" d="M1420.383,332.09
+		c267.91-74.898,355.922-126.988,355.922-126.988"/>
+	
+		<line fill="none" stroke="#000000" stroke-width="0.7087" stroke-miterlimit="10" x1="1809.293" y1="298.883" x2="1439.5" y2="513.188"/>
+	
+		<line fill="none" stroke="#000000" stroke-width="0.7087" stroke-miterlimit="10" x1="1776.305" y1="205.102" x2="1809.293" y2="298.883"/>
+	<text transform="matrix(0.9643 0.0155 -0.0048 1 1170.1455 467.8633)"><tspan x="0" y="0" fill="#010101" font-family="'Calibri'" font-size="28.3465">C</tspan><tspan x="0" y="34.015" fill="#010101" font-family="'Calibri'" font-size="28.3465">B</tspan></text>
+	<g>
+		<g>
+			
+				<line fill="none" stroke="#000000" stroke-width="0.7087" stroke-miterlimit="10" x1="1244.82" y1="366.312" x2="1244.82" y2="559.54"/>
+			<g>
+				<path d="M1244.82,362.035c-0.746,2.013-2.021,4.509-3.37,6.057l3.37-1.219l3.369,1.219
+					C1246.84,366.544,1245.566,364.048,1244.82,362.035z"/>
+			</g>
+			<g>
+				<path d="M1244.82,563.816c-0.746-2.013-2.021-4.509-3.37-6.057l3.37,1.219l3.369-1.219
+					C1246.84,559.307,1245.566,561.804,1244.82,563.816z"/>
+			</g>
+		</g>
+	</g>
+	<text transform="matrix(1 0 0 1 1261.334 451.1533)"><tspan x="0" y="0" fill="#010101" font-family="'Calibri'" font-size="28.3465">BACK YOKE</tspan><tspan x="0" y="34.016" fill="#010101" font-family="'Calibri'" font-size="28.3465">CUT 2</tspan></text>
+	
+		<line fill="none" stroke="#ED2224" stroke-width="0.7087" stroke-miterlimit="10" x1="1127.637" y1="307.855" x2="1127.523" y2="651.297"/>
+	
+		<line fill="none" stroke="#ED2224" stroke-width="0.7087" stroke-miterlimit="10" x1="1127.523" y1="651.297" x2="1446.371" y2="534.773"/>
+	
+		<line fill="none" stroke="#ED2224" stroke-width="0.7087" stroke-miterlimit="10" x1="1422.715" y1="301.871" x2="1127.637" y2="307.855"/>
+	<path fill="none" stroke="#ED2224" stroke-width="0.7087" stroke-miterlimit="10" d="M1423.02,302.73
+		c179.066-50.551,227.629-66.605,362.754-129.074"/>
+	
+		<line fill="none" stroke="#ED2224" stroke-width="0.7087" stroke-miterlimit="10" x1="1838.062" y1="307.855" x2="1446.371" y2="534.773"/>
+	
+		<line fill="none" stroke="#ED2224" stroke-width="0.7087" stroke-miterlimit="10" x1="1785.77" y1="171.133" x2="1838.062" y2="307.855"/>
+</g>
+<g>
+	<g>
+		<g>
+			<line fill="none" stroke="#000000" stroke-miterlimit="10" x1="2077.49" y1="1506.088" x2="2077.49" y2="1735.482"/>
+			<g>
+				<path d="M2077.49,1500.053c-1.054,2.84-2.852,6.363-4.756,8.547l4.756-1.72l4.755,1.72
+					C2080.341,1506.416,2078.543,1502.893,2077.49,1500.053z"/>
+			</g>
+			<g>
+				<path d="M2077.49,1741.518c-1.054-2.84-2.852-6.363-4.756-8.547l4.756,1.72l4.755-1.72
+					C2080.341,1735.154,2078.543,1738.678,2077.49,1741.518z"/>
+			</g>
+		</g>
+	</g>
+	
+		<line fill="none" stroke="#000000" stroke-width="0.7087" stroke-miterlimit="10" x1="2174.521" y1="1477.748" x2="2201.463" y2="1742.475"/>
+	
+		<line fill="none" stroke="#000000" stroke-width="0.7087" stroke-miterlimit="10" x1="2201.463" y1="1742.475" x2="2016.557" y2="1814.143"/>
+	
+		<line fill="none" stroke="#000000" stroke-width="0.7087" stroke-miterlimit="10" x1="2016.557" y1="1814.143" x2="1831.736" y2="1741.123"/>
+	
+		<line fill="none" stroke="#000000" stroke-width="0.7087" stroke-miterlimit="10" x1="1831.736" y1="1741.123" x2="1870.58" y2="1474.463"/>
+	
+		<line fill="none" stroke="#ED2224" stroke-width="0.7087" stroke-miterlimit="10" x1="2187.994" y1="1432.439" x2="2225.826" y2="1749.635"/>
+	
+		<line fill="none" stroke="#ED2224" stroke-width="0.7087" stroke-miterlimit="10" x1="2225.826" y1="1749.635" x2="2022.307" y2="1833.896"/>
+	
+		<line fill="none" stroke="#ED2224" stroke-width="0.7087" stroke-miterlimit="10" x1="2022.307" y1="1833.896" x2="1811.646" y2="1754.873"/>
+	
+		<line fill="none" stroke="#ED2224" stroke-width="0.7087" stroke-miterlimit="10" x1="1811.537" y1="1754.865" x2="1857.635" y2="1434.475"/>
+	<text transform="matrix(1 0 0 1 1914.0957 1596.8291)"><tspan x="0" y="0" fill="#010101" font-family="'Calibri'" font-size="28.3465">BACK</tspan><tspan x="0" y="34.016" fill="#010101" font-family="'Calibri'" font-size="28.3465">POCKET</tspan><tspan x="0" y="68.031" fill="#010101" font-family="'Calibri'" font-size="28.3465">CUT 2</tspan></text>
+	
+		<line fill="none" stroke="#ED2224" stroke-width="0.7087" stroke-miterlimit="10" x1="2189.213" y1="1432.439" x2="1857.635" y2="1432.439"/>
+	
+		<line fill="none" stroke="#000000" stroke-width="0.7087" stroke-miterlimit="10" x1="2175.201" y1="1474.463" x2="1870.58" y2="1474.463"/>
+</g>
+<g>
+	
+		<line fill="none" stroke="#000000" stroke-miterlimit="10" stroke-dasharray="2" x1="972.805" y1="135.948" x2="973.293" y2="292.218"/>
+	<text transform="matrix(0.8913 0.0251 0.0028 1 944.2671 201.4346)"><tspan x="0" y="0" fill="#010101" font-family="'Calibri'" font-size="28.3465">C</tspan><tspan x="-0.001" y="34.016" fill="#010101" font-family="'Calibri'" font-size="28.3465">B</tspan></text>
+	<line fill="none" stroke="#000000" stroke-miterlimit="10" x1="1563.051" y1="56.765" x2="1595.047" y2="153.757"/>
+	<line fill="none" stroke="#ED2224" stroke-miterlimit="10" x1="1576.488" y1="27.749" x2="1629.219" y2="167.362"/>
+	<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M1246.883,267.917c173.227-33.453,347.898-114.969,347.898-114.969"
+		/>
+	<path fill="none" stroke="#ED2224" stroke-miterlimit="10" d="M1246.477,292.218c188.895-42.148,382.902-126.527,382.902-126.527"
+		/>
+	<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M1232.543,157.198c154.254-28.832,331.84-101.406,331.84-101.406"/>
+	<path fill="none" stroke="#ED2224" stroke-miterlimit="10" d="M1228.555,134.722c161.336-31.734,347.941-106.938,347.941-106.938"
+		/>
+	<g>
+		<g>
+			
+				<line fill="none" stroke="#000000" stroke-width="0.7087" stroke-miterlimit="10" x1="1072.266" y1="168.729" x2="1072.266" y2="256.964"/>
+			<g>
+				<path d="M1072.266,164.452c-0.747,2.013-2.021,4.509-3.37,6.057l3.37-1.219l3.369,1.219
+					C1074.287,168.961,1073.012,166.465,1072.266,164.452z"/>
+			</g>
+			<g>
+				<path d="M1072.266,261.241c-0.747-2.013-2.021-4.509-3.37-6.057l3.37,1.219l3.369-1.219
+					C1074.287,256.732,1073.012,259.229,1072.266,261.241z"/>
+			</g>
+		</g>
+	</g>
+	<line fill="none" stroke="#ED2224" stroke-miterlimit="10" x1="1246.883" y1="292.218" x2="700.407" y2="292.218"/>
+	<line fill="none" stroke="#000000" stroke-miterlimit="10" x1="1246.883" y1="267.905" x2="700.407" y2="267.905"/>
+	<line fill="none" stroke="#000000" stroke-miterlimit="10" x1="382.239" y1="55.526" x2="350.243" y2="152.519"/>
+	<line fill="none" stroke="#ED2224" stroke-miterlimit="10" x1="368.797" y1="26.519" x2="316.071" y2="166.124"/>
+	<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M701.379,266.675c-174.754-33.328-350.871-114.961-350.871-114.961"
+		/>
+	<path fill="none" stroke="#ED2224" stroke-miterlimit="10" d="M703.375,292.218c-191.152-42.531-387.465-127.766-387.465-127.766"
+		/>
+	<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M712.747,157.515c-153.648-31.371-332-102.477-332-102.477"/>
+	<path fill="none" stroke="#ED2224" stroke-miterlimit="10" d="M716.735,134.722C555.879,100.976,368.661,26.933,368.661,26.933"/>
+	<line fill="none" stroke="#ED2224" stroke-miterlimit="10" x1="711.833" y1="134.722" x2="1228.555" y2="134.722"/>
+	<line fill="none" stroke="#000000" stroke-miterlimit="10" x1="711.833" y1="157.198" x2="1232.543" y2="157.198"/>
+	<text transform="matrix(1 0 0 1 659.9014 201.6172)"><tspan x="0" y="0" fill="#010101" font-family="'Calibri'" font-size="28.3465">BACK WAISTBAND</tspan><tspan x="0" y="34.016" fill="#010101" font-family="'Calibri'" font-size="28.3465">CUT 2</tspan></text>
+</g>
+<g>
+	
+		<line fill="none" stroke="#000000" stroke-width="0.7087" stroke-miterlimit="10" x1="262.219" y1="991.71" x2="1018.402" y2="991.71"/>
+	<text transform="matrix(0.9655 0 0 1 288.8657 981.5254)" fill="#010101" font-family="'Calibri'" font-size="28.3465">HL</text>
+	<text transform="matrix(0.9655 0 0 1 371.1724 1938.5996)" fill="#010101" font-family="'Calibri'" font-size="28.3465">KL</text>
+	
+		<line fill="none" stroke="#000000" stroke-width="0.7087" stroke-miterlimit="10" stroke-dasharray="0.8504" x1="127.469" y1="1291.585" x2="989.301" y2="1291.585"/>
+	
+		<line fill="none" stroke="#000000" stroke-width="0.7087" stroke-miterlimit="10" x1="67.266" y1="1205.046" x2="998.004" y2="1205.058"/>
+	
+		<line fill="none" stroke="#000000" stroke-width="0.7087" stroke-miterlimit="10" x1="358.926" y1="1948.979" x2="926.887" y2="1948.979"/>
+	
+		<line fill="none" stroke="#000000" stroke-width="0.7087" stroke-miterlimit="10" x1="371.172" y1="2377.909" x2="915.359" y2="2377.909"/>
+	
+		<line fill="none" stroke="#000000" stroke-width="0.7087" stroke-miterlimit="10" x1="399.652" y1="3292.151" x2="891.75" y2="3292.151"/>
+	<path fill="none" stroke="#000000" stroke-width="0.7087" stroke-miterlimit="10" d="M319.848,770.847
+		c-64.375,403.293-251.953,434.211-251.953,434.211"/>
+	
+		<line fill="none" stroke="#000000" stroke-width="0.7087" stroke-miterlimit="10" x1="358.926" y1="1948.979" x2="399.652" y2="3290.269"/>
+	
+		<line fill="none" stroke="#000000" stroke-width="0.7087" stroke-miterlimit="10" x1="926.887" y1="1948.979" x2="891.754" y2="3291.956"/>
+	
+		<line fill="none" stroke="#000000" stroke-width="0.7087" stroke-miterlimit="10" x1="1018.402" y1="991.71" x2="926.887" y2="1948.979"/>
+	<path fill="none" stroke="#000000" stroke-width="0.7087" stroke-miterlimit="10" d="M67.266,1204.976
+		c288.797,356.051,291.66,744.004,291.66,744.004"/>
+	
+		<line fill="none" stroke="#000000" stroke-width="0.7087" stroke-miterlimit="10" x1="1037.969" y1="640.581" x2="319.848" y2="770.847"/>
+	<text transform="matrix(0.9922 0 0 1 255.2192 1189.002)" fill="#010101" font-family="'Calibri'" font-size="28.3465">CL</text>
+	<path fill="none" stroke="#000000" stroke-width="0.7087" stroke-miterlimit="10" d="M1037.969,640.581
+		c-1.648,101.848-19.566,351.129-19.566,351.129"/>
+	<g>
+		<g>
+			<path fill="none" stroke="#010101" stroke-miterlimit="10" d="M792.016,802.226c-6.141,0-11.105-5.852-11.105-13.082
+				c0-7.234,4.965-13.086,11.105-13.086s11.102,5.852,11.102,13.086C803.117,796.374,798.156,802.226,792.016,802.226z"/>
+			<path fill="none" stroke="#010101" stroke-miterlimit="10" d="M801.27,789.144c0-6.031-4.141-10.902-9.254-10.902
+				s-9.254,4.871-9.254,10.902s4.141,10.895,9.254,10.895S801.27,795.175,801.27,789.144z"/>
+			<path fill="none" stroke="#010101" stroke-miterlimit="10" d="M792.016,797.87c-4.09,0-7.402-3.91-7.402-8.727
+				c0-4.82,3.312-8.73,7.402-8.73c4.094,0,7.398,3.91,7.398,8.73C799.414,793.96,796.109,797.87,792.016,797.87z"/>
+			<path fill="none" stroke="#010101" stroke-miterlimit="10" d="M797.57,789.144c0-3.617-2.48-6.547-5.555-6.547
+				c-3.066,0-5.555,2.93-5.555,6.547s2.488,6.539,5.555,6.539C795.09,795.683,797.57,792.761,797.57,789.144z"/>
+			<path fill="none" stroke="#010101" stroke-miterlimit="10" d="M792.016,793.499c-2.039,0-3.699-1.941-3.699-4.355
+				s1.66-4.359,3.699-4.359s3.699,1.945,3.699,4.359S794.055,793.499,792.016,793.499z"/>
+			<path fill="none" stroke="#010101" stroke-miterlimit="10" d="M793.867,789.144c0-1.203-0.828-2.184-1.852-2.184
+				c-1.027,0-1.855,0.98-1.855,2.184c0,1.199,0.828,2.184,1.855,2.184C793.039,791.327,793.867,790.343,793.867,789.144z"/>
+		</g>
+		<g>
+			<line fill="none" stroke="#010101" stroke-miterlimit="10" x1="792.016" y1="789.144" x2="792.016" y2="802.226"/>
+			<line fill="none" stroke="#010101" stroke-miterlimit="10" x1="792.016" y1="789.144" x2="802.574" y2="793.183"/>
+			<line fill="none" stroke="#010101" stroke-miterlimit="10" x1="792.016" y1="789.144" x2="798.543" y2="778.565"/>
+			<line fill="none" stroke="#010101" stroke-miterlimit="10" x1="792.016" y1="789.144" x2="785.488" y2="778.565"/>
+			<line fill="none" stroke="#010101" stroke-miterlimit="10" x1="792.016" y1="789.144" x2="781.461" y2="793.183"/>
+		</g>
+	</g>
+	<g>
+		<g>
+			<path fill="none" stroke="#010101" stroke-miterlimit="10" d="M423.586,830.671c-6.145,0-11.109-5.855-11.109-13.082
+				c0-7.23,4.965-13.086,11.109-13.086c6.141,0,11.098,5.855,11.098,13.086C434.684,824.815,429.727,830.671,423.586,830.671z"/>
+			<path fill="none" stroke="#010101" stroke-miterlimit="10" d="M432.836,817.589c0-6.027-4.137-10.902-9.25-10.902
+				s-9.254,4.875-9.254,10.902c0,6.035,4.141,10.898,9.254,10.898S432.836,823.624,432.836,817.589z"/>
+			<path fill="none" stroke="#010101" stroke-miterlimit="10" d="M423.586,826.312c-4.098,0-7.41-3.91-7.41-8.723
+				c0-4.816,3.312-8.727,7.41-8.727c4.094,0,7.398,3.91,7.398,8.727C430.984,822.401,427.68,826.312,423.586,826.312z"/>
+			<path fill="none" stroke="#010101" stroke-miterlimit="10" d="M429.137,817.589c0-3.613-2.477-6.543-5.551-6.543
+				c-3.066,0-5.555,2.93-5.555,6.543s2.488,6.539,5.555,6.539C426.66,824.128,429.137,821.202,429.137,817.589z"/>
+			<path fill="none" stroke="#010101" stroke-miterlimit="10" d="M423.586,821.944c-2.039,0-3.699-1.938-3.699-4.355
+				s1.66-4.359,3.699-4.359c2.035,0,3.699,1.941,3.699,4.359S425.621,821.944,423.586,821.944z"/>
+			<path fill="none" stroke="#010101" stroke-miterlimit="10" d="M425.43,817.589c0-1.199-0.828-2.188-1.844-2.188
+				c-1.031,0-1.855,0.988-1.855,2.188c0,1.195,0.824,2.188,1.855,2.188C424.602,819.776,425.43,818.784,425.43,817.589z"/>
+		</g>
+		<g>
+			<line fill="none" stroke="#010101" stroke-miterlimit="10" x1="423.586" y1="817.589" x2="423.586" y2="830.671"/>
+			<line fill="none" stroke="#010101" stroke-miterlimit="10" x1="423.586" y1="817.589" x2="434.141" y2="821.628"/>
+			<line fill="none" stroke="#010101" stroke-miterlimit="10" x1="423.586" y1="817.589" x2="430.109" y2="807.007"/>
+			<line fill="none" stroke="#010101" stroke-miterlimit="10" x1="423.586" y1="817.589" x2="417.059" y2="807.007"/>
+			<line fill="none" stroke="#010101" stroke-miterlimit="10" x1="423.586" y1="817.589" x2="413.027" y2="821.628"/>
+		</g>
+	</g>
+	
+		<line fill="none" stroke="#ED2224" stroke-width="0.7087" stroke-miterlimit="10" x1="373.254" y1="3367.093" x2="916.578" y2="3367.093"/>
+	<path fill="none" stroke="#ED2224" stroke-width="0.7087" stroke-miterlimit="10" d="M296.973,740.835
+		C235.875,1169.542,11,1193.19,11,1193.19"/>
+	
+		<line fill="none" stroke="#ED2224" stroke-width="0.7087" stroke-miterlimit="10" x1="327.84" y1="1948.573" x2="373.254" y2="3365.202"/>
+	
+		<line fill="none" stroke="#ED2224" stroke-width="0.7087" stroke-miterlimit="10" x1="955.758" y1="1948.979" x2="916.578" y2="3365.753"/>
+	
+		<line fill="none" stroke="#ED2224" stroke-width="0.7087" stroke-miterlimit="10" x1="1046.625" y1="991.71" x2="955.758" y2="1948.979"/>
+	<path fill="none" stroke="#ED2224" stroke-width="0.7087" stroke-miterlimit="10" d="M14.188,1193.19
+		c310.578,360.547,313.652,753.41,313.652,753.41"/>
+	
+		<line fill="none" stroke="#ED2224" stroke-width="0.7087" stroke-miterlimit="10" x1="1063.152" y1="607.104" x2="296.973" y2="740.835"/>
+	<path fill="none" stroke="#ED2224" stroke-width="0.7087" stroke-miterlimit="10" d="M1063.152,604.624
+		c-1.395,112.277-16.527,387.086-16.527,387.086"/>
+</g>
+<g>
+	<text transform="matrix(0.9655 0 0 1 1761.3613 982.4551)" fill="#010101" font-family="'Calibri'" font-size="28.3465">HL</text>
+	<text transform="matrix(0.9655 0 0 1 1647.4746 1942.9023)" fill="#010101" font-family="'Calibri'" font-size="28.3465">KL</text>
+	
+		<line fill="none" stroke="#000000" stroke-width="0.7087" stroke-miterlimit="10" x1="1814.812" y1="587.632" x2="1814.812" y2="990.737"/>
+	
+		<line fill="none" stroke="#000000" stroke-width="0.7087" stroke-miterlimit="10" x1="1815.137" y1="990.737" x2="1101.25" y2="990.737"/>
+	
+		<line fill="none" stroke="#000000" stroke-width="0.7087" stroke-miterlimit="10" stroke-dasharray="0.8504" x1="1871.051" y1="1290.612" x2="1117.848" y2="1290.612"/>
+	<path fill="none" stroke="#000000" stroke-width="0.7087" stroke-miterlimit="10" d="M1814.934,990.886
+		c3.855,183.926,112.223,213.188,112.223,213.188"/>
+	
+		<line fill="none" stroke="#000000" stroke-width="0.7087" stroke-miterlimit="10" x1="1927.156" y1="1204.073" x2="1110.09" y2="1204.085"/>
+	
+		<line fill="none" stroke="#000000" stroke-width="0.7087" stroke-miterlimit="10" x1="1214.406" y1="1948.151" x2="1694.434" y2="1948.151"/>
+	
+		<line fill="none" stroke="#000000" stroke-width="0.7087" stroke-miterlimit="10" x1="1226.68" y1="2376.944" x2="1683.434" y2="2376.944"/>
+	
+		<line fill="none" stroke="#000000" stroke-width="0.7087" stroke-miterlimit="10" x1="1253.062" y1="3291.187" x2="1660.395" y2="3291.187"/>
+	<text transform="matrix(0.9922 0 0 1 1779.3789 1199.8872)" fill="#010101" font-family="'Calibri'" font-size="28.3465">CL</text>
+	
+		<line fill="none" stroke="#000000" stroke-width="0.7087" stroke-miterlimit="10" x1="1449.305" y1="587.632" x2="1814.812" y2="587.632"/>
+	<g>
+		<g>
+			
+				<line fill="none" stroke="#000000" stroke-width="0.7087" stroke-miterlimit="10" x1="1808.198" y1="911.87" x2="1838.754" y2="911.87"/>
+			<g>
+				<circle cx="1808.331" cy="911.87" r="2.665"/>
+			</g>
+		</g>
+	</g>
+	
+		<line fill="none" stroke="#000000" stroke-width="0.7087" stroke-miterlimit="10" x1="1449.305" y1="585.53" x2="1449.305" y2="794.257"/>
+	
+		<line fill="none" stroke="#000000" stroke-width="0.7087" stroke-miterlimit="10" x1="1449.316" y1="794.257" x2="1111.191" y2="790.444"/>
+	
+		<line fill="none" stroke="#000000" stroke-width="0.7087" stroke-miterlimit="10" x1="1214.086" y1="1948.151" x2="1253.062" y2="3291.187"/>
+	
+		<line fill="none" stroke="#000000" stroke-width="0.7087" stroke-miterlimit="10" x1="1694.688" y1="1942.671" x2="1660.395" y2="3291.187"/>
+	<path fill="none" stroke="#000000" stroke-width="0.7087" stroke-miterlimit="10" d="M1101.25,990.737
+		c-13.586,247.531,112.836,958.766,112.836,958.766"/>
+	<path fill="none" stroke="#000000" stroke-width="0.7087" stroke-miterlimit="10" d="M1923.309,1201.687
+		c-215.641,321.547-228.875,746.465-228.875,746.465"/>
+	<text transform="matrix(1 0 0 1 1784.1641 759.2871)"><tspan x="0" y="0" fill="#010101" font-family="'Calibri'" font-size="28.3465">C</tspan><tspan x="0" y="34.016" fill="#010101" font-family="'Calibri'" font-size="28.3465">F</tspan></text>
+	<g>
+		<g>
+			
+				<line fill="none" stroke="#000000" stroke-width="0.7087" stroke-miterlimit="10" x1="1107.559" y1="1059.007" x2="1077.273" y2="1059.007"/>
+			<g>
+				<circle cx="1107.426" cy="1059.007" r="2.665"/>
+			</g>
+		</g>
+	</g>
+	<path fill="none" stroke="#000000" stroke-width="0.7087" stroke-miterlimit="10" d="M1111.191,790.444
+		c-13.469,76.902-9.941,200.293-9.941,200.293"/>
+	
+		<line fill="none" stroke="#ED2224" stroke-width="0.7087" stroke-miterlimit="10" x1="1233.84" y1="3366.128" x2="1680.156" y2="3366.128"/>
+	
+		<line fill="none" stroke="#ED2224" stroke-width="0.7087" stroke-miterlimit="10" x1="1838.754" y1="562.636" x2="1838.754" y2="990.737"/>
+	<path fill="none" stroke="#ED2224" stroke-width="0.7087" stroke-miterlimit="10" d="M1838.754,990.737
+		c3.957,177.422,115.152,205.652,115.152,205.652"/>
+	
+		<line fill="none" stroke="#ED2224" stroke-width="0.7087" stroke-miterlimit="10" x1="1425.164" y1="562.636" x2="1838.754" y2="562.636"/>
+	
+		<line fill="none" stroke="#ED2224" stroke-width="0.7087" stroke-miterlimit="10" x1="1425.156" y1="562.636" x2="1425.156" y2="766.78"/>
+	
+		<line fill="none" stroke="#ED2224" stroke-width="0.7087" stroke-miterlimit="10" x1="1425.156" y1="766.78" x2="1090.676" y2="762.968"/>
+	
+		<line fill="none" stroke="#ED2224" stroke-width="0.7087" stroke-miterlimit="10" x1="1191.137" y1="1947.124" x2="1233.84" y2="3365.065"/>
+	
+		<line fill="none" stroke="#ED2224" stroke-width="0.7087" stroke-miterlimit="10" x1="1717.719" y1="1941.644" x2="1680.148" y2="3366.085"/>
+	<path fill="none" stroke="#ED2224" stroke-width="0.7087" stroke-miterlimit="10" d="M1078.309,990.886
+		c-13.594,247.227,112.828,957.59,112.828,957.59"/>
+	<path fill="none" stroke="#ED2224" stroke-width="0.7087" stroke-miterlimit="10" d="M1953.906,1196.39
+		c-222.793,323.395-236.469,750.734-236.469,750.734"/>
+	<path fill="none" stroke="#ED2224" stroke-width="0.7087" stroke-miterlimit="10" d="M1090.676,759.245
+		c-10.492,90.898-12.367,231.641-12.367,231.641"/>
+</g>
+<g>
+	<g>
+		
+			<line fill="none" stroke="#000000" stroke-width="1.417" stroke-miterlimit="10" x1="1450.293" y1="1472.048" x2="1450.293" y2="2783.679"/>
+		<g>
+			<path d="M1443.164,1481.134c0,0.234,0.115,0.463,0.328,0.598c0.328,0.21,0.768,0.113,0.978-0.217l5.823-9.144l5.823,9.144
+				c0.21,0.33,0.649,0.427,0.978,0.217c0.33-0.21,0.426-0.651,0.218-0.978l-6.421-10.082c-0.13-0.204-0.355-0.328-0.598-0.328
+				s-0.468,0.124-0.598,0.328l-6.421,10.082C1443.199,1480.872,1443.164,1481.004,1443.164,1481.134
+				C1443.164,1481.368,1443.164,1481.004,1443.164,1481.134z"/>
+		</g>
+		<g>
+			<path d="M1443.164,2774.595c0-0.234,0.115-0.463,0.328-0.6c0.328-0.211,0.768-0.113,0.978,0.217l5.823,9.145l5.823-9.145
+				c0.21-0.33,0.649-0.428,0.978-0.217c0.33,0.211,0.426,0.65,0.218,0.979l-6.421,10.082c-0.13,0.203-0.355,0.328-0.598,0.328
+				s-0.468-0.125-0.598-0.328l-6.421-10.082C1443.199,2774.856,1443.164,2774.724,1443.164,2774.595
+				C1443.164,2774.36,1443.164,2774.724,1443.164,2774.595z"/>
+		</g>
+	</g>
+</g>
+<text transform="matrix(0 -1 1 0 1482.793 1619.834)" fill="#9A9899" font-family="'Calibri'" font-size="28.3465">BCSizing ©</text>
+<text transform="matrix(0 -1 1 0 1430.6641 2712.875)"><tspan x="0" y="0" font-family="'Calibri'" font-size="28.3465">FRONT</tspan><tspan x="78.02" y="0" font-family="'Calibri'" font-size="28.3465"> T</tspan><tspan x="98.242" y="0" font-family="'Calibri'" font-size="28.3465">R</tspan><tspan x="113.377" y="0" font-family="'Calibri'" font-size="28.3465">OUSER L</tspan><tspan x="210.916" y="0" font-family="'Calibri'" font-size="28.3465">E</tspan><tspan x="224.473" y="0" font-family="'Calibri'" font-size="28.3465">G</tspan></text>
+<text transform="matrix(0 -1 1 0 1436.5068 1820.1768)" font-family="'Calibri'" font-size="28.3465">MRUK12 - MRUS8 - MREU38</text>
+<text transform="matrix(0 -1 1 0 1482.793 2712.873)" font-family="'Calibri'" font-size="28.3465">JEANS</text>
+<text transform="matrix(4.489659e-11 -1 1 4.489659e-11 1443.2324 2181.0029)" font-family="'Calibri'" font-size="28.3465">CUT 2</text>
+<g>
+	<g>
+		
+			<line fill="none" stroke="#000000" stroke-width="1.417" stroke-miterlimit="10" x1="658.895" y1="1485.382" x2="658.895" y2="2797.013"/>
+		<g>
+			<path d="M651.766,1494.468c0,0.234,0.115,0.463,0.328,0.598c0.328,0.21,0.768,0.113,0.978-0.217l5.823-9.144l5.823,9.144
+				c0.21,0.33,0.649,0.427,0.978,0.217c0.33-0.21,0.426-0.651,0.218-0.978l-6.421-10.082c-0.13-0.204-0.355-0.328-0.598-0.328
+				s-0.468,0.124-0.598,0.328l-6.421,10.082C651.801,1494.206,651.766,1494.337,651.766,1494.468
+				C651.766,1494.702,651.766,1494.337,651.766,1494.468z"/>
+		</g>
+		<g>
+			<path d="M651.766,2787.929c0-0.234,0.115-0.463,0.328-0.6c0.328-0.211,0.768-0.113,0.978,0.217l5.823,9.145l5.823-9.145
+				c0.21-0.33,0.649-0.428,0.978-0.217c0.33,0.211,0.426,0.65,0.218,0.979l-6.421,10.082c-0.13,0.203-0.355,0.328-0.598,0.328
+				s-0.468-0.125-0.598-0.328l-6.421-10.082C651.801,2788.19,651.766,2788.058,651.766,2787.929
+				C651.766,2787.694,651.766,2788.058,651.766,2787.929z"/>
+		</g>
+	</g>
+</g>
+<text transform="matrix(0 -1 1 0 691.3955 1633.168)" fill="#9A9899" font-family="'Calibri'" font-size="28.3465">BCSizing ©</text>
+<text transform="matrix(0 -1 1 0 639.2666 2726.207)"><tspan x="0" y="0" font-family="'Calibri'" font-size="28.3465">BACK</tspan><tspan x="60.641" y="0" font-family="'Calibri'" font-size="28.3465"> T</tspan><tspan x="80.863" y="0" font-family="'Calibri'" font-size="28.3465">R</tspan><tspan x="95.999" y="0" font-family="'Calibri'" font-size="28.3465">OUSER L</tspan><tspan x="193.537" y="0" font-family="'Calibri'" font-size="28.3465">E</tspan><tspan x="207.095" y="0" font-family="'Calibri'" font-size="28.3465">G</tspan></text>
+<text transform="matrix(0 -1 1 0 645.1094 1833.5107)" font-family="'Calibri'" font-size="28.3465">MRUK12 - MRUS8 - MREU38</text>
+<text transform="matrix(0 -1 1 0 691.396 2726.2051)" font-family="'Calibri'" font-size="28.3465">JEANS</text>
+<text transform="matrix(4.489659e-11 -1 1 4.489659e-11 651.835 2194.335)" font-family="'Calibri'" font-size="28.3465">CUT 2</text>
+</svg>
+`,
+    },
   ]);
 
   const [selectedFile, setSelectedFile] = useState(fileTabs[0].file);
