@@ -793,6 +793,7 @@ function Canvas({ selectedFile, selectedTool, setSelectedTool }) {
 
         canvas.on('mouse:up', function () {
           setIsDrawing(false);
+          setSelectedTool('select');
         });
       });
     }

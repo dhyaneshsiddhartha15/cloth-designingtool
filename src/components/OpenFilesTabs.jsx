@@ -22,7 +22,7 @@ const OpenFilesTabs = ({ fileTabs, setFileTabs, setOpenedFile }) => {
 
   return (
     <ul
-      className="flex text-xs bg-indigo-200 w-fit border max-h-[20px]  "
+      className="flex text-xs bg-indigo-200 w-fit border max-h-[20px]     "
       style={{
         clipPath: 'polygon(0 0, calc(100% - 10px) 0, 100% 100%, calc(100% ) 100%, 0 100%)',
       }}
@@ -35,7 +35,7 @@ const OpenFilesTabs = ({ fileTabs, setFileTabs, setOpenedFile }) => {
               e.stopPropagation();
               handleFileChange(file._id);
             }}
-            className={`cursor-pointer text-indigo-100 flex justify-center items-center gap-2 pl-2 pr-4 rounded-sm  ${
+            className={`cursor-pointer text-indigo-100 flex justify-center items-center gap-2 pl-2 pr-4 rounded-sm  max-w-[250px] ${
               file.isOpen ? 'bg-indigo-900' : 'bg-indigo-200 text-slate-600'
             }`}
             style={{
