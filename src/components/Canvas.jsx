@@ -975,6 +975,131 @@ function Canvas({ selectedFile, selectedTool, setSelectedTool }) {
       });
     }
 
+
+
+// Inside your existing tool selection condition
+if (selectedTool === 'extract') {
+  canvas.getObjects().forEach((obj) => {
+    obj.selectable = true;
+    obj.hasControls = true;
+  });
+
+  canvas.on('mouse:down', function (o) {
+    if (!isDrawing) {
+      const pointer = canvas.getPointer(o.e);
+      setStartPoint({ x: pointer.x, y: pointer.y });
+
+      const newCropRect = new fabric.Rect({
+        left: pointer.x,
+        top: pointer.y,
+        width: 0,
+        height: 0,
+        fill: 'rgba(0,0,0,0.3)',
+        stroke: '#2196F3',
+        strokeWidth: 2,
+        strokeDashArray: [5, 5],
+        selectable: true,
+        hasControls: true,
+        transparentCorners: false,
+        cornerColor: '#2196F3',
+        cornerStrokeColor: '#2196F3',
+        borderColor: '#2196F3',
+        cornerSize: 10,
+        padding: 0,
+        cornerStyle: 'circle',
+      });
+
+      canvas.add(newCropRect);
+      setCropRect(newCropRect);
+      setIsDrawing(true);
+    }
+  });
+
+  canvas.on('mouse:move', function (o) {
+    if (isDrawing && cropRect && startPoint) {
+      const pointer = canvas.getPointer(o.e);
+      const width = Math.abs(pointer.x - startPoint.x);
+      const height = Math.abs(pointer.y - startPoint.y);
+
+      cropRect.set({
+        width: width,
+        height: height,
+        left: Math.min(pointer.x, startPoint.x),
+        top: Math.min(pointer.y, startPoint.y),
+      });
+
+      canvas.renderAll();
+    }
+  });
+
+  canvas.on('mouse:up', function () {
+    if (cropRect) {
+      cropRect.setControlsVisibility({
+        mt: true,
+        mb: true,
+        ml: true,
+        mr: true,
+        mtr: true,
+      });
+
+      cropRect.on('modified', function () {
+        performExtraction();
+      });
+    }
+    setIsDrawing(false);
+  });
+
+  const performExtraction = () => {
+    if (!cropRect) return;
+
+    const objects = canvas.getObjects();
+    const cropBounds = {
+      left: cropRect.left,
+      top: cropRect.top,
+      right: cropRect.left + cropRect.width * cropRect.scaleX,
+      bottom: cropRect.top + cropRect.height * cropRect.scaleY,
+    };
+
+    objects.forEach((obj) => {
+      if (obj !== cropRect && obj.intersectsWithRect(cropBounds)) {
+        const clonedObj = fabric.util.object.clone(obj);
+
+        const objBounds = obj.getBoundingRect();
+        const intersection = {
+          left: Math.max(cropBounds.left, objBounds.left),
+          top: Math.max(cropBounds.top, objBounds.top),
+          right: Math.min(cropBounds.right, objBounds.left + objBounds.width),
+          bottom: Math.min(cropBounds.bottom, objBounds.top + objBounds.height),
+        };
+
+        clonedObj.set({
+          left: intersection.left,
+          top: intersection.top,
+          width: intersection.right - intersection.left,
+          height: intersection.bottom - intersection.top,
+          clipPath: new fabric.Rect({
+            left: -intersection.left + cropBounds.left,
+            top: -intersection.top + cropBounds.top,
+            width: cropRect.width * cropRect.scaleX,
+            height: cropRect.height * cropRect.scaleY,
+            absolutePositioned: true,
+          }),
+        });
+
+        canvas.add(clonedObj);
+      }
+    });
+
+    // After extraction, remove the crop rectangle
+    canvas.remove(cropRect);
+    setCropRect(null);
+
+    canvas.renderAll();
+  };
+}
+
+
+    
     if (selectedTool === 'drill hole') {
       const canvas = editor.canvas;
       canvas.on('mouse:down', (event) => {
