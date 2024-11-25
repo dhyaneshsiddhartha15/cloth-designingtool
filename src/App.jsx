@@ -3143,9 +3143,7 @@ function App() {
 	<path fill="none" stroke="#ED2224" stroke-miterlimit="10" d="M703.375,292.218c-191.152-42.531-387.465-127.766-387.465-127.766"
 		/>
 	<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M712.747,157.515c-153.648-31.371-332-102.477-332-102.477"/>
-	<path fill="none" stroke="#ED2224" stroke-miterlimit="10" d="M716.735,134.722C555.879,100.976,368.661,26.933,368.661,26.933"/>
-	<line fill="none" stroke="#ED2224" stroke-miterlimit="10" x1="711.833" y1="134.722" x2="1228.555" y2="134.722"/>
-	<line fill="none" stroke="#000000" stroke-miterlimit="10" x1="711.833" y1="157.198" x2="1232.543" y2="157.198"/>
+	 <line fill="none" stroke="#000000" stroke-miterlimit="10" x1="711.833" y1="157.198" x2="1232.543" y2="157.198"/>
 	<text transform="matrix(1 0 0 1 659.9014 201.6172)"><tspan x="0" y="0" fill="#010101" font-family="'Calibri'" font-size="28.3465">BACK WAISTBAND</tspan><tspan x="0" y="34.016" fill="#010101" font-family="'Calibri'" font-size="28.3465">CUT 2</tspan></text>
 </g>
 <g>

@@ -45,52 +45,51 @@ function Canvas({ selectedFile, selectedTool, setSelectedTool }) {
           return;
         }
 
-        // Get the bounding rectangle of the active object
-        const bounds = activeObject.getBoundingRect(true);
-
-        // Create the seam allowance rectangle
-        const seamRect = new fabric.Rect({
-          left: bounds.left - width,
-          top: bounds.top - width,
-          width: bounds.width + width * 2,
-          height: bounds.height + width * 2,
-          fill: 'transparent',
-          stroke: '#666',
-          strokeWidth: 0.5,
-          strokeDashArray: [5, 5],
-          originX: 'left',
-          originY: 'top',
-        });
-
-        // Create the label
-        const text = new fabric.Text(`${width}mm seam`, {
-          left: bounds.left,
-          top: bounds.top - 20,
-          fontSize: 12,
-          fill: '#666',
-          selectable: false,
-          evented: false,
-        });
-
-        // Clone the active object to preserve its properties
+        // Clone the selected object to create an outline
         activeObject.clone((clonedObj) => {
-          // Create array of objects to group
-          const objectsToGroup = [clonedObj, seamRect, text];
-
-          // Create the group
-          const group = new fabric.Group(objectsToGroup, {
-            left: bounds.left,
-            top: bounds.top,
-            selectable: true,
-            hasControls: true,
+          // Set properties for the seam outline
+          clonedObj.set({
+            stroke: '#ED2224', // Red outline color
+            strokeWidth: width, // Outline thickness
+            fill: 'transparent', // No fill color
+            selectable: false, // Prevent interaction with the outline
+            evented: false, // Disable events for the outline
           });
 
-          // Remove the original object
-          canvas.remove(activeObject);
+          // Special handling for specific object types
+          if (clonedObj.type === 'line') {
+            // Expand line endpoints to simulate an outline effect
+            const padding = width / 2;
+            clonedObj.set({
+              x1: clonedObj.x1 - padding,
+              y1: clonedObj.y1 - padding,
+              x2: clonedObj.x2 + padding,
+              y2: clonedObj.y2 + padding,
+            });
+          } else if (clonedObj.type === 'path') {
+            // Adjust paths by scaling coordinates
+            const pathOffset = width / 2;
+            clonedObj.set({
+              path: clonedObj.path.map(([cmd, ...coords]) => {
+                return [
+                  cmd,
+                  ...coords.map((value, idx) =>
+                    idx % 2 === 0 ? value - pathOffset : value + pathOffset
+                  ),
+                ];
+              }),
+            });
+          } else if (clonedObj.type === 'polygon') {
+            // Offset polygon points
+            const polygonOffset = width / 2;
+            clonedObj.points = clonedObj.points.map(({ x, y }) => ({
+              x: x - polygonOffset,
+              y: y + polygonOffset,
+            }));
+          }
 
-          // Add the new group
-          canvas.add(group);
-          canvas.setActiveObject(group);
+          // Add the seam outline to the canvas
+          canvas.add(clonedObj);
           canvas.renderAll();
         });
       } catch (error) {
@@ -1405,6 +1404,39 @@ function Canvas({ selectedFile, selectedTool, setSelectedTool }) {
       });
     }
 
+    if (selectedTool === 'type') {
+      let text = prompt('Enter text here : ');
+      if (!text) return;
+      canvas.add(
+        new fabric.Text(text, {
+          fontFamily: 'Arial',
+          left: 100,
+          top: 100,
+        })
+      );
+    }
+    if (selectedTool === 'button') {
+      const canvas = editor.canvas;
+      canvas.on('mouse:down', (event) => {
+        const pointer = canvas.getPointer(event.e);
+
+        // 5mm diameter circle (convert to canvas units)
+        const diameterInPx = 2.7; // Adjust if scaling is applied
+        const circle = new fabric.Circle({
+          left: pointer.x - diameterInPx / 2, // Center the circle at click point
+          top: pointer.y - diameterInPx / 2,
+          radius: diameterInPx / 2,
+          fill: 'black', // No fill
+          stroke: 'black', // Mark with red outline
+          strokeWidth: 1,
+          selectable: false, // Prevent selection
+          evented: false, // Ignore events
+        });
+
+        canvas.add(circle);
+        canvas.renderAll();
+      });
+    }
     canvas.renderAll();
 
     return () => {
