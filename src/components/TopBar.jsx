@@ -37,7 +37,7 @@ function TopBar({ setSelectedTool, selectedTool, setActiveTab, setActiveSubTab }
         <img src="/logo.svg" alt="Logo" className="h-8 w-8" />
         <div className="text-xl font-bold">SS</div>
       </div>
-      <div className="flex gap-4 flex-1">
+      <div className="flex gap-4 flex-1 ">
         {tools.map((tool) => {
           const Icon = tool.icon;
           return (
