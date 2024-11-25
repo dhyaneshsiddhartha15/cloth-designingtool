@@ -30,71 +30,79 @@ function Canvas({ selectedFile, selectedTool, setSelectedTool }) {
       canvas.renderAll();
     };
 
-    const createSeamAllowance = (width) => {
+    const createSeamAllowance = (offsetCm) => {
       try {
         if (!editor?.canvas) {
           console.error('Canvas not initialized');
           return;
         }
 
-        const canvas = editor.canvas;
-        const activeObject = canvas.getActiveObject();
+        const activeObject = editor.canvas.getActiveObject();
 
         if (!activeObject) {
-          alert('Please select an object first');
+          alert('Please select an object to add the seam allowance');
           return;
         }
 
-        // Clone the selected object to create an outline
-        activeObject.clone((clonedObj) => {
-          // Set properties for the seam outline
-          clonedObj.set({
-            stroke: '#ED2224', // Red outline color
-            strokeWidth: width, // Outline thickness
-            fill: 'transparent', // No fill color
-            selectable: false, // Prevent interaction with the outline
-            evented: false, // Disable events for the outline
+        const offsetPx = offsetCm * (96 / 2.54); // Convert cm to pixels (1 inch = 2.54 cm, 96 DPI)
+
+        // Generate the cutline around the selected part
+        if (activeObject.type === 'path') {
+          // For Path objects, offset the path's control points
+          const cutlinePath = activeObject.path.map(([cmd, ...coords]) => {
+            const offsetCoords = coords.map((value, idx) =>
+              idx % 2 === 0 ? value - offsetPx : value + offsetPx
+            );
+            return [cmd, ...offsetCoords];
           });
 
-          // Special handling for specific object types
-          if (clonedObj.type === 'line') {
-            // Expand line endpoints to simulate an outline effect
-            const padding = width / 2;
-            clonedObj.set({
-              x1: clonedObj.x1 - padding,
-              y1: clonedObj.y1 - padding,
-              x2: clonedObj.x2 + padding,
-              y2: clonedObj.y2 + padding,
-            });
-          } else if (clonedObj.type === 'path') {
-            // Adjust paths by scaling coordinates
-            const pathOffset = width / 2;
-            clonedObj.set({
-              path: clonedObj.path.map(([cmd, ...coords]) => {
-                return [
-                  cmd,
-                  ...coords.map((value, idx) =>
-                    idx % 2 === 0 ? value - pathOffset : value + pathOffset
-                  ),
-                ];
-              }),
-            });
-          } else if (clonedObj.type === 'polygon') {
-            // Offset polygon points
-            const polygonOffset = width / 2;
-            clonedObj.points = clonedObj.points.map(({ x, y }) => ({
-              x: x - polygonOffset,
-              y: y + polygonOffset,
-            }));
-          }
+          const cutline = new fabric.Path(cutlinePath, {
+            stroke: 'red',
+            strokeWidth: 1.5, // Cutline thickness
+            fill: 'transparent',
+            selectable: false, // Prevent interaction
+            evented: false, // Disable events
+          });
 
-          // Add the seam outline to the canvas
-          canvas.add(clonedObj);
-          canvas.renderAll();
-        });
+          editor.canvas.add(cutline);
+        } else if (activeObject.type === 'polygon') {
+          // For Polygons, offset each point
+          const cutlinePoints = activeObject.points.map(({ x, y }) => ({
+            x: x - offsetPx,
+            y: y + offsetPx,
+          }));
+
+          const cutline = new fabric.Polygon(cutlinePoints, {
+            stroke: 'red',
+            strokeWidth: 1.5, // Cutline thickness
+            fill: 'transparent',
+            selectable: false, // Prevent interaction
+            evented: false, // Disable events
+          });
+
+          editor.canvas.add(cutline);
+        } else {
+          // For general objects (rectangles, groups, etc.), use bounding box
+          const bounds = activeObject.getBoundingRect(true);
+          const cutline = new fabric.Rect({
+            left: bounds.left - offsetPx,
+            top: bounds.top - offsetPx,
+            width: bounds.width + 2 * offsetPx,
+            height: bounds.height + 2 * offsetPx,
+            stroke: 'red',
+            strokeWidth: 1.5, // Cutline thickness
+            fill: 'transparent',
+            selectable: false, // Prevent interaction
+            evented: false, // Disable events
+          });
+
+          editor.canvas.add(cutline);
+        }
+
+        editor.canvas.renderAll();
       } catch (error) {
         console.error('Error creating seam allowance:', error);
-        alert('Error creating seam allowance. Please try again.');
+        alert('An error occurred while creating the seam allowance. Please try again.');
       }
     };
 
