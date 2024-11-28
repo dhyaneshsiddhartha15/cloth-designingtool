@@ -320,7 +320,7 @@ function SideBar({ setSelectedTool, activeTab, setActiveTab, activeSubTab, setAc
                           }`}
                         >
                           <subTab.Icon className="h-6 w-6" />
-
+                          <p className="line-clamp-1"> {subTab?.name}</p>
                           {subTab?.subTabs && (
                             <span
                               className="bg-black h-2 w-2 absolute bottom-1 right-1"
@@ -349,6 +349,7 @@ function SideBar({ setSelectedTool, activeTab, setActiveTab, activeSubTab, setAc
                                 }`}
                               >
                                 <subTab.Icon className="h-6 w-6" />
+                                {subTab.name}
                               </li>
                             ))}
                             {/* ******************************************************************************** */}
@@ -389,7 +390,7 @@ function SideBar({ setSelectedTool, activeTab, setActiveTab, activeSubTab, setAc
                             activeSubTab === subTab.id ? 'bg-indigo-300' : 'hover:bg-indigo-100'
                           }`}
                         >
-                          <subTab.Icon className="h-6 w-6" />{' '}
+                          <subTab.Icon className="h-6 w-6" /> {subTab.name}
                           {subTab?.subTabs && (
                             <span
                               className="bg-black h-2 w-2 absolute bottom-1 right-1"
@@ -411,13 +412,14 @@ function SideBar({ setSelectedTool, activeTab, setActiveTab, activeSubTab, setAc
                                     subTab.name
                                   );
                                 }}
-                                className={`cursor-pointer bg-indigo-200 flex justify-center px-5 items-center text-xs font-semibold px-4 py-4 rounded-lg ${
+                                className={`cursor-pointer bg-indigo-200 flex flex-col justify-center px-5 items-center text-xs font-semibold px-4 py-4 rounded-lg ${
                                   activeSubTab === subTab.id
                                     ? 'bg-indigo-300'
                                     : 'hover:bg-indigo-100'
                                 }`}
                               >
                                 <subTab.Icon className="h-6 w-6" />
+                                {subTab.name}
                               </li>
                             ))}
                             {/* ******************************************************************************** */}
