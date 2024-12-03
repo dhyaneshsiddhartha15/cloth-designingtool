@@ -61,25 +61,18 @@ function Canvas({ selectedFile, selectedTool, setSelectedTool }) {
       }
     };
 
-    // Attach event listener for multi-selection
     canvas.on('mouse:down', handleMouseDown);
 
-    // Ensure objects are updated whenever the tool changes
     updateObjectSelectability();
-
-    // Cleanup to avoid multiple listeners being added
-    return () => {
-      canvas.off('mouse:down', handleMouseDown);
-    };
 
     const createSeamAllowance = (offsetCm) => {
       // Get all selected objects
       const objs = canvas.getActiveObjects();
 
-      if (!objs || objs.length === 0) {
-        alert('No objects selected!');
-        return;
-      }
+      // if (!objs || objs.length === 0) {
+      //   alert('No objects selected!');
+      //   return;
+      // }
 
       // objs.forEach((obj) => {
       //   // Check if the object is part of a group
@@ -1568,7 +1561,8 @@ function Canvas({ selectedFile, selectedTool, setSelectedTool }) {
     canvas.renderAll();
 
     return () => {
-      canvas.off('mouse:down');
+      canvas.off('mouse:down', handleMouseDown);
+
       canvas.off('mouse:move');
       canvas.off('mouse:up');
       canvas.off('mouse:wheel');
@@ -1617,78 +1611,6 @@ function Canvas({ selectedFile, selectedTool, setSelectedTool }) {
       });
     }
   }, [selectedFile, editor]);
-
-  useEffect(() => {
-    if (!editor || !fabric) return;
-
-    const canvas = editor.canvas;
-
-    const updateObjectSelectability = () => {
-      canvas.getObjects().forEach((obj) => {
-        obj.selectable = selectedTool === 'select';
-        obj.hasControls = selectedTool === 'select';
-      });
-      canvas.renderAll();
-    };
-
-    if (selectedTool === 'select') {
-      updateObjectSelectability();
-
-      let isCtrlPressed = false;
-
-      const handleKeyDown = (e) => {
-        if (e.key === 'Control') {
-          isCtrlPressed = true;
-        }
-      };
-
-      const handleKeyUp = (e) => {
-        if (e.key === 'Control') {
-          isCtrlPressed = false;
-        }
-      };
-
-      const handleCanvasClick = (options) => {
-        if (isCtrlPressed) {
-          const target = options.target; // The clicked object
-
-          if (target) {
-            // Retrieve the currently active objects
-            let activeObjects = canvas.getActiveObjects();
-
-            // Check if the target is already selected
-            // if (!activeObjects.includes(target)) {
-            // If not, add it to the active selection
-            activeObjects = [...activeObjects, target];
-            //  }
-
-            // Create a new ActiveSelection with the updated list
-            const newActiveSelection = new fabric.ActiveSelection(activeObjects, { canvas });
-
-            // Set the updated ActiveSelection as the current active object
-            canvas.setActiveObject(newActiveSelection);
-          }
-
-          canvas.renderAll();
-        } else {
-          // If Ctrl is not pressed, default to selecting the clicked object only
-          canvas.setActiveObject(options.target || null);
-          canvas.renderAll();
-        }
-      };
-
-      // Attach event listeners
-      document.addEventListener('keydown', handleKeyDown);
-      document.addEventListener('keyup', handleKeyUp);
-      canvas.on('mouse:down', handleCanvasClick);
-
-      return () => {
-        document.removeEventListener('keydown', handleKeyDown);
-        document.removeEventListener('keyup', handleKeyUp);
-        canvas.off('mouse:down', handleCanvasClick);
-      };
-    }
-  }, [editor, selectedTool]);
 
   return (
     <div className="grid-background w-full h-full relative">
