@@ -23,11 +23,53 @@ function Canvas({ selectedFile, selectedTool, setSelectedTool }) {
     const canvas = editor.canvas;
 
     const updateObjectSelectability = () => {
+      if (!canvas) {
+        console.error('Canvas is not defined.');
+        return;
+      }
+
+      // Iterate over all objects and update their selectability and controls
       canvas.getObjects().forEach((obj) => {
         obj.selectable = selectedTool === 'select';
         obj.hasControls = selectedTool === 'select';
       });
+
+      // Enable or disable group selection
+      canvas.selection = selectedTool === 'select';
+
+      // Re-render the canvas to reflect changes
       canvas.renderAll();
+    };
+
+    // Attach multi-selection logic
+    const handleMouseDown = (event) => {
+      if (selectedTool === 'select' && (event.e.ctrlKey || event.e.metaKey)) {
+        const target = event.target;
+
+        if (target) {
+          const activeObjects = canvas.getActiveObjects();
+
+          if (activeObjects.includes(target)) {
+            // If already selected, deselect
+            canvas.discardActiveObject(target);
+          } else {
+            // Add to the active selection
+            canvas.setActiveObject(target);
+          }
+        }
+        canvas.renderAll();
+      }
+    };
+
+    // Attach event listener for multi-selection
+    canvas.on('mouse:down', handleMouseDown);
+
+    // Ensure objects are updated whenever the tool changes
+    updateObjectSelectability();
+
+    // Cleanup to avoid multiple listeners being added
+    return () => {
+      canvas.off('mouse:down', handleMouseDown);
     };
 
     const createSeamAllowance = (offsetCm) => {
