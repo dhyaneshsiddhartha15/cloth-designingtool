@@ -1,4 +1,4 @@
-import { FaExchangeAlt, FaRuler } from 'react-icons/fa';
+import { FaExchangeAlt, FaInfo, FaRuler } from 'react-icons/fa';
 
 import { MdOutlineContentCopy } from 'react-icons/md';
 import { FiTrash } from 'react-icons/fi';
@@ -18,7 +18,8 @@ function TopBar({ setSelectedTool, selectedTool, setActiveTab, setActiveSubTab }
     { id: 'paste', icon: FiClipboard, label: 'Paste' },
     { id: 'Save', icon: TiTick, label: 'Save' },
     { id: 'delete', icon: FiTrash, label: 'Delete' },
-
+    { id: 'undo', icon: FaInfo, label: 'Undo' },
+    { id: 'redo', icon: FaInfo, label: 'Redo' },
     // { id: 'type', icon: LuType, label: 'Type' },
 
     // { id: 'fabric-width', icon: FaRuler, label: 'Fabric Width' },

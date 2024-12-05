@@ -583,6 +583,7 @@ function Canvas({ selectedFile, selectedTool, setSelectedTool }) {
     if (selectedTool === 'godet') {
       let newTriangle;
       canvas.on('mouse:down', function (o) {
+        canvas.selection = false;
         if (!isDrawing) {
           const pointer = canvas.getPointer(o.e);
           const startX = pointer.x;
@@ -626,6 +627,7 @@ function Canvas({ selectedFile, selectedTool, setSelectedTool }) {
       });
 
       canvas.on('mouse:up', function () {
+        canvas.selection = true;
         setIsDrawing(false);
         setTriangle(null);
         setStartPoint(null);
@@ -675,6 +677,7 @@ function Canvas({ selectedFile, selectedTool, setSelectedTool }) {
 
     if (selectedTool === 'line') {
       canvas.on('mouse:down', function (o) {
+        canvas.selection = false;
         setIsDrawing(true);
         const pointer = canvas.getPointer(o.e);
         const points = [pointer.x, pointer.y, pointer.x, pointer.y];
@@ -702,6 +705,8 @@ function Canvas({ selectedFile, selectedTool, setSelectedTool }) {
       });
 
       canvas.on('mouse:up', function () {
+        console.log('mouse up');
+        canvas.selection = true;
         setIsDrawing(false);
         setLine(null);
       });
@@ -1578,6 +1583,7 @@ function Canvas({ selectedFile, selectedTool, setSelectedTool }) {
 
   return (
     <div className="grid-background w-full h-full relative">
+      <span></span>
       <FabricJSCanvas className="w-full h-full" onReady={onReady} />
     </div>
   );
