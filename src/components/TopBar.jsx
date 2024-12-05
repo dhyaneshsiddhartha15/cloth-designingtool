@@ -9,6 +9,7 @@ import { IoMdCopy } from 'react-icons/io';
 import { TiTick } from 'react-icons/ti';
 import { LuType } from 'react-icons/lu';
 import { FiClipboard } from 'react-icons/fi';
+import { FaUndo, FaRedo } from 'react-icons/fa';
 function TopBar({ setSelectedTool, selectedTool, setActiveTab, setActiveSubTab }) {
   const tools = [
     { id: 'duplicate', icon: MdOutlineContentCopy, label: 'Duplicate' },
@@ -18,8 +19,9 @@ function TopBar({ setSelectedTool, selectedTool, setActiveTab, setActiveSubTab }
     { id: 'paste', icon: FiClipboard, label: 'Paste' },
     { id: 'Save', icon: TiTick, label: 'Save' },
     { id: 'delete', icon: FiTrash, label: 'Delete' },
-    { id: 'undo', icon: FaInfo, label: 'Undo' },
-    { id: 'redo', icon: FaInfo, label: 'Redo' },
+    { id: 'undo', icon: FaUndo, label: 'Undo' },
+    { id: 'redo', icon: FaRedo, label: 'Redo' },
+
     // { id: 'type', icon: LuType, label: 'Type' },
 
     // { id: 'fabric-width', icon: FaRuler, label: 'Fabric Width' },

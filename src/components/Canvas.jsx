@@ -16,6 +16,84 @@ function Canvas({ selectedFile, selectedTool, setSelectedTool }) {
   const [triangle, setTriangle] = useState(null);
   const [mirrorDirection, setMirrorDirection] = useState('horizontal');
   const [copySvg, setCopySvg] = useState(null);
+  const [undoStack, setUndoStack] = useState([]);
+  const [redoStack, setRedoStack] = useState([]);
+
+  const saveState = () => {
+    if (!editor) return;
+
+    const currentState = editor.canvas.toJSON(); // Save the current canvas state
+    setUndoStack((prevUndoStack) => [...prevUndoStack, currentState]); // Add current state to undo stack
+    setRedoStack([]); // Clear redo stack on new action
+  };
+
+  // Handle undo action
+  const handleUndo = () => {
+    if (undoStack.length > 1) {
+      const lastState = undoStack.pop(); // Remove the current state from the undo stack
+      setRedoStack((prevRedoStack) => [lastState, ...prevRedoStack]); // Add the current state to the redo stack
+      const previousState = undoStack[undoStack.length - 1]; // Get the previous state from the undo stack
+
+      // Load the previous state into the canvas
+      editor.canvas.loadFromJSON(previousState, () => {
+        editor.canvas.renderAll();
+      });
+      setUndoStack([...undoStack]); // Update undo stack without the last state
+    } else {
+      alert('No more undo steps available.');
+    }
+  };
+
+  // Handle redo action
+  const handleRedo = () => {
+    if (redoStack.length > 0) {
+      const nextState = redoStack[0]; // Get the next state from the redo stack
+      setUndoStack((prevUndoStack) => [...prevUndoStack, nextState]); // Add the next state to the undo stack
+      setRedoStack(redoStack.slice(1)); // Remove the next state from the redo stack
+
+      // Load the next state into the canvas
+      editor.canvas.loadFromJSON(nextState, () => {
+        editor.canvas.renderAll();
+      });
+    } else {
+      alert('No more redo steps available.');
+    }
+  };
+
+  // Watch for changes and save state
+  const saveCanvasState = () => {
+    if (selectedTool !== 'undo' && selectedTool !== 'redo') {
+      // Don't save on undo/redo
+      saveState();
+    }
+  };
+
+  useEffect(() => {
+    if (!editor) return;
+
+    const canvas = editor.canvas;
+
+    // Attach save state to various canvas events
+    canvas.on('object:added', saveCanvasState);
+    canvas.on('object:modified', saveCanvasState);
+    canvas.on('object:removed', saveCanvasState);
+
+    // Perform undo or redo based on the selectedTool
+    if (selectedTool === 'undo') {
+      handleUndo();
+      setSelectedTool('view');
+    } else if (selectedTool === 'redo') {
+      handleRedo();
+      setSelectedTool('view');
+    }
+
+    // Cleanup on component unmount
+    return () => {
+      canvas.off('object:added', saveCanvasState);
+      canvas.off('object:modified', saveCanvasState);
+      canvas.off('object:removed', saveCanvasState);
+    };
+  }, [selectedTool, editor, undoStack, redoStack]);
 
   useEffect(() => {
     if (!editor || !fabric) return;
