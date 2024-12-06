@@ -35,7 +35,7 @@ function TopBar({ setSelectedTool, selectedTool, setActiveTab, setActiveSubTab }
   };
 
   return (
-    <div className="bg-indigo-900 text-white  flex items-center px-4 justify-start gap-10">
+    <div className="bg-indigo-900 text-white  flex items-center px-4 justify-start gap-10 z-20">
       <div className="flex items-center gap-1">
         <img src="/logo.svg" alt="Logo" className="h-8 w-8" />
         <div className="text-xl font-bold">SS</div>

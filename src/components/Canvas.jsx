@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { fabric } from 'fabric';
 import { FabricJSCanvas, useFabricJSEditor } from 'fabricjs-react';
+import { FaBorderStyle, FaPaintBrush } from 'react-icons/fa';
 
 function Canvas({ selectedFile, selectedTool, setSelectedTool }) {
   console.log(selectedTool);
@@ -18,7 +19,9 @@ function Canvas({ selectedFile, selectedTool, setSelectedTool }) {
   const [copySvg, setCopySvg] = useState(null);
   const [undoStack, setUndoStack] = useState([]);
   const [redoStack, setRedoStack] = useState([]);
-
+  const [lineType, setLineType] = useState('solid'); // State for line type
+  const [lineThickness, setLineThickness] = useState(1);
+  const [showOption, setShowOption] = useState(true);
   const saveState = () => {
     if (!editor) return;
 
@@ -99,6 +102,7 @@ function Canvas({ selectedFile, selectedTool, setSelectedTool }) {
     if (!editor || !fabric) return;
 
     const canvas = editor.canvas;
+    setShowOption(true);
 
     const updateObjectSelectability = () => {
       canvas.getObjects().forEach((obj) => {
@@ -752,50 +756,57 @@ function Canvas({ selectedFile, selectedTool, setSelectedTool }) {
         this.selection = true;
       });
     }
-
+    console.log({
+      lineThickness,
+      lineType,
+    });
     if (selectedTool === 'line') {
       canvas.on('mouse:down', function (o) {
         canvas.selection = false;
-        setIsDrawing(true);
         const pointer = canvas.getPointer(o.e);
         const points = [pointer.x, pointer.y, pointer.x, pointer.y];
 
-        const lineType = document.getElementById('linetype')?.value || 'solid';
         const newLine = new fabric.Line(points, {
-          strokeWidth: lineType === 'dashed' ? 5 : 0.5,
+          strokeWidth: lineThickness,
           strokeDashArray: lineType === 'dashed' ? [15, 5] : null,
-          fill: lineType === 'dashed' ? 'gray' : 'black',
-          stroke: lineType === 'dashed' ? 'gray' : 'black',
+          stroke: 'black', // Default color
           originX: 'center',
           originY: 'center',
         });
 
         canvas.add(newLine);
-        setLine(newLine);
-      });
+        canvas.on('mouse:move', function (o) {
+          const pointer = canvas.getPointer(o.e);
+          newLine.set({ x2: pointer.x, y2: pointer.y });
+          canvas.renderAll();
+        });
 
-      canvas.on('mouse:move', function (o) {
-        if (!isDrawing || !line) return;
-        const pointer = canvas.getPointer(o.e);
-
-        line.set({ x2: pointer.x, y2: pointer.y });
-        canvas.renderAll();
-      });
-
-      canvas.on('mouse:up', function () {
-        console.log('mouse up');
-        canvas.selection = true;
-        setIsDrawing(false);
-        setLine(null);
+        canvas.on('mouse:up', function () {
+          canvas.selection = true;
+          canvas.off('mouse:move');
+          canvas.off('mouse:up');
+        });
       });
     }
-
     if (selectedTool === 'group') {
       const activeObjects = editor.canvas.getActiveObjects();
 
       if (activeObjects.length > 1) {
-        const group = new fabric.Group(activeObjects);
+        // Get the position of the first selected object
+        const position = {
+          left: activeObjects[0].left + 220,
+          top: activeObjects[0].top + 215,
+        };
+        console.log(position);
+        // Create the group
+        const group = new fabric.Group(activeObjects, position);
+
+        // Remove individual objects from the canvas
         activeObjects.forEach((obj) => editor.canvas.remove(obj));
+
+        // Set the group's position to match the position of the first object
+
+        // Add the group to the canvas and render
         editor.canvas.add(group);
         editor.canvas.renderAll();
       }
@@ -937,6 +948,7 @@ function Canvas({ selectedFile, selectedTool, setSelectedTool }) {
         activeObjects.forEach((obj) => editor.canvas.remove(obj));
 
         editor.canvas.renderAll();
+        setSelectedTool('select');
       }
     }
 
@@ -1614,7 +1626,18 @@ function Canvas({ selectedFile, selectedTool, setSelectedTool }) {
       canvas.off('mouse:up');
       canvas.off('mouse:wheel');
     };
-  }, [editor, selectedTool, line, rect, startPoint, cropRect, triangle, mirrorDirection]);
+  }, [
+    editor,
+    selectedTool,
+    line,
+    rect,
+    startPoint,
+    cropRect,
+    triangle,
+    mirrorDirection,
+    lineType,
+    lineThickness,
+  ]);
 
   useEffect(() => {
     if (editor && selectedFile) {
@@ -1661,7 +1684,46 @@ function Canvas({ selectedFile, selectedTool, setSelectedTool }) {
 
   return (
     <div className="grid-background w-full h-full relative">
-      <span></span>
+      {selectedTool === 'line' && showOption && (
+        <div className="absolute top-0 left-0 p-4 bg-indigo-200 z-[5] shadow-lg rounded-lg border border-gray-300">
+          <button
+            className="absolute top-1 right-3 hover:text-red-500"
+            onClick={() => setShowOption(false)}
+          >
+            x
+          </button>
+          <div className="flex flex-col space-y-4">
+            <div className="flex items-center space-x-2">
+              <FaBorderStyle className="text-gray-600" />
+              <label className="flex-1">
+                Line Type:
+                <select
+                  id="linetype"
+                  value={lineType}
+                  onChange={(e) => setLineType(e.target.value)}
+                  className="ml-2 border border-gray-400 p-1 rounded-md"
+                >
+                  <option value="solid">Solid</option>
+                  <option value="dashed">Dashed</option>
+                </select>
+              </label>
+            </div>
+            <div className="flex items-center space-x-2">
+              <FaPaintBrush className="text-gray-600" />
+              <label className="flex-1">
+                Line Thickness:
+                <input
+                  type="number"
+                  value={lineThickness}
+                  onChange={(e) => setLineThickness(Number(e.target.value))}
+                  className="ml-2 border border-gray-400 p-1 rounded-md w-20"
+                  min="1"
+                />
+              </label>
+            </div>
+          </div>
+        </div>
+      )}
       <FabricJSCanvas className="w-full h-full" onReady={onReady} />
     </div>
   );
