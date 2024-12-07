@@ -33,15 +33,21 @@ function Canvas({ selectedFile, selectedTool, setSelectedTool }) {
   // Handle undo action
   const handleUndo = () => {
     if (undoStack.length > 1) {
-      const lastState = undoStack.pop(); // Remove the current state from the undo stack
-      setRedoStack((prevRedoStack) => [lastState, ...prevRedoStack]); // Add the current state to the redo stack
-      const previousState = undoStack[undoStack.length - 1]; // Get the previous state from the undo stack
+      // Ensure there are at least two states to undo
+      const lastState = undoStack.pop(); // Remove the last state
+      const secondLastState = undoStack.pop(); // Remove the second-to-last state
 
-      // Load the previous state into the canvas
-      editor.canvas.loadFromJSON(previousState, () => {
+      // Push the popped states into the redo stack
+      setRedoStack((prevRedoStack) => [lastState, ...prevRedoStack]);
+
+      // Load the second-last state into the canvas
+      editor.canvas.loadFromJSON(secondLastState, () => {
         editor.canvas.renderAll();
       });
-      setUndoStack([...undoStack]); // Update undo stack without the last state
+    } else if (undoStack.length === 1) {
+      const lastState = undoStack.pop(); // Remove the last state
+      setRedoStack((prevRedoStack) => [lastState, ...prevRedoStack]);
+      editor.canvas.clear(); // Clear the canvas if there's only one state left
     } else {
       alert('No more undo steps available.');
     }
