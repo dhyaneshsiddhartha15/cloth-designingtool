@@ -878,22 +878,72 @@ function Canvas({ selectedFile, selectedTool, setSelectedTool }) {
 
       downloadSVG();
     }
-
     if (selectedTool === 'rotate') {
-      const activeObjects = editor.canvas.getActiveObjects();
+      const createRotationControl = () => {
+        const angleInput = document.createElement('input');
+        angleInput.type = 'range';
+        angleInput.min = '0';
+        angleInput.max = '360';
+        angleInput.value = '0';
+        angleInput.style.position = 'absolute';
+        angleInput.style.top = '150px';
+        angleInput.style.left = '70px';
+        angleInput.style.zIndex = '1000';
 
-      const group = new fabric.Group(activeObjects);
-      activeObjects.forEach((obj) => editor.canvas.remove(obj));
-      editor.canvas.add(group);
+        const angleLabel = document.createElement('div');
+        angleLabel.style.position = 'absolute';
+        angleLabel.style.top = '120px';
+        angleLabel.style.left = '70px';
+        angleLabel.style.fontSize = '14px';
+        angleLabel.style.color = '#000';
+        angleLabel.style.zIndex = '1000';
+        angleLabel.textContent = `Rotation Angle: 0°`;
 
-      group
-        .set({
-          angle: (group.angle + 90) % 360,
-        })
-        .setCoords();
-      setSelectedTool('select');
-      editor.canvas.renderAll();
+        document.body.appendChild(angleInput);
+        document.body.appendChild(angleLabel);
+
+        const activeObjects = editor.canvas.getActiveObjects();
+        if (activeObjects.length === 0) {
+          alert('Please select objects to rotate.');
+          angleInput.remove();
+          angleLabel.remove();
+          return;
+        }
+
+        const initialPositions = activeObjects.map((obj) => ({
+          left: obj.left,
+          top: obj.top,
+          angle: obj.angle,
+        }));
+
+        angleInput.addEventListener('input', (event) => {
+          const angle = parseInt(event.target.value, 10);
+
+          activeObjects.forEach((obj, index) => {
+            obj.set({
+              angle: angle % 360, // Apply the rotation
+            });
+
+            obj.setCoords();
+          });
+
+          editor.canvas.renderAll();
+
+          angleLabel.textContent = `Rotation Angle: ${angle}°`;
+        });
+
+        angleInput.addEventListener('change', () => {
+          setTimeout(() => {
+            angleInput.remove();
+            angleLabel.remove();
+            setSelectedTool('select');
+          }, 500);
+        });
+      };
+
+      createRotationControl();
     }
+
     if (selectedTool === 'duplicate') {
       const activeObjects = editor.canvas.getActiveObjects();
 
