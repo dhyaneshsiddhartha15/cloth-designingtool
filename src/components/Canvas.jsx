@@ -1012,24 +1012,18 @@ function Canvas({ selectedFile, selectedTool, setSelectedTool }) {
       canvas.on('mouse:down', function (o) {
         const activeObject = canvas.getActiveObject();
 
-        // Check if there's an active selection
         if (activeObject) {
-          // Get the bounding box of the selected object to place the curve in the same location
           const { left, top, width, height } = activeObject.getBoundingRect();
 
-          // Remove the selected object
           canvas.remove(activeObject);
 
-          // Define starting point of the curve based on the selected object's position
           const startX = left;
           const startY = top + height / 2;
 
-          // Define the curve path to replace the selected object
           const path = `M ${startX} ${startY} Q ${startX + 50} ${startY - 50}, ${
             startX + 100
           } ${startY}`;
 
-          // Create the curve as a Path object
           const curve = new fabric.Path(path, {
             stroke: 'black',
             fill: 'transparent',
@@ -1043,55 +1037,109 @@ function Canvas({ selectedFile, selectedTool, setSelectedTool }) {
     }
 
     if (selectedTool === 'cut line') {
-      let curve; // Store the curve reference
-      let startX, startY;
+      const createCutLineTool = () => {
+        const canvas = editor.canvas;
+        let tempMark = null; // Temporary marker for the cut point
 
-      canvas.on('mouse:down', function (o) {
-        setIsDrawing(true);
+        // Remove previous mouse event listeners to prevent duplicates
+        canvas.off('mouse:down');
 
-        const pointer = canvas.getPointer(o.e);
-        startX = pointer.x;
-        startY = pointer.y;
+        // Event listener for mouse down to perform the cut
+        canvas.on('mouse:down', (event) => {
+          const activeObject = canvas.getActiveObject();
 
-        const path = `M ${startX} ${startY} Q ${startX + 50} ${startY - 50}, ${
-          startX + 100
-        } ${startY}`;
-        curve = new fabric.Path(path, {
-          stroke: 'red',
-          fill: 'transparent',
-          strokeWidth: 0.5,
-          strokeDashArray: [5, 5],
-          selectable: false,
-        });
+          // Ensure the selected object is a line
+          if (!activeObject || activeObject.type !== 'line') {
+            alert('Please select a line to cut.');
+            return;
+          }
 
-        canvas.add(curve);
-      });
+          const line = activeObject;
 
-      canvas.on('mouse:move', function (o) {
-        if (isDrawing) {
-          const pointer = canvas.getPointer(o.e);
-          console.log(pointer.x);
-          const endX = pointer.x;
-          const endY = pointer.y;
+          // Get the click position in global coordinates
+          const pointer = canvas.getPointer(event.e);
+          const clickX = pointer.x;
+          const clickY = pointer.y;
 
-          console.log('Mouse moving at:', pointer.x, pointer.y);
+          // Add a temporary marker at the cut position
+          if (tempMark) {
+            canvas.remove(tempMark);
+          }
 
-          // Update curve path
-          const updatedPath = `M ${startX} ${startY} Q ${(startX + endX) / 2} ${
-            startY - 50
-          }, ${endX} ${endY}`;
-          curve.set({ path: updatedPath });
+          tempMark = new fabric.Circle({
+            left: clickX,
+            top: clickY,
+            radius: 5,
+            fill: 'red',
+            selectable: false,
+            originX: 'center',
+            originY: 'center',
+          });
+
+          canvas.add(tempMark);
           canvas.renderAll();
-        }
-      });
 
-      canvas.on('mouse:up', function () {
-        setIsDrawing(false);
-        setSelectedTool('select');
-      });
+          // Extract the line's start and end coordinates
+          const x1 = line.get('x1');
+          const y1 = line.get('y1');
+          const x2 = line.get('x2');
+          const y2 = line.get('y2');
+
+          // Calculate the relative position (t value) where the line should be cut
+          const t =
+            ((clickX - x1) * (x2 - x1) + (clickY - y1) * (y2 - y1)) /
+            ((x2 - x1) ** 2 + (y2 - y1) ** 2);
+          const tClamped = Math.max(0, Math.min(1, t)); // Ensure t is between 0 and 1
+
+          // Calculate the split point
+          const splitX = x1 + tClamped * (x2 - x1);
+          const splitY = y1 + tClamped * (y2 - y1);
+
+          console.log(`Cutting the line at: (${splitX}, ${splitY})`);
+
+          // Modify the original line to represent the first segment
+          line.set({
+            x2: splitX, // Set the new end point of the original line
+            y2: splitY,
+          });
+
+          // Create the second line segment representing the remaining part
+          // Apply a small offset for a gap between the lines
+          const gap = 5; // Adjust this value for the desired gap
+
+          // Offset the second line slightly to create a small gap between the two lines
+          const line2 = new fabric.Line([splitX + gap, splitY + gap, x2 + gap, y2 + gap], {
+            stroke: line.stroke,
+            strokeWidth: line.strokeWidth,
+            selectable: true,
+          });
+
+          // Add the new line to the canvas
+          canvas.add(line2);
+
+          // Force canvas to update and re-render after adding the new line
+          canvas.discardActiveObject();
+          canvas.setActiveObject(line2); // Optionally set the second line as active
+          canvas.renderAll();
+
+          console.log('Original line updated and new line added:', line, line2);
+
+          alert('Line cut successfully!');
+
+          // Remove the temporary marker after a short delay
+          setTimeout(() => {
+            if (tempMark) {
+              canvas.remove(tempMark);
+              tempMark = null;
+              canvas.renderAll();
+            }
+          }, 4000);
+        });
+      };
+
+      createCutLineTool();
     }
 
-    // Inside your existing tool selection condition
     if (selectedTool === 'extract') {
       canvas.getObjects().forEach((obj) => {
         obj.selectable = true;
