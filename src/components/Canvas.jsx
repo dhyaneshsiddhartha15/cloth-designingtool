@@ -959,13 +959,12 @@ function Canvas({ selectedFile, selectedTool, setSelectedTool }) {
         }
       }
 
-      // Duplicate the selected objects
       activeObjects.forEach((obj) => {
         obj.clone((clonedObj) => {
           clonedObj.set({
-            left: obj.left + 200, // Offset position for duplicate
-            top: obj.top + 20, // Offset position for duplicate
-            evented: true, // Ensure the duplicate is interactive
+            left: obj.left + 200,
+            top: obj.top + 20,
+            evented: true,
           });
 
           editor.canvas.add(clonedObj); // Add the duplicate to the canvas
@@ -1009,31 +1008,87 @@ function Canvas({ selectedFile, selectedTool, setSelectedTool }) {
     }
 
     if (selectedTool === 'convertor') {
-      canvas.on('mouse:down', function (o) {
-        const activeObject = canvas.getActiveObject();
+      const createConvertorTool = () => {
+        const canvas = editor.canvas;
+        let activePath = null;
+        let isDragging = false;
 
-        if (activeObject) {
-          const { left, top, width, height } = activeObject.getBoundingRect();
+        // Remove previous listeners to avoid duplication
+        canvas.off('mouse:down');
+        canvas.off('mouse:move');
+        canvas.off('mouse:up');
 
-          canvas.remove(activeObject);
+        // Event listener for mouse down
+        canvas.on('mouse:down', (event) => {
+          const activeObject = canvas.getActiveObject();
 
-          const startX = left;
-          const startY = top + height / 2;
+          if (!activeObject || activeObject.type !== 'line') {
+            alert('Please select a line to convert.');
+            return;
+          }
 
-          const path = `M ${startX} ${startY} Q ${startX + 50} ${startY - 50}, ${
-            startX + 100
-          } ${startY}`;
+          const line = activeObject;
 
-          const curve = new fabric.Path(path, {
-            stroke: 'black',
-            fill: 'transparent',
-            strokeWidth: 0.2,
-            selectable: false,
+          // Extract the line's start and end points
+          const x1 = line.get('x1');
+          const y1 = line.get('y1');
+          const x2 = line.get('x2');
+          const y2 = line.get('y2');
+
+          // Convert the line into a path (Bezier curve)
+          const pathData = `M ${x1} ${y1} 
+                            Q ${(x1 + x2) / 2} ${(y1 + y2) / 2} 
+                            ${x2} ${y2}`;
+
+          const path = new fabric.Path(pathData, {
+            stroke: line.stroke,
+            strokeWidth: line.strokeWidth,
+            fill: null,
+            selectable: true,
+            objectCaching: false,
           });
-          setSelectedTool('select');
-          canvas.add(curve);
-        }
-      });
+
+          canvas.remove(line); // Remove the line
+          canvas.add(path); // Add the path
+          canvas.setActiveObject(path); // Set the path as active
+          activePath = path;
+
+          isDragging = true;
+        });
+
+        // Event listener for mouse move
+        canvas.on('mouse:move', (event) => {
+          if (!isDragging || !activePath) return;
+
+          const pointer = canvas.getPointer(event.e);
+
+          // Extract the original start and end points (keep them fixed)
+          const [startX, startY] = activePath.path[0].slice(1); // Move command start point
+          const [endX, endY] = activePath.path[1].slice(2); // Quadratic curve end point
+
+          // Dynamically set the control point (this will determine the shape)
+          const controlX = pointer.x;
+          const controlY = pointer.y;
+
+          // Update the path data dynamically, but keep the start and end points constant
+          const newPathData = `M ${startX} ${startY} 
+                               Q ${controlX} ${controlY} 
+                               ${endX} ${endY}`;
+
+          // Update the path with new path data (use fabric's setter)
+          activePath.set({ path: new fabric.Path(newPathData).path });
+
+          canvas.renderAll();
+        });
+
+        // Event listener for mouse up
+        canvas.on('mouse:up', () => {
+          isDragging = false;
+          activePath = null;
+        });
+      };
+
+      createConvertorTool();
     }
 
     if (selectedTool === 'cut line') {
@@ -1079,50 +1134,46 @@ function Canvas({ selectedFile, selectedTool, setSelectedTool }) {
           canvas.add(tempMark);
           canvas.renderAll();
 
-          // Extract the line's start and end coordinates
+          // Calculate the split point on the line
           const x1 = line.get('x1');
           const y1 = line.get('y1');
           const x2 = line.get('x2');
           const y2 = line.get('y2');
 
-          // Calculate the relative position (t value) where the line should be cut
           const t =
             ((clickX - x1) * (x2 - x1) + (clickY - y1) * (y2 - y1)) /
             ((x2 - x1) ** 2 + (y2 - y1) ** 2);
-          const tClamped = Math.max(0, Math.min(1, t)); // Ensure t is between 0 and 1
+          const tClamped = Math.max(0, Math.min(1, t));
 
-          // Calculate the split point
           const splitX = x1 + tClamped * (x2 - x1);
           const splitY = y1 + tClamped * (y2 - y1);
 
           console.log(`Cutting the line at: (${splitX}, ${splitY})`);
 
-          // Modify the original line to represent the first segment
-          line.set({
-            x2: splitX, // Set the new end point of the original line
-            y2: splitY,
-          });
-
-          // Create the second line segment representing the remaining part
-          // Apply a small offset for a gap between the lines
-          const gap = 5; // Adjust this value for the desired gap
-
-          // Offset the second line slightly to create a small gap between the two lines
-          const line2 = new fabric.Line([splitX + gap, splitY + gap, x2 + gap, y2 + gap], {
+          // Update the original line's endpoint
+          const updatedLine = new fabric.Line([x1, y1, splitX, splitY], {
             stroke: line.stroke,
             strokeWidth: line.strokeWidth,
             selectable: true,
           });
 
-          // Add the new line to the canvas
-          canvas.add(line2);
+          // Create the second half of the split line
+          const newLine = new fabric.Line([splitX, splitY, x2, y2], {
+            stroke: line.stroke,
+            strokeWidth: line.strokeWidth,
+            selectable: true,
+          });
 
-          // Force canvas to update and re-render after adding the new line
+          // Replace the original line with the split lines
+          canvas.remove(line);
+          canvas.add(updatedLine, newLine);
+
+          // Force canvas to update and re-render
           canvas.discardActiveObject();
-          canvas.setActiveObject(line2); // Optionally set the second line as active
+          canvas.setActiveObject(newLine); // Optionally set the second line as active
           canvas.renderAll();
 
-          console.log('Original line updated and new line added:', line, line2);
+          console.log('Original line updated and new line added:', updatedLine, newLine);
 
           alert('Line cut successfully!');
 
