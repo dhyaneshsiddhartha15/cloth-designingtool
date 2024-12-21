@@ -880,6 +880,7 @@ function Canvas({ selectedFile, selectedTool, setSelectedTool }) {
     }
     if (selectedTool === 'rotate') {
       const createRotationControl = () => {
+        // Create angle input and label
         const angleInput = document.createElement('input');
         angleInput.type = 'range';
         angleInput.min = '0';
@@ -889,7 +890,7 @@ function Canvas({ selectedFile, selectedTool, setSelectedTool }) {
         angleInput.style.top = '150px';
         angleInput.style.left = '70px';
         angleInput.style.zIndex = '1000';
-
+    
         const angleLabel = document.createElement('div');
         angleLabel.style.position = 'absolute';
         angleLabel.style.top = '120px';
@@ -898,10 +899,10 @@ function Canvas({ selectedFile, selectedTool, setSelectedTool }) {
         angleLabel.style.color = '#000';
         angleLabel.style.zIndex = '1000';
         angleLabel.textContent = `Rotation Angle: 0°`;
-
+    
         document.body.appendChild(angleInput);
         document.body.appendChild(angleLabel);
-
+    
         const activeObjects = editor.canvas.getActiveObjects();
         if (activeObjects.length === 0) {
           alert('Please select objects to rotate.');
@@ -909,41 +910,102 @@ function Canvas({ selectedFile, selectedTool, setSelectedTool }) {
           angleLabel.remove();
           return;
         }
-
-        const initialPositions = activeObjects.map((obj) => ({
-          left: obj.left,
-          top: obj.top,
-          angle: obj.angle,
-        }));
-
-        angleInput.addEventListener('input', (event) => {
-          const angle = parseInt(event.target.value, 10);
-
-          activeObjects.forEach((obj, index) => {
-            obj.set({
-              angle: angle % 360, // Apply the rotation
+    
+        const cornerControls = [];
+        let selectedCorner = null;
+    
+        activeObjects.forEach((obj) => {
+          if (!obj.oCoords) {
+            console.error('Object coordinates are not initialized.');
+            return;
+          }
+    
+          const corners = ['tl', 'tr', 'bl', 'br'];
+    
+          corners.forEach((corner) => {
+            const cornerCoords = obj.oCoords[corner];
+            if (!cornerCoords) return; // Skip if corner coordinates are undefined
+    
+            const cornerControl = new fabric.Circle({
+              radius: 5,
+              fill: 'red',
+              originX: 'center',
+              originY: 'center',
+              left: cornerCoords.x,
+              top: cornerCoords.y,
+              hasControls: false,
+              selectable: false,
+              evented: true,
+              corner: corner,
             });
-
-            obj.setCoords();
+    
+            cornerControl.on('mousedown', () => {
+              selectedCorner = corner;
+    
+              // Remove previous corner controls
+              cornerControls.forEach((control) => editor.canvas.remove(control));
+              cornerControls.length = 0;
+    
+              const groupOriginX = corner.includes('r') ? 'right' : 'left';
+              const groupOriginY = corner.includes('b') ? 'bottom' : 'top';
+    
+              const group = new fabric.Group([obj], {
+                originX: groupOriginX,
+                originY: groupOriginY,
+                left: cornerCoords.x,
+                top: cornerCoords.y,
+              });
+    
+              editor.canvas.add(group);
+              editor.canvas.remove(obj);
+    
+              angleInput.addEventListener('input', (event) => {
+                const angle = parseInt(event.target.value, 10);
+                group.set('angle', angle % 360);
+                editor.canvas.renderAll();
+                angleLabel.textContent = `Rotation Angle: ${angle}°`;
+              });
+    
+              angleInput.addEventListener('change', () => {
+                group.destroy();
+                editor.canvas.add(obj);
+                editor.canvas.remove(group);
+                obj.setCoords();
+                editor.canvas.renderAll();
+              });
+            });
+    
+            cornerControl.on('mouseover', () => {
+              cornerControl.set({ fill: 'blue' });
+              editor.canvas.renderAll();
+            });
+    
+            cornerControl.on('mouseout', () => {
+              cornerControl.set({ fill: 'red' });
+              editor.canvas.renderAll();
+            });
+    
+            cornerControls.push(cornerControl);
+            editor.canvas.add(cornerControl);
           });
-
-          editor.canvas.renderAll();
-
-          angleLabel.textContent = `Rotation Angle: ${angle}°`;
         });
-
+    
         angleInput.addEventListener('change', () => {
-          setTimeout(() => {
-            angleInput.remove();
-            angleLabel.remove();
-            setSelectedTool('select');
-          }, 500);
+          // Cleanup corner controls and input elements
+          cornerControls.forEach((control) => editor.canvas.remove(control));
+          cornerControls.length = 0;
+    
+          angleInput.remove();
+          angleLabel.remove();
+          setSelectedTool('select');
         });
+    
+        editor.canvas.renderAll();
       };
-
+    
       createRotationControl();
     }
-
+    
     if (selectedTool === 'duplicate') {
       const activeObjects = editor.canvas.getActiveObjects();
 
